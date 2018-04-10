@@ -1,0 +1,1 @@
+﻿var commonModule = angular.module('electronicStoreApp.global.common', []);

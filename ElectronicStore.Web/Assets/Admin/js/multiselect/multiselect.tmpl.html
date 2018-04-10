@@ -1,0 +1,11 @@
+<div class="btn-group">
+    <button type="button" class="btn btn-standard dropdown-toggle" ng-click="toggleSelect()" ng-disabled="disabled" ng-class="{'error': !valid()}">        
+        <span class="">{{header}}</span>
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li ng-repeat="i in items | filter:searchText" ng-class="{'selected': $index === selectedIndex, 'checked': i.checked}" ng-click="select(i)">
+            {{i.label}}
+        </li>
+    </ul>
+</div>
