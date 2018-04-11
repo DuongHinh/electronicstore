@@ -185,6 +185,8 @@
     <Content Include="App\screens\home\home.js" />
     <Content Include="App\screens\login\login.html" />
     <Content Include="App\screens\login\login.js" />
+    <Content Include="App\screens\productCategories\list.html" />
+    <Content Include="App\screens\productCategories\productCategories.js" />
     <Content Include="App\screens\product\list.html" />
     <Content Include="App\screens\product\product.js" />
     <Content Include="Assets\Admin\images\ajax-loader-big.gif" />

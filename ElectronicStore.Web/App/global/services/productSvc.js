@@ -1,4 +1,4 @@
-﻿angular.module('meritApp.global.services.products', ['electronicStoreApp.global'])
+﻿angular.module('electronicStoreApp.global.services.products', ['electronicStoreApp.global.services'])
     .service('productSvc',
     [
         '$q', '$timeout', '$http', '$modal', 'crudSvc',

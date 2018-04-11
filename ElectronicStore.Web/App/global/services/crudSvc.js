@@ -1,4 +1,4 @@
-﻿angular.module('electronicStoreApp.global.services.common', ['electronicStoreApp.global'])
+﻿angular.module('electronicStoreApp.global.services', [])
 .service('crudSvc', ['$http', function ($http) {
 
     this.post = function (url, data, success, failure) {
