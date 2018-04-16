@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using ElectronicStore.Service;
 using ElectronicStore.Data.Entities;
+using System.Web.Script.Serialization;
 
 namespace ElectronicStore.Web.Api
 {
@@ -22,7 +23,7 @@ namespace ElectronicStore.Web.Api
         [Route("create")]
         [HttpPost]
         [AllowAnonymous]
-        public HttpResponseMessage Create(HttpRequestMessage request)
+        public HttpResponseMessage Create(HttpRequestMessage request, Product product)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -33,7 +34,6 @@ namespace ElectronicStore.Web.Api
                 }
                 else
                 {
-                    var product = new Product();
                     product.CreatedDate = DateTime.Now;
                     this.productService.Add(product);
                     this.productService.Save();
@@ -59,8 +59,28 @@ namespace ElectronicStore.Web.Api
                 else
                 {
                     var dbProduct = this.productService.GetById(product.Id);
-
+                    dbProduct.Alias = product.Alias;
+                    dbProduct.CategoryId = product.CategoryId;
+                    dbProduct.CreatedBy = product.CreatedBy;
+                    dbProduct.CreatedDate = product.CreatedDate;
+                    dbProduct.Description = product.Description;
+                    dbProduct.Detail = product.Detail;
+                    dbProduct.HomeFlag = product.HomeFlag;
+                    dbProduct.HotFlag = product.HotFlag;
+                    dbProduct.Image = product.Image;
+                    dbProduct.MoreImages = product.MoreImages;
+                    dbProduct.Name = product.Name;
+                    dbProduct.OriginalPrice = product.OriginalPrice;
+                    dbProduct.Price = product.Price;
+                    dbProduct.PromotionPrice = product.PromotionPrice;
+                    dbProduct.Quantity = product.Quantity;
+                    dbProduct.Status = product.Status;
+                    dbProduct.Tags = product.Tags;
+                    dbProduct.UpdatedBy = product.UpdatedBy;
                     dbProduct.UpdatedDate = DateTime.Now;
+                    dbProduct.ViewCount = product.ViewCount;
+                    dbProduct.Warranty = product.Warranty;
+
                     this.productService.Update(dbProduct);
                     this.productService.Save();
                     response = request.CreateResponse(HttpStatusCode.Created, dbProduct);
@@ -94,7 +114,37 @@ namespace ElectronicStore.Web.Api
             });
         }
 
-        [Route("getbyid/{id:int}")]
+        [Route("deletemulti")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string listProductIds)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var lstProductIds = listProductIds.Split(',').ToList();
+                    foreach (var item in lstProductIds)
+                    {
+                        var id = int.Parse(item);
+                        this.productService.Delete(id);
+                    }
+
+                    this.productService.Save();
+
+                    response = request.CreateResponse(HttpStatusCode.OK, lstProductIds.Count);
+                }
+
+                return response;
+            });
+        }
+
+        [Route("getbyid")]
         [HttpGet]
         [AllowAnonymous]
         public HttpResponseMessage GetById(HttpRequestMessage request, int id)

@@ -1,1 +1,1 @@
-﻿var commonModule = angular.module('electronicStoreApp.global.common', []);
+﻿angular.module('electronicStoreApp.global.common', ['ngBootbox']);

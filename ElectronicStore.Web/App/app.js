@@ -8,7 +8,7 @@ var electronicStoreApp = angular.module('electronicStoreApp',
         'electronicStoreApp.global.directives',
         'electronicStoreApp.global.services',
         'electronicStoreApp.global.layout',
-        'electronicStoreApp.screens'
+        'electronicStoreApp.screens',
     ]);
 
 angular.module('electronicStoreApp.global', []);
@@ -17,7 +17,7 @@ angular.module('electronicStoreApp.global.filters', []);
 angular.module('electronicStoreApp.global.directives', []);
 angular.module('electronicStoreApp.global.layout', []);
 angular.module('electronicStoreApp.global.services', []);
-angular.module('electronicStoreApp.global.services.products', []);
+
 
 angular.module('electronicStoreApp.screens', [
     'electronicStoreApp.screens.login',
@@ -38,7 +38,7 @@ electronicStoreApp.config([
         function ($stateProvider, $urlRouterProvider) {
             $stateProvider.state('layout', {
                 url: '',
-                templateUrl: '/app/global/view/layout.html',
+                templateUrl: '/app/global/template/layout.html',
                 abstract: true
             });
             $urlRouterProvider.otherwise("/home");

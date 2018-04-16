@@ -1,0 +1,118 @@
+﻿<main class="app-content" ng-controller="productEditController">
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-th-list"></i> {{title}}</h1>
+        </div>
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item">Manage products</li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0);">{{title}}</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <form class="form-horizontal" novalidate role="form" name="formUpdateProduct" ng-submit="updateProduct()">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input class="form-control" placeholder="Enter product name" type="text"
+                                       ng-maxlength="256" required name="name" ng-model="product.Name"
+                                       ng-class="{true:'inputInvalid', false:''}[submitted && formUpdateProduct.name.$error.required]"
+                                       ng-change="getAlias(product.Name)">
+                                <span ng-show="submitted && formUpdateProduct.name.$error.required" class="invalid">The product name is required</span>
+                                <span ng-show="submitted && formUpdateProduct.name.$error.maxlength" class="invalid"><br />The product name is only 256 characters</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Alias</label>
+                                <input class="form-control" type="text" name="alias"
+                                       ng-maxlength="256" required
+                                       ng-class="{true:'inputInvalid', false:''}[submitted && formUpdateProduct.alias.$error.required]"
+                                       ng-model="product.Alias">
+                                <span ng-show="submitted && formUpdateProduct.alias.$error.required" class="invalid">The product alias is required</span>
+                                <span ng-show="submitted && formUpdateProduct.alias.$error.maxlength" class="invalid"><br />The product alias is only 256 characters</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleSelect1">Category</label>
+                                <select class="form-control" name="category" required
+                                        ng-class="{true:'inputInvalid', false:''}[submitted && formUpdateProduct.category.$error.required]"
+                                        ng-model="product.CategoryId"
+                                        ng-options="c.Id as c.Name for c in productCategories">
+                                    <option value="" disabled>Select Category</option>
+                                </select>
+                                <span ng-show="submitted && formUpdateProduct.category.$error.required" class="invalid">The category is required</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleTextarea">Description</label>
+                                <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="product.Description"></textarea>
+                            </div>
+
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" ng-model="product.Status"> Active
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" ng-model="product.HotFlag"> Hot product
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" ng-model="product.HomeFlag"> Display home page
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 offset-lg-1">
+                            <div class="form-group">
+                                <label>Quantity</label>
+                                <input class="form-control" is-integer ng-model="product.Quantity">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Original Price</label>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                        <input class="form-control" is-decimal required name="originalPrice" placeholder="Enter price"
+                                               ng-class="{true:'inputInvalid', false:''}[submitted && formUpdateProduct.originalPrice.$error.required]"
+                                               ng-model="product.OriginalPrice">
+                                        <div class="input-group-append"><span class="input-group-text">.00</span></div>
+                                    </div>
+                                    <span ng-show="submitted && formUpdateProduct.originalPrice.$error.required" class="invalid">The product original price is required</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Price</label>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                        <input class="form-control" is-decimal required name="price" placeholder="Enter price"
+                                               ng-class="{true:'inputInvalid', false:''}[submitted && formUpdateProduct.price.$error.required]"
+                                               ng-model="product.Price">
+                                        <div class="input-group-append"><span class="input-group-text">.00</span></div>
+                                    </div>
+                                    <span ng-show="submitted && formUpdateProduct.price.$error.required" class="invalid">&nbsp; The product price is required</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Promotion Price</label>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                        <input class="form-control" is-decimal placeholder="Enter price" ng-model="product.PromotionPrice">
+                                        <div class="input-group-append"><span class="input-group-text">.00</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile-footer">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                        <button ui-sref="products" class="btn btn-default">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

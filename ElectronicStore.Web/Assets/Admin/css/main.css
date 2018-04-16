@@ -14813,3 +14813,17 @@ be a descendant of the grid when it is being dragged.
 .user .user-settings label {
   color: #666;
 }
+
+/*custom css*/
+   .paginate ul li {
+        display: inline-block;
+        margin: 4px;
+    }
+
+.invalid {
+   color: #D4B924;
+}
+
+.inputInvalid {
+   background-color: #FA787E;
+}

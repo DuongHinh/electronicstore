@@ -158,6 +158,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="Api\ProductController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -177,17 +178,21 @@
     <Content Include="App\global\common.js" />
     <Content Include="App\global\directives.js" />
     <Content Include="App\global\filters.js" />
-    <Content Include="App\global\services\crudSvc.js" />
+    <Content Include="App\global\services\commonSvc.js" />
+    <Content Include="App\global\services\productCategoriesSvc.js" />
     <Content Include="App\global\services\productSvc.js" />
-    <Content Include="App\global\view\layoutController.js" />
-    <Content Include="App\global\view\layout.html" />
+    <Content Include="App\global\template\layoutController.js" />
+    <Content Include="App\global\template\layout.html" />
+    <Content Include="App\global\template\pagerDirective.html" />
     <Content Include="App\screens\home\home.html" />
     <Content Include="App\screens\home\home.js" />
     <Content Include="App\screens\login\login.html" />
     <Content Include="App\screens\login\login.js" />
     <Content Include="App\screens\productCategories\list.html" />
     <Content Include="App\screens\productCategories\productCategories.js" />
+    <Content Include="App\screens\product\edit.html" />
     <Content Include="App\screens\product\list.html" />
+    <Content Include="App\screens\product\new.html" />
     <Content Include="App\screens\product\product.js" />
     <Content Include="Assets\Admin\images\ajax-loader-big.gif" />
     <Content Include="Assets\Admin\images\edit_pencil.png" />
@@ -202,6 +207,22 @@
     <Content Include="Assets\Admin\js\angular-loading-bar\index.js" />
     <Content Include="Assets\Admin\js\angular-loading-bar\src\loading-bar.css" />
     <Content Include="Assets\Admin\js\angular-loading-bar\src\loading-bar.js" />
+    <Content Include="Assets\Admin\js\dirPagination.js" />
+    <Content Include="Assets\Admin\js\ngBootbox\dist\ngBootbox.js" />
+    <Content Include="Assets\Admin\js\ngBootbox\dist\ngBootbox.min.js" />
+    <Content Include="Assets\Admin\js\ngBootbox\examples\example-1\app.js" />
+    <Content Include="Assets\Admin\js\ngBootbox\examples\example-1\custom-dialog.tpl.html" />
+    <Content Include="Assets\Admin\js\ngBootbox\examples\example-1\index.html" />
+    <Content Include="Assets\Admin\js\ngBootbox\examples\example-2\app.js" />
+    <Content Include="Assets\Admin\js\ngBootbox\examples\example-2\index.html" />
+    <Content Include="Assets\Admin\js\ngBootbox\examples\example-2\main.js" />
+    <Content Include="Assets\Admin\js\ngBootbox\examples\example-2\require.js" />
+    <Content Include="Assets\Admin\js\ngBootbox\examples\index.html" />
+    <Content Include="Assets\Admin\js\ngBootbox\gulpfile.js" />
+    <Content Include="Assets\Admin\js\ngBootbox\ngBootbox.js" />
+    <Content Include="Assets\Admin\js\textAngular-rangy.min.js" />
+    <Content Include="Assets\Admin\js\textAngular-sanitize.js" />
+    <Content Include="Assets\Admin\js\textAngular.min.js" />
     <Content Include="Assets\Common\css\bootstrap-theme.css" />
     <Content Include="Assets\Common\css\bootstrap-theme.min.css" />
     <Content Include="Assets\Common\css\bootstrap.css" />
@@ -359,6 +380,11 @@
     <Content Include="Assets\Admin\js\angular-loading-bar\package.json" />
     <Content Include="Assets\Admin\js\angular-loading-bar\PULL_REQUEST_TEMPLATE.md" />
     <Content Include="Assets\Admin\js\angular-loading-bar\README.md" />
+    <Content Include="Assets\Admin\js\ngBootbox\.bower.json" />
+    <Content Include="Assets\Admin\js\ngBootbox\bower.json" />
+    <Content Include="Assets\Admin\js\ngBootbox\package.json" />
+    <Content Include="Assets\Admin\js\ngBootbox\README.md" />
+    <Content Include="Assets\Admin\js\ngBootbox\tsd.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -455,7 +481,6 @@
     <Folder Include="Assets\Admin\js\ckeditor\" />
     <Folder Include="Assets\Admin\js\ckfinder\" />
     <Folder Include="Assets\Admin\js\mustache\" />
-    <Folder Include="Assets\Admin\js\ngBootbox\" />
     <Folder Include="Assets\Admin\js\ngckeditor\" />
     <Folder Include="Assets\Admin\js\numeral\" />
     <Folder Include="Assets\Admin\js\toastr\" />

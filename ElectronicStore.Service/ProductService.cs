@@ -1,11 +1,7 @@
 ﻿using ElectronicStore.Data.Core;
 using ElectronicStore.Data.Entities;
 using ElectronicStore.Data.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ElectronicStore.Service
 {
@@ -25,6 +21,7 @@ namespace ElectronicStore.Service
 
         void Save();
     }
+
     public class ProductService : IProductService
     {
         private IProductRepositories productRepositories;
@@ -41,7 +38,6 @@ namespace ElectronicStore.Service
             var product = this.productRepositories.Add(Product);
             this.unitOfWork.Save();
             return product;
-
         }
 
         public Product Delete(int id)
