@@ -162,21 +162,21 @@ namespace ElectronicStore.Web.Api
         [Route("getall")]
         [HttpGet]
         [AllowAnonymous]
-        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword)
+        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int skip, int pageSize)
         {
             return CreateHttpResponse(request, () =>
             {
                 var models = this.productService.GetAll(keyword).OrderByDescending(x => x.CreatedDate);
-                //var results = models.Skip(skip).Take(pageSize);
-                //var responseData = new PagedList<Product>()
-                //{
-                //    Skip = skip,
-                //    PageSize = pageSize,
-                //    Results = results,
-                //    TotalResults = models.Count(),
-                //};
+                var results = models.Skip(skip).Take(pageSize);
+                var responseData = new PagedList<Product>()
+                {
+                    Skip = skip,
+                    PageSize = pageSize,
+                    Results = results,
+                    TotalResults = models.Count(),
+                };
 
-                var response = request.CreateResponse(HttpStatusCode.OK, models);
+                var response = request.CreateResponse(HttpStatusCode.OK, responseData);
                 return response;
             });
         }

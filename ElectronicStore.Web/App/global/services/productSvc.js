@@ -4,13 +4,13 @@
         '$q', '$timeout', '$http', 'apiSvc',
         function ($q, $timeout, $http, apiSvc) {
 
-            //this.getListProduct = function (keyword, skip, pageSize) {
-            //    return apiSvc.get('/api/product/getall?keyword=' + keyword + '&skip=' + skip + '&pageSize=' + pageSize);
-            //}
-
-            this.getListProduct = function (keyword) {
-                return apiSvc.get('/api/product/getall?keyword=' + keyword);
+            this.getListProduct = function (keyword, skip, pageSize) {
+                return apiSvc.get('/api/product/getall?keyword=' + keyword + '&skip=' + skip + '&pageSize=' + pageSize);
             }
+
+            //this.getListProduct = function (keyword) {
+            //    return apiSvc.get('/api/product/getall?keyword=' + keyword);
+            //}
 
             this.addNewProduct = function (data) {
                 return apiSvc.post('api/product/create', data);

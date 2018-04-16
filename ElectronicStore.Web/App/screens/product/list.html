@@ -45,7 +45,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr dir-paginate="product in products | itemsPerPage: itemsPerPage">
+                            <tr ng-repeat="product in products">
                                 <td>{{product.Name}}</td>
                                 <td>{{product.Price | currency:"$"}}</td>
                                 <td>{{product.Quantity}}</td>
@@ -65,12 +65,17 @@
                 </div>
             </div>
         </div>
-        <div class="paginate">
+        <div class="row">
+            <div class="col-md-6 col-md-push-4">
+                <pagination class="text-center"></pagination>
+            </div>
+        </div>
+        <!--<div class="paginate">
             <dir-pagination-controls max-size="5"
                                      direction-links="true"
                                      boundary-links="true">
             </dir-pagination-controls>
-        </div>
+        </div>-->
         <div ng-if="loading" class="text-center">
             <img src="/Assets/Admin/images/ajax-loader-big.gif" />
         </div>

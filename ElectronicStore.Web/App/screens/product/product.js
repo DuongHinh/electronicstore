@@ -6,7 +6,8 @@
         'electronicStoreApp.global.services.productCategories',
         'angularUtils.directives.dirPagination',
         'electronicStoreApp.global.directives',
-        'electronicStoreApp.global.common'
+        'electronicStoreApp.global.common',
+        'ngSanitize'
 	])
 	.config(function($stateProvider) {
 
@@ -36,22 +37,36 @@
 	[
  		'$scope', '$state', '$stateParams', '$rootScope', 'productSvc', '$ngBootbox', '$filter',
         function ($scope, $state, $stateParams, $rootScope, productSvc, $ngBootbox, $filter) {
+
+           $scope.ckeditorOptions = {
+                languague: 'en',
+                height: '200px'
+           }
+
 		    $scope.title = 'Product list';
 		    $scope.loading = true;
 		    $scope.keyword = '';
-		    $scope.itemsPerPage = 16;
+		    $scope.itemsPerPage = 1;
+		    $scope.totalPages = 0;
 		    $scope.currentPage = 1;
-		    $scope.totalItems = 0;
+		    $scope.range = [];
 
 		    $scope.selectedProductIds = [];
 
 		    var getListProduct = function () {
 		        var skip = ($scope.currentPage - 1) * $scope.itemsPerPage;
-		        productSvc.getListProduct($scope.keyword).then(function (response) {
-		            $scope.products = response.data;
-		            //$scope.page = response.data.CurrentPage - 1;
-		            //$scope.pagesCount = response.data.TotalPages;
-		            //$scope.totalCount = response.data.TotalResults;
+		        productSvc.getListProduct($scope.keyword, skip, $scope.itemsPerPage).then(function (response) {
+		            $scope.products = response.data.Results;
+		            $scope.totalPages = response.data.TotalPages;
+		            $scope.currentPage = response.data.CurrentPage;
+		            // Pagination Range
+		            var pages = [];
+
+		            for (var i = 1; i <= response.data.TotalPages; i++) {
+		                pages.push(i);
+		            }
+		            $scope.range = pages;
+
 		            $scope.loading = false;
 		        }, function (error) {
 		            $scope.loading = false;
