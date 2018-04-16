@@ -17,8 +17,8 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input class="form-control" placeholder="Enter product name" type="text" 
-                                       ng-maxlength="256" required name="name" ng-model="product.Name" 
+                                <input class="form-control" placeholder="Enter product name" type="text"
+                                       ng-maxlength="256" required name="name" ng-model="product.Name"
                                        ng-class="{true:'inputInvalid', false:''}[submitted && formNewProduct.name.$error.required]"
                                        ng-change="getAlias(product.Name)">
                                 <span ng-show="submitted && formNewProduct.name.$error.required" class="invalid">The product name is required</span>
@@ -27,7 +27,7 @@
                             <div class="form-group">
                                 <label>Alias</label>
                                 <input class="form-control" type="text" name="alias"
-                                       ng-maxlength="256" required 
+                                       ng-maxlength="256" required
                                        ng-class="{true:'inputInvalid', false:''}[submitted && formNewProduct.alias.$error.required]"
                                        ng-model="product.Alias">
                                 <span ng-show="submitted && formNewProduct.alias.$error.required" class="invalid">The product alias is required</span>
@@ -38,31 +38,19 @@
                                 <select class="form-control" name="category" required
                                         ng-class="{true:'inputInvalid', false:''}[submitted && formNewProduct.category.$error.required]"
                                         ng-model="product.CategoryId"
-                                       ng-options="c.Id as c.Name for c in productCategories">
+                                        ng-options="c.Id as c.Name for c in productCategories">
                                     <option value="" disabled>Select Category</option>
                                 </select>
                                 <span ng-show="submitted && formNewProduct.category.$error.required" class="invalid">The category is required</span>
                             </div>
-                            <!--<div class="form-group">
-                                <label for="exampleTextarea">Description</label>
-                                <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="product.Description"></textarea>
-                            </div>-->
 
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" ng-model="product.Status"> Active
-                                </label>
+                            <div class="form-group">
+                                <label class="control-label">Image</label>
+                                <input class="form-control" type="file" ng-file-select="onFileSelect($files)" ng-model="product.Image" accept="image/x-png,image/gif,image/jpeg">
                             </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" ng-model="product.HotFlag"> Hot product
-                                </label>
+                            <div>
+                                <img ng-src="{{product.Image}}" style="width:200px; height:200px;" alt="Image Product" />
                             </div>
-                            <!--<div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" ng-model="product.HomeFlag"> Display home page
-                                </label>
-                            </div>-->
                         </div>
                         <div class="col-lg-4 offset-lg-1">
                             <div class="form-group">
@@ -74,7 +62,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                        <input class="form-control" is-decimal required name="originalPrice" placeholder="Enter price" 
+                                        <input class="form-control" is-decimal required name="originalPrice" placeholder="Enter price"
                                                ng-class="{true:'inputInvalid', false:''}[submitted && formNewProduct.originalPrice.$error.required]"
                                                ng-model="product.OriginalPrice">
                                         <div class="input-group-append"><span class="input-group-text">.00</span></div>
@@ -105,6 +93,22 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" ng-model="product.Status"> Active
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" ng-model="product.HotFlag"> Hot product
+                                </label>
+                            </div>
+                            <!--<div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" ng-model="product.HomeFlag"> Display home page
+                                </label>
+                            </div>-->
+
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
