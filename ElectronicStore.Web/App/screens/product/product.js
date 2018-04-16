@@ -126,20 +126,6 @@
 		'$scope', '$state', '$log', '$stateParams', '$rootScope', 'productSvc', 'productCategoriesSvc', 'commonSvc',
 		function ($scope, $state, $log, $stateParams, $rootScope, productSvc, productCategoriesSvc, commonSvc) {
 
-		    $scope.ckeditorOptions = {
-		        languague: 'en'
-		    }
-
-		    $scope.chooseImage = function () {
-		        var finder = new CKFinder();
-		        finder.selectActionFunction = function (fileUrl) {
-		            $scope.$apply(function () {
-		                $scope.product.Image = fileUrl;
-		            })
-		        }
-		        finder.popup();
-		    }
-
 		    $scope.title = 'Create new product';
 		    $scope.submitted = false;
 		    $scope.product = {
@@ -156,6 +142,16 @@
 		    $scope.$on("fileProgress", function (e, progress) {
 		        $scope.progress = progress.loaded / progress.total;
 		    });
+
+		    $scope.chooseImage = function () {
+		        var finder = new CKFinder();
+		        finder.selectActionFunction = function (fileUrl) {
+		            $scope.$apply(function () {
+		                $scope.product.Image = fileUrl;
+		            })
+		        }
+		        finder.popup();
+		    }
 
 		    $scope.addNewProduct = function () {
 		        $scope.submitted = true;
@@ -204,6 +200,7 @@
 	[
 		'$scope', '$state', '$log', '$stateParams', '$rootScope', 'productSvc', 'productCategoriesSvc', 'commonSvc',
 		function ($scope, $state, $log, $stateParams, $rootScope, productSvc, productCategoriesSvc, commonSvc) {
+
 		    $scope.title = 'Update product';
 		    $scope.submitted = false;
 		    $scope.getAlias = function (input) {
@@ -229,6 +226,16 @@
 		    }
 
 		    loadProductCategories();
+
+		    $scope.chooseImage = function () {
+		        var finder = new CKFinder();
+		        finder.selectActionFunction = function (fileUrl) {
+		            $scope.$apply(function () {
+		                $scope.product.Image = fileUrl;
+		            })
+		        }
+		        finder.popup();
+		    }
 
 		    $scope.updateProduct = function () {
 		        $scope.submitted = true;
