@@ -38,11 +38,6 @@
  		'$scope', '$state', '$stateParams', '$rootScope', 'productSvc', '$ngBootbox', '$filter',
         function ($scope, $state, $stateParams, $rootScope, productSvc, $ngBootbox, $filter) {
 
-           $scope.ckeditorOptions = {
-                languague: 'en',
-                height: '200px'
-           }
-
 		    $scope.title = 'Product list';
 		    $scope.loading = true;
 		    $scope.keyword = '';
@@ -131,6 +126,11 @@
 	[
 		'$scope', '$state', '$log', '$stateParams', '$rootScope', 'productSvc', 'productCategoriesSvc', 'commonSvc',
 		function ($scope, $state, $log, $stateParams, $rootScope, productSvc, productCategoriesSvc, commonSvc) {
+
+		    $scope.ckeditorOptions = {
+		        languague: 'en'
+		    }
+
 		    $scope.title = 'Create new product';
 		    $scope.submitted = false;
 		    $scope.product = {
@@ -140,8 +140,13 @@
 		        Quantity: 0,
 		        OriginalPrice: null,
 		        Price: null,
-		        ProductCategory: null
+		        ProductCategory: null,
+		        Image : ""
 		    }
+
+		    $scope.$on("fileProgress", function (e, progress) {
+		        $scope.progress = progress.loaded / progress.total;
+		    });
 
 		    $scope.addNewProduct = function () {
 		        $scope.submitted = true;
