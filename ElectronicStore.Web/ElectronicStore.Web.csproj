@@ -2863,6 +2863,12 @@
     <Content Include="Assets\Admin\js\ckeditor\skins\moono\images\refresh.png" />
     <Content Include="Assets\Admin\js\ckeditor\skins\moono\images\spinner.gif" />
     <Content Include="Assets\Admin\js\ckeditor\styles.js" />
+    <Content Include="Assets\Admin\js\ckfinder\changelog.txt" />
+    <Content Include="Assets\Admin\js\ckfinder\ckfinder.html" />
+    <Content Include="Assets\Admin\js\ckfinder\ckfinder.js" />
+    <Content Include="Assets\Admin\js\ckfinder\ckfinder_v1.js" />
+    <Content Include="Assets\Admin\js\ckfinder\config.ascx" />
+    <Content Include="Assets\Admin\js\ckfinder\config.js" />
     <Content Include="Assets\Admin\js\dirPagination.js" />
     <Content Include="Assets\Admin\js\ng-ckeditor\examples\1.html" />
     <Content Include="Assets\Admin\js\ng-ckeditor\examples\css\bootstrap.css" />
@@ -3183,7 +3189,6 @@
     <Folder Include="App\styles\" />
     <Folder Include="App_Data\" />
     <Folder Include="Assets\Admin\js\checklist-model\" />
-    <Folder Include="Assets\Admin\js\ckfinder\" />
     <Folder Include="Assets\Admin\js\mustache\" />
     <Folder Include="Assets\Admin\js\numeral\" />
     <Folder Include="Assets\Admin\js\toastr\" />
