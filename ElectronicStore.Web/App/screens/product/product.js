@@ -41,7 +41,7 @@
 		    $scope.title = 'Product list';
 		    $scope.loading = true;
 		    $scope.keyword = '';
-		    $scope.itemsPerPage = 1;
+		    $scope.itemsPerPage = 16;
 		    $scope.totalPages = 0;
 		    $scope.currentPage = 1;
 		    $scope.range = [];
@@ -119,7 +119,6 @@
 		            });		           
 		        });
 		    }
-
 		}
 	])
 	.controller('productNewController',
@@ -129,6 +128,16 @@
 
 		    $scope.ckeditorOptions = {
 		        languague: 'en'
+		    }
+
+		    $scope.chooseImage = function () {
+		        var finder = new CKFinder();
+		        finder.selectActionFunction = function (fileUrl) {
+		            $scope.$apply(function () {
+		                $scope.product.Image = fileUrl;
+		            })
+		        }
+		        finder.popup();
 		    }
 
 		    $scope.title = 'Create new product';

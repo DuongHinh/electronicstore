@@ -56,6 +56,10 @@
       <HintPath>..\packages\Autofac.WebApi2.3.4.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CKFinder, Version=2.6.0.2792, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>plugin\ckfinder\CKFinder.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -3591,6 +3595,7 @@
     <Content Include="Assets\Admin\js\angular\index.js" />
     <Content Include="Assets\Admin\js\bootbox\.gitignore" />
     <Content Include="Assets\Admin\js\bootbox\bootbox.js" />
+    <Content Include="plugin\ckfinder\CKFinder.dll" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Assets\Admin\js\angular-daterangepicker\angular-daterangepicker.min.js.map" />
@@ -3821,6 +3826,7 @@
     <Folder Include="Assets\Client\" />
     <Folder Include="Assets\Common\images\" />
     <Folder Include="Models\" />
+    <Folder Include="uploads\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
