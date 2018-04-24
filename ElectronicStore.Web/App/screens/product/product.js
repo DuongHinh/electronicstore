@@ -78,7 +78,7 @@
 		        $ngBootbox.confirm("Are you sure delete " + item.Name + " ?").then(function () {
 		            var id = item.Id;
 		            productSvc.deleteProduct(id).then(function (response) {
-		                getListProduct();
+		                $state.reload();
 		            }, function (error) {
 		                console.log(error);
 		            });
@@ -113,7 +113,7 @@
 		        $ngBootbox.confirm("Are you sure delete " + $scope.selectedProductIds.length + " product?").then(function () {
 		            var listProductIds = $scope.selectedProductIds.join();
 		            productSvc.deleteMultiProduct(listProductIds).then(function (response) {
-		                getListProduct();
+		                $state.reload();
 		            }, function (error) {
 		                console.log(error);
 		            });		           
@@ -185,7 +185,7 @@
 		    }
 
 		    var loadProductCategories = function () {
-		        productCategoriesSvc.getListProductCategories('').then(function (response) {
+		        productCategoriesSvc.getAllCategories('').then(function (response) {
 		            $scope.productCategories = response.data;
 		        }, function (error) {
 		            console.log(error);
@@ -218,7 +218,7 @@
 		    loadProductDetail();
 
 		    var loadProductCategories = function () {
-		        productCategoriesSvc.getListProductCategories('').then(function (response) {
+		        productCategoriesSvc.getAllCategories('').then(function (response) {
 		            $scope.productCategories = response.data;
 		        }, function (error) {
 		            console.log(error);
@@ -239,11 +239,11 @@
 
 		    $scope.updateProduct = function () {
 		        $scope.submitted = true;
-		        if ($scope.product.Name === '' || $scope.product.Name === null || $scope.product.Name.length > 256) {
+		        if ($scope.product.Name === undefined || $scope.product.Name === '' || $scope.product.Name === null || $scope.product.Name.length > 256) {
 		            return;
 		        }
 
-		        if ($scope.product.Alias === '' || $scope.product.Alias === null || $scope.product.Alias.length > 256) {
+		        if ($scope.product.Alias === undefined || $scope.product.Alias === '' || $scope.product.Alias === null || $scope.product.Alias.length > 256) {
 		            return;
 		        }
 
