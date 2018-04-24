@@ -19,7 +19,7 @@ namespace ElectronicStore.Data.Entities
         public int CategoryId { set; get; }
         public string Image { set; get; }
 
-        [Column(TypeName = "xml")]
+        [Column(TypeName = "ntext")]
         public string MoreImages { set; get; }
 
         public decimal Price { set; get; }

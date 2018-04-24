@@ -51,6 +51,17 @@
                                 </div>
                                 <div><img ng-src="{{product.Image}}" width="200" /></div>
                             </div>
+                            <div class="form-group">
+                                <div class="row" style="padding-bottom: 10px; padding-left: 15px;">
+                                    <div class="col-lg-offset-2">More Images</div>
+                                    <div class="col-lg-2"><button class="btn btn-default" type="button" ng-click="chooseMoreImage()">Choose Image</button></div>
+                                </div>
+                                <div class="row">
+                                    <ul class="list-inline">
+                                        <li ng-repeat="img in moreImages track by $index"><img ng-src="{{img}}" width="100" /></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-lg-4 offset-lg-1">
                             <div class="form-group">

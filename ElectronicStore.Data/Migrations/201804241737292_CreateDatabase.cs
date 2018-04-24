@@ -3,7 +3,7 @@ namespace ElectronicStore.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CreateDb : DbMigration
+    public partial class CreateDatabase : DbMigration
     {
         public override void Up()
         {
@@ -201,7 +201,7 @@ namespace ElectronicStore.Data.Migrations
                         Alias = c.String(nullable: false),
                         CategoryId = c.Int(nullable: false),
                         Image = c.String(),
-                        MoreImages = c.String(storeType: "xml"),
+                        MoreImages = c.String(storeType: "ntext"),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         OriginalPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Quantity = c.Int(nullable: false),

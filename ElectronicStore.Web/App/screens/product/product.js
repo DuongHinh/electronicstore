@@ -128,6 +128,8 @@
 
 		    $scope.title = 'Create new product';
 		    $scope.submitted = false;
+		    $scope.moreImages = [];
+
 		    $scope.product = {
 		        Status: true,
 		        Name: '',
@@ -153,6 +155,16 @@
 		        finder.popup();
 		    }
 
+		    $scope.chooseMoreImage = function () {
+		        var finder = new CKFinder();
+		        finder.selectActionFunction = function (fileUrl) {
+		            $scope.$apply(function () {
+		                $scope.moreImages.push(fileUrl);
+		            })
+		        }
+		        finder.popup();
+		    }
+
 		    $scope.addNewProduct = function () {
 		        $scope.submitted = true;
 		        if ($scope.product.Name === '' || $scope.product.Name === null || $scope.product.Name.length > 256) {
@@ -171,6 +183,8 @@
 		        if ($scope.product.CategoryId === null) {
 		            return;
 		        }
+
+		        $scope.product.MoreImages = angular.toJson($scope.moreImages);
 
 		        productSvc.addNewProduct($scope.product).then(function (record) {
 		            alert('Add new product success!');
@@ -203,6 +217,8 @@
 
 		    $scope.title = 'Update product';
 		    $scope.submitted = false;
+		    $scope.moreImages = [];
+
 		    $scope.getAlias = function (input) {
 		        $scope.product.Alias = commonSvc.getAlias(input);
 		    }
@@ -210,6 +226,7 @@
 		    var loadProductDetail = function() {
 		        productSvc.getProductById(parseInt($stateParams.id)).then(function (response) {
 		            $scope.product = response.data;
+		            $scope.moreImages = angular.fromJson($scope.product.MoreImages);
 		        }, function (error) {
 		            console.log(error);
 		        });
@@ -237,6 +254,16 @@
 		        finder.popup();
 		    }
 
+		    $scope.chooseMoreImage = function () {
+		        var finder = new CKFinder();
+		        finder.selectActionFunction = function (fileUrl) {
+		            $scope.$apply(function () {
+		                $scope.moreImages.push(fileUrl);
+		            })
+		        }
+		        finder.popup();
+		    }
+
 		    $scope.updateProduct = function () {
 		        $scope.submitted = true;
 		        if ($scope.product.Name === undefined || $scope.product.Name === '' || $scope.product.Name === null || $scope.product.Name.length > 256) {
@@ -255,6 +282,9 @@
 		        if ($scope.product.CategoryId === null) {
 		            return;
 		        }
+
+		        $scope.product.MoreImages = angular.toJson($scope.moreImages);
+
 		        productSvc.updateProduct($scope.product).then(function (record) {
 		            alert('Update product success!');
 		            $state.go('products');
