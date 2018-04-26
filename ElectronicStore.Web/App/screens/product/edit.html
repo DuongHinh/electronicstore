@@ -1,20 +1,31 @@
-﻿<main class="app-content" ng-controller="productEditController">
-    <div class="app-title">
-        <div>
-            <h1><i class="fa fa-th-list"></i> {{title}}</h1>
-        </div>
-        <ul class="app-breadcrumb breadcrumb side">
-            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item">Manage products</li>
-            <li class="breadcrumb-item active"><a href="javascript:void(0);">{{title}}</a></li>
-        </ul>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="tile">
-                <form class="form-horizontal" novalidate role="form" name="formUpdateProduct" ng-submit="updateProduct()">
+﻿<!-- Content Header (Page header) -->
+<div ng-controller="productEditController">
+    <section class="content-header">
+        <h1>
+            &nbsp;
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="javascript:void(0);"><i class="fa fa-home fa-lg"></i></a></li>
+            <li><a href="javascript:void(0);">Manage product</a></li>
+            <li><a ui-sref="products">Product list</a></li>
+            <li><a class="link-active" ui-sref="products.edit">{{title}}</a></li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Horizontal Form -->
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title"><i class="fa fa-pencil"></i> {{title}}</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <!--<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>-->
+                </div>
+            </div><!-- /.box-header -->
+            <form novalidate role="form" name="formUpdateProduct" ng-submit="updateProduct()">
+                <div class="box-body">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label>Name</label>
                                 <input class="form-control" placeholder="Enter product name" type="text"
@@ -46,94 +57,90 @@
                             <div class="form-group">
                                 <label>Image</label>
                                 <div class="row">
-                                    <div class="col-lg-10"><input type="text" class="form-control" name="image" ng-model="product.Image"></div>
-                                    <div class="col-lg-2"><button class="btn btn-default pull-right" style="margin-left:0" type="button" ng-click="chooseImage()">Choose Image</button></div>
+                                    <div class="col-md-10"><input type="text" class="form-control" name="image" ng-model="product.Image"></div>
+                                    <div class="col-md-2"><button class="btn btn-default pull-right" style="margin-left:0" type="button" ng-click="chooseImage()">Choose Image</button></div>
                                 </div>
                                 <div><img ng-src="{{product.Image}}" width="200" /></div>
                             </div>
                             <div class="form-group">
-                                <div class="row" style="padding-bottom: 10px; padding-left: 15px;">
-                                    <div class="col-lg-offset-2">More Images</div>
-                                    <div class="col-lg-2"><button class="btn btn-default" type="button" ng-click="chooseMoreImage()">Choose Image</button></div>
+                                <div class="row">
+                                    <div class="col-md-2"><button class="btn btn-default" type="button" ng-click="chooseMoreImage()">More Images</button></div>
                                 </div>
                                 <div class="row">
-                                    <ul class="list-inline">
-                                        <li ng-repeat="img in moreImages track by $index"><img ng-src="{{img}}" width="100" /></li>
-                                    </ul>
+                                    <div class="col-md-12">
+                                        <ol class="list-inline">
+                                            <li ng-repeat="img in moreImages track by $index"><img ng-src="{{img}}" width="100" /></li>
+                                        </ol>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 offset-lg-1">
+                        </div><!-- /.col -->
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label>Quantity</label>
                                 <input class="form-control" is-integer ng-model="product.Quantity">
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Original Price</label>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                        <input class="form-control" is-decimal required name="originalPrice" placeholder="Enter price"
-                                               ng-class="{true:'inputInvalid', false:''}[submitted && formUpdateProduct.originalPrice.$error.required]"
-                                               ng-model="product.OriginalPrice">
-                                        <div class="input-group-append"><span class="input-group-text">.00</span></div>
-                                    </div>
-                                    <span ng-show="submitted && formUpdateProduct.originalPrice.$error.required" class="invalid">The product original price is required</span>
+                                <label>Original Price</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">$</span>
+                                    <input class="form-control" is-decimal required name="originalPrice" placeholder="Enter price"
+                                           ng-class="{true:'inputInvalid', false:''}[submitted && formUpdateProduct.originalPrice.$error.required]"
+                                           ng-model="product.OriginalPrice">
+                                    <span class="input-group-addon">.00</span>
+                                </div>
+                                <span ng-show="submitted && formUpdateProduct.originalPrice.$error.required" class="invalid">The product original price is required</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Price</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">$</span>
+                                    <input class="form-control" is-decimal required name="price" placeholder="Enter price"
+                                           ng-class="{true:'inputInvalid', false:''}[submitted && formUpdateProduct.price.$error.required]"
+                                           ng-model="product.Price">
+                                    <span class="input-group-addon">.00</span>
+                                </div>
+                                <span ng-show="submitted && formUpdateProduct.price.$error.required" class="invalid">&nbsp; The product price is required</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Promotion Price</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">$</span>
+                                    <input class="form-control" is-decimal placeholder="Enter price" ng-model="product.PromotionPrice">
+                                    <span class="input-group-addon">.00</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Price</label>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                        <input class="form-control" is-decimal required name="price" placeholder="Enter price"
-                                               ng-class="{true:'inputInvalid', false:''}[submitted && formUpdateProduct.price.$error.required]"
-                                               ng-model="product.Price">
-                                        <div class="input-group-append"><span class="input-group-text">.00</span></div>
-                                    </div>
-                                    <span ng-show="submitted && formUpdateProduct.price.$error.required" class="invalid">&nbsp; The product price is required</span>
+                                <div class="checkbox">
+                                    <label>
+                                        <input class="form-check-input" type="checkbox" ng-model="product.Status"> Active
+                                    </label>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Promotion Price</label>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                        <input class="form-control" is-decimal placeholder="Enter price" ng-model="product.PromotionPrice">
-                                        <div class="input-group-append"><span class="input-group-text">.00</span></div>
-                                    </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input class="form-check-input" type="checkbox" ng-model="product.HotFlag"> Hot product
+                                    </label>
                                 </div>
+                                <!--<div class="checkbox">
+                                    <label>
+                                        <input class="form-check-input" type="checkbox" ng-model="product.HomeFlag"> Display home page
+                                    </label>
+                                </div>-->
                             </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" ng-model="product.Status"> Active
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" ng-model="product.HotFlag"> Hot product
-                                </label>
-                            </div>
-                            <!--<div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" ng-model="product.HomeFlag"> Display home page
-                                </label>
-                            </div>-->
-
-                        </div>
-                        <div class="col-lg-12">
+                        </div><!-- /.col -->
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label for="exampleTextarea">Description</label>
+                                <label>Description</label>
                                 <textarea class="form-control" name="description" ckeditor ng-model="product.Description"></textarea>
                             </div>
                         </div>
-                    </div>
-                    <div class="tile-footer">
-                        <button class="btn btn-primary" type="submit">Save</button>
-                        <button ui-sref="products" class="btn btn-default">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</main>
+                    </div><!-- /.row -->
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+                    <button class="btn btn-primary" type="submit">Save</button>
+                    <button ui-sref="products" class="btn btn-default">Cancel</button>
+                </div>
+            </form>
+        </div><!-- /.box -->
+    </section><!-- /.content -->
+</div>

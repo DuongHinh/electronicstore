@@ -16,7 +16,7 @@
           
 
 		    $scope.login = function () {
-		        $state.go('home', { reload: true });
+		        $state.go('home', {}, { reload: true });
 		    }
 		}
 	]);

@@ -7,7 +7,10 @@
         'angularUtils.directives.dirPagination',
         'electronicStoreApp.global.directives',
         'electronicStoreApp.global.common',
-        'ngSanitize'
+        'ngSanitize',
+        'ui.bootstrap',
+        'ui.bootstrap.tpls',
+        'ui.bootstrap.modal'
 	])
 	.config(function($stateProvider) {
 
@@ -41,10 +44,9 @@
 		    $scope.title = 'Product list';
 		    $scope.loading = true;
 		    $scope.keyword = '';
-		    $scope.itemsPerPage = 16;
+		    $scope.itemsPerPage = 10;
 		    $scope.totalPages = 0;
-		    $scope.currentPage = 1;
-		    $scope.range = [];
+		    $scope.currentPage = 1
 
 		    $scope.selectedProductIds = [];
 
@@ -54,13 +56,7 @@
 		            $scope.products = response.data.Results;
 		            $scope.totalPages = response.data.TotalPages;
 		            $scope.currentPage = response.data.CurrentPage;
-		            // Pagination Range
-		            var pages = [];
-
-		            for (var i = 1; i <= response.data.TotalPages; i++) {
-		                pages.push(i);
-		            }
-		            $scope.range = pages;
+		            $scope.totalItems = response.data.TotalResults;
 
 		            $scope.loading = false;
 		        }, function (error) {

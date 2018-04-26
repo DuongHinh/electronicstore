@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ElectronicStore.Web.Core
 {
-    public interface IPagedList<T>
+    public interface IPagination<T>
     {
         int PageSize { get; set; }
 
@@ -21,7 +21,7 @@ namespace ElectronicStore.Web.Core
         IEnumerable<T> Results { set; get; }
     }
 
-    public class PagedList<T> : IPagedList<T>
+    public class Pagination<T> : IPagination<T>
     {
        
         public int PageSize { get; set; }

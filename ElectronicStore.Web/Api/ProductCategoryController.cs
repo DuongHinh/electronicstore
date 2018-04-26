@@ -41,7 +41,7 @@ namespace ElectronicStore.Web.Api
             {
                 var models = this.productCategoryService.GetAll(keyword).OrderByDescending(x => x.CreatedDate);
                 var results = models.Skip(skip).Take(pageSize);
-                var responseData = new PagedList<ProductCategory>()
+                var responseData = new Pagination<ProductCategory>()
                 {
                     Skip = skip,
                     PageSize = pageSize,
