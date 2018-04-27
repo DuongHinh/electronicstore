@@ -26,11 +26,15 @@ namespace ElectronicStore.Service
     {
         private IProductRepositories productRepositories;
         private IUnitOfWork unitOfWork;
+        private ITagRepositories tagRepositories;
+        private IProductTagRepositories productTagRepositories;
 
-        public ProductService(IProductRepositories productRepositories, IUnitOfWork unitOfWork)
+        public ProductService(IProductRepositories productRepositories, IUnitOfWork unitOfWork, ITagRepositories tagRepositories, IProductTagRepositories productTagRepositories)
         {
             this.productRepositories = productRepositories;
             this.unitOfWork = unitOfWork;
+            this.tagRepositories = tagRepositories;
+            this.productRepositories = productRepositories;
         }
 
         public Product Add(Product Product)

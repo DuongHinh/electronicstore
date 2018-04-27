@@ -79,6 +79,8 @@
     <Compile Include="Repositories\LogErrorRepositories.cs" />
     <Compile Include="Repositories\ProductCategoryRepositories.cs" />
     <Compile Include="Repositories\ProductRepositories.cs" />
+    <Compile Include="Repositories\ProductTagRepositories.cs" />
+    <Compile Include="Repositories\TagRepositories.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
