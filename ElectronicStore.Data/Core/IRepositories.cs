@@ -28,6 +28,10 @@ namespace ElectronicStore.Data.Core
         IEnumerable<T> GetAll(string[] includes = null);
 
         IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null);
+
+        int Count(Expression<Func<T, bool>> where);
+
+        bool Any(Expression<Func<T, bool>> where);
     }
 
     public abstract class Repositories<T> : IRepositories<T> where T : class
@@ -110,6 +114,16 @@ namespace ElectronicStore.Data.Core
             }
 
             return dataContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
+        }
+
+        public virtual int Count(Expression<Func<T, bool>> where)
+        {
+            return dbSet.Count(where);
+        }
+
+        public bool Any(Expression<Func<T, bool>> where)
+        {
+            return dbSet.Any(where);
         }
     }
 }

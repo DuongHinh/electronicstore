@@ -57,6 +57,8 @@ namespace ElectronicStore.Data.Entities
         [ForeignKey("CategoryId")]
         public virtual ProductCategory ProductCategory { set; get; }
 
-        public virtual IEnumerable<Tag> Tags { set; get; }
+        public string Tags { set; get; }
+
+        public virtual IEnumerable<ProductTag> ProductTag { set; get; }
     }
 }

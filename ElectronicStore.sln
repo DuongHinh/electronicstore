@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectronicStore.Service", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectronicStore.Web", "ElectronicStore.Web\ElectronicStore.Web.csproj", "{DA4D77FB-B4AC-4DFE-A9B6-B14A9FA03AFC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectronicStore.Fulcrum", "ElectronicStore.Fulcrum\ElectronicStore.Fulcrum.csproj", "{DD6C648A-DD0F-4A49-AEE1-3BF9D0BB37E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DA4D77FB-B4AC-4DFE-A9B6-B14A9FA03AFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA4D77FB-B4AC-4DFE-A9B6-B14A9FA03AFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA4D77FB-B4AC-4DFE-A9B6-B14A9FA03AFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD6C648A-DD0F-4A49-AEE1-3BF9D0BB37E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD6C648A-DD0F-4A49-AEE1-3BF9D0BB37E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD6C648A-DD0F-4A49-AEE1-3BF9D0BB37E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD6C648A-DD0F-4A49-AEE1-3BF9D0BB37E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

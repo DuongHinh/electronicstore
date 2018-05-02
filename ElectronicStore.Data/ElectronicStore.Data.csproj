@@ -74,6 +74,10 @@
     <Compile Include="Migrations\201804241737292_CreateDatabase.Designer.cs">
       <DependentUpon>201804241737292_CreateDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805020101131_AddTagField.cs" />
+    <Compile Include="Migrations\201805020101131_AddTagField.Designer.cs">
+      <DependentUpon>201805020101131_AddTagField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\LogErrorRepositories.cs" />
@@ -90,6 +94,15 @@
     <EmbeddedResource Include="Migrations\201804241737292_CreateDatabase.resx">
       <DependentUpon>201804241737292_CreateDatabase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805020101131_AddTagField.resx">
+      <DependentUpon>201805020101131_AddTagField.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ElectronicStore.Fulcrum\ElectronicStore.Fulcrum.csproj">
+      <Project>{dd6c648a-dd0f-4a49-aee1-3bf9d0bb37e3}</Project>
+      <Name>ElectronicStore.Fulcrum</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

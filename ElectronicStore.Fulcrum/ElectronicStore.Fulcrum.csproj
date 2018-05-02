@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FD58A8ED-26F0-47D5-B73D-2B0C16B249FF}</ProjectGuid>
+    <ProjectGuid>{DD6C648A-DD0F-4A49-AEE1-3BF9D0BB37E3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ElectronicStore.Service</RootNamespace>
-    <AssemblyName>ElectronicStore.Service</AssemblyName>
+    <RootNamespace>ElectronicStore.Fulcrum</RootNamespace>
+    <AssemblyName>ElectronicStore.Fulcrum</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,16 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,24 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LogErrorService.cs" />
-    <Compile Include="ProductCategoryService.cs" />
-    <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ElectronicStore.Data\ElectronicStore.Data.csproj">
-      <Project>{8f48f766-e719-440c-9a70-930f9fa85f7c}</Project>
-      <Name>ElectronicStore.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ElectronicStore.Fulcrum\ElectronicStore.Fulcrum.csproj">
-      <Project>{dd6c648a-dd0f-4a49-aee1-3bf9d0bb37e3}</Project>
-      <Name>ElectronicStore.Fulcrum</Name>
-    </ProjectReference>
+    <Compile Include="StringHelper.cs" />
+    <Compile Include="TagType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
