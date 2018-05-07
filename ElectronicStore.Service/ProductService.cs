@@ -38,7 +38,7 @@ namespace ElectronicStore.Service
 
         Tag GetTag(int tagId);
 
-        IEnumerable<Product> GetListProductByTag(int tagId, int page, int pagesize, out int totalRow);
+        IEnumerable<Product> GetListProductByTag(int tagId, int page, int pageSize, string sort, out int totalRow);
 
         bool SellProduct(int productId, int quantity);
 
@@ -160,7 +160,27 @@ namespace ElectronicStore.Service
 
         public IEnumerable<Product> GetListProductByCategoryId(int categoryId, int page, int pageSize, string sort, out int totalRow)
         {
-            throw new NotImplementedException();
+            var query = this.productRepositories.GetMulti(x => x.Status && x.CategoryId == categoryId);
+
+            switch (sort)
+            {
+                case "popular":
+                    query = query.OrderByDescending(x => x.ViewCount);
+                    break;
+                case "price_asc":
+                    query = query.OrderBy(x => x.Price);
+                    break;
+                case "price_desc":
+                    query = query.OrderByDescending(x => x.Price);
+                    break;
+                default:
+                    query = query.OrderByDescending(x => x.CreatedDate);
+                    break;
+            }
+
+            totalRow = query.Count();
+
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         public IEnumerable<string> GetListProductByName(string name)
@@ -170,7 +190,27 @@ namespace ElectronicStore.Service
 
         public IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow)
         {
-            throw new NotImplementedException();
+            var query = this.productRepositories.GetMulti(x => x.Status && x.Name.Contains(keyword));
+
+            switch (sort)
+            {
+                case "popular":
+                    query = query.OrderByDescending(x => x.ViewCount);
+                    break;
+                case "price_asc":
+                    query = query.OrderBy(x => x.Price);
+                    break;
+                case "price_desc":
+                    query = query.OrderByDescending(x => x.Price);
+                    break;
+                default:
+                    query = query.OrderByDescending(x => x.CreatedDate);
+                    break;
+            }
+
+            totalRow = query.Count();
+
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         public IEnumerable<Product> GetReatedProducts(int id, int count)
@@ -189,10 +229,29 @@ namespace ElectronicStore.Service
             return this.tagRepositories.GetSingleByCondition(x => x.Id == tagId);
         }
 
-        public IEnumerable<Product> GetListProductByTag(int tagId, int page, int pagesize, out int totalRow)
+        public IEnumerable<Product> GetListProductByTag(int tagId, int page, int pageSize, string sort, out int totalRow)
         {
-            var model = this.productRepositories.GetListProductByTag(tagId, page, pagesize, out totalRow);
-            return model;
+            var query = this.productRepositories.GetListProductByTag(tagId, page, pageSize, out totalRow);
+
+            switch (sort)
+            {
+                case "popular":
+                    query = query.OrderByDescending(x => x.ViewCount);
+                    break;
+                case "price_asc":
+                    query = query.OrderBy(x => x.Price);
+                    break;
+                case "price_desc":
+                    query = query.OrderByDescending(x => x.Price);
+                    break;
+                default:
+                    query = query.OrderByDescending(x => x.CreatedDate);
+                    break;
+            }
+
+            totalRow = query.Count();
+
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         public bool SellProduct(int productId, int quantity)

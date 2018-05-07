@@ -89,7 +89,7 @@ namespace ElectronicStore.Web.Controllers
 
         public ActionResult Category(int id, int page = 1, string sort = "")
         {
-            int pageSize = 10;
+            int pageSize = 6;
             int totalRow = 0;
             var productModel = this.productService.GetListProductByCategoryId(id, page, pageSize, sort, out totalRow);
             var productViewModel = productModel.Select(p => new ProductViewModel() {
@@ -148,7 +148,7 @@ namespace ElectronicStore.Web.Controllers
 
         public ActionResult Search(string keyword, int page = 1, string sort = "")
         {
-            int pageSize = 10;
+            int pageSize = 6;
             int totalRow = 0;
             var productModel = this.productService.Search(keyword, page, pageSize, sort, out totalRow);
             var productViewModel = productModel.Select(p => new ProductViewModel()
@@ -189,11 +189,11 @@ namespace ElectronicStore.Web.Controllers
             return View(paginationProduct);
         }
 
-        public ActionResult ListByTag(int tagId, int page = 1)
+        public ActionResult ListByTag(int tagId, int page = 1, string sort = "")
         {
-            int pageSize = 10;
+            int pageSize = 6;
             int totalRow = 0;
-            var productModel = this.productService.GetListProductByTag(tagId, page, pageSize, out totalRow);
+            var productModel = this.productService.GetListProductByTag(tagId, page, pageSize, sort, out totalRow);
             var productViewModel = productModel.Select(p => new ProductViewModel()
             {
                 Id = p.Id,

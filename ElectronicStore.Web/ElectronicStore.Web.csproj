@@ -4279,6 +4279,7 @@
     <Content Include="Views\Shared\Category.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Product\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\screens\admin\groups\" />
