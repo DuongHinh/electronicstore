@@ -169,9 +169,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ShopingCartController.cs" />
     <Compile Include="Core\BaseApiController.cs" />
     <Compile Include="Core\IPagination.cs" />
     <Compile Include="Global.asax.cs">
@@ -4273,6 +4278,7 @@
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Shared\Category.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\screens\admin\groups\" />
@@ -4289,6 +4295,10 @@
     <Folder Include="Assets\Admin\js\toastr\" />
     <Folder Include="Assets\Common\images\" />
     <Folder Include="uploads\" />
+    <Folder Include="Views\About\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Post\" />
+    <Folder Include="Views\ShopingCart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

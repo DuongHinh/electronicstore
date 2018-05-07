@@ -14,6 +14,13 @@ namespace ElectronicStore.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Contact",
+                url: "contact-us.html",
+                defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "ElectronicStore.Web.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "Product Detail",
                 url: "{alias}-{id}.html",
                 defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional },
