@@ -103,6 +103,7 @@ namespace ElectronicStore.Web.Api
                     dbCategory.Status = category.Status;
                     dbCategory.UpdatedBy = category.UpdatedBy;
                     dbCategory.UpdatedDate = DateTime.Now;
+                    dbCategory.ParentId = category.ParentId;
                     this.productCategoryService.Update(dbCategory);
                     this.productCategoryService.Save();
                     response = request.CreateResponse(HttpStatusCode.Created, dbCategory);

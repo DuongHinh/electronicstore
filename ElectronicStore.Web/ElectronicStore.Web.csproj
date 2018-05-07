@@ -171,11 +171,17 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Core\BaseApiController.cs" />
-    <Compile Include="Core\IPagedList.cs" />
+    <Compile Include="Core\IPagination.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\ProductCategoryViewModel.cs" />
+    <Compile Include="Models\ProductTagViewModel.cs" />
+    <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\TagViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -4265,6 +4271,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
+    <Content Include="Views\Shared\Category.cshtml" />
+    <Content Include="Views\Product\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\screens\admin\groups\" />
@@ -4280,7 +4288,6 @@
     <Folder Include="Assets\Admin\js\numeral\" />
     <Folder Include="Assets\Admin\js\toastr\" />
     <Folder Include="Assets\Common\images\" />
-    <Folder Include="Models\" />
     <Folder Include="uploads\" />
   </ItemGroup>
   <ItemGroup>
@@ -4295,6 +4302,10 @@
     <ProjectReference Include="..\ElectronicStore.Data\ElectronicStore.Data.csproj">
       <Project>{8f48f766-e719-440c-9a70-930f9fa85f7c}</Project>
       <Name>ElectronicStore.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ElectronicStore.Fulcrum\ElectronicStore.Fulcrum.csproj">
+      <Project>{dd6c648a-dd0f-4a49-aee1-3bf9d0bb37e3}</Project>
+      <Name>ElectronicStore.Fulcrum</Name>
     </ProjectReference>
     <ProjectReference Include="..\ElectronicStore.Service\ElectronicStore.Service.csproj">
       <Project>{fd58a8ed-26f0-47d5-b73d-2b0c16b249ff}</Project>

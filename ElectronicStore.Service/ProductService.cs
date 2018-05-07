@@ -3,6 +3,8 @@ using ElectronicStore.Data.Entities;
 using ElectronicStore.Data.Repositories;
 using ElectronicStore.Fulcrum;
 using System.Collections.Generic;
+using System;
+using System.Linq;
 
 namespace ElectronicStore.Service
 {
@@ -19,6 +21,28 @@ namespace ElectronicStore.Service
         IEnumerable<Product> GetAll(string keyword);
 
         Product GetById(int id);
+
+        IEnumerable<Product> GetNewArrival(int top);
+
+        IEnumerable<Product> GetHotProduct(int top);
+
+        IEnumerable<Product> GetListProductByCategoryId(int categoryId, int page, int pageSize, string sort, out int totalRow);
+
+        IEnumerable<string> GetListProductByName(string name);
+
+        IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow);
+
+        IEnumerable<Product> GetReatedProducts(int id, int top);
+
+        IEnumerable<Tag> GetListTagByProductId(int id);
+
+        Tag GetTag(int tagId);
+
+        IEnumerable<Product> GetListProductByTag(int tagId, int page, int pagesize, out int totalRow);
+
+        bool SellProduct(int productId, int quantity);
+
+        IEnumerable<Product> GetListProduct(string keyword);
 
         void Save();
     }
@@ -122,6 +146,72 @@ namespace ElectronicStore.Service
                     }
                 }
             }
+        }
+
+        public IEnumerable<Product> GetNewArrival(int count)
+        {
+            return this.productRepositories.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(count);
+        }
+
+        public IEnumerable<Product> GetHotProduct(int count)
+        {
+            return this.productRepositories.GetMulti(x => x.Status && x.HotFlag == true).OrderByDescending(x => x.CreatedDate).Take(count);
+        }
+
+        public IEnumerable<Product> GetListProductByCategoryId(int categoryId, int page, int pageSize, string sort, out int totalRow)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<string> GetListProductByName(string name)
+        {
+            return this.productRepositories.GetMulti(x => x.Status && x.Name.Contains(name)).Select(y => y.Name);
+        }
+
+        public IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Product> GetReatedProducts(int id, int count)
+        {
+            var product = this.productRepositories.GetSingleById(id);
+            return this.productRepositories.GetMulti(x => x.Status && x.Id != id && x.CategoryId == product.CategoryId).OrderByDescending(x => x.CreatedDate).Take(count);
+        }
+
+        public IEnumerable<Tag> GetListTagByProductId(int id)
+        {
+            return this.productTagRepositories.GetMulti(x => x.ProductId == id, new string[] { "Tag" }).Select(y => y.Tag);
+        }
+
+        public Tag GetTag(int tagId)
+        {
+            return this.tagRepositories.GetSingleByCondition(x => x.Id == tagId);
+        }
+
+        public IEnumerable<Product> GetListProductByTag(int tagId, int page, int pagesize, out int totalRow)
+        {
+            var model = this.productRepositories.GetListProductByTag(tagId, page, pagesize, out totalRow);
+            return model;
+        }
+
+        public bool SellProduct(int productId, int quantity)
+        {
+            var product = this.productRepositories.GetSingleById(productId);
+            if (product.Quantity < quantity)
+                return false;
+            product.Quantity -= quantity;
+            return true;
+        }
+
+        public IEnumerable<Product> GetListProduct(string keyword)
+        {
+            IEnumerable<Product> query;
+            if (!string.IsNullOrEmpty(keyword))
+                query = this.productRepositories.GetMulti(x => x.Name.Contains(keyword));
+            else
+                query = this.productRepositories.GetAll();
+            return query;
         }
     }
 }

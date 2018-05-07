@@ -29,9 +29,12 @@ namespace ElectronicStore.Data.Core
 
         IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null);
 
+        T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null);
+
         int Count(Expression<Func<T, bool>> where);
 
         bool Any(Expression<Func<T, bool>> where);
+
     }
 
     public abstract class Repositories<T> : IRepositories<T> where T : class
@@ -124,6 +127,18 @@ namespace ElectronicStore.Data.Core
         public bool Any(Expression<Func<T, bool>> where)
         {
             return dbSet.Any(where);
+        }
+
+        public T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null)
+        {
+            if (includes != null && includes.Count() > 0)
+            {
+                var query = dataContext.Set<T>().Include(includes.First());
+                foreach (var include in includes.Skip(1))
+                    query = query.Include(include);
+                return query.FirstOrDefault(expression);
+            }
+            return dataContext.Set<T>().FirstOrDefault(expression);
         }
     }
 }

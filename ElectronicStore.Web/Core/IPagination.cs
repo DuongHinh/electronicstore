@@ -18,6 +18,8 @@ namespace ElectronicStore.Web.Core
 
         int TotalPages { get;}
 
+        int MaxPage { get; set; }
+
         IEnumerable<T> Results { set; get; }
     }
 
@@ -39,5 +41,7 @@ namespace ElectronicStore.Web.Core
         }
 
         public IEnumerable<T> Results { get; set; }
+
+        public int MaxPage { get; set; }
     }
 }
