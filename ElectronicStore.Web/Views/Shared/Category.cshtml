@@ -5,7 +5,7 @@
         <div class="row">
             @foreach (var category in Model.Where(x => x.ParentId == null))
             {
-                var url = "/" + category.Alias + ".pc-" + category.Id + ".html";
+                var url = "/" + category.Alias + ".pc-" + category.Id;
                 var childCategories = Model.Where(x => x.ParentId == category.Id);
                 <div class="col-sm-2">
                     <ul class="multi-column-dropdown">
@@ -15,7 +15,7 @@
                         {
                             foreach (var childCategory in childCategories)
                             {
-                                var childUrl = "/" + childCategory.Alias + ".pc-" + childCategory.Id + ".html";
+                                var childUrl = "/" + childCategory.Alias + ".pc-" + childCategory.Id;
                                 <li><a href="@childUrl">@childCategory.Name</a></li>
                             }
                         }

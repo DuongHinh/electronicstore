@@ -1,10 +1,10 @@
 ﻿@model ElectronicStore.Web.Core.Pagination<ElectronicStore.Web.Models.ProductViewModel>
 @{
-    var category = (ElectronicStore.Web.Models.ProductCategoryViewModel)ViewBag.Category;
+    var keyword = ViewBag.Keyword;
     var pageIndex = Model.CurrentPage;
     var startPageIndex = Math.Max(1, Model.CurrentPage - Model.MaxPage / 2);
     var endPageIndex = Math.Min(Model.TotalPages, Model.CurrentPage + Model.MaxPage / 2);
-    ViewBag.Title = "Category";
+    ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,7 +13,7 @@
     <div class="container">
         <ul>
             <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> <i>/</i></li>
-            <li>@category.Name</li>
+            <li>Search Rerults: @keyword - @Model.TotalResults results</li>
         </ul>
     </div>
 </div>
@@ -125,10 +125,10 @@
                             </select>*@
                         <ul class="sort_nav">
                             <li>Sorting : </li>
-                            <li><a class="active" href="?page=@Model.CurrentPage&sort=popular">Popularity</a></li> |
-                            <li><a href="?page=@Model.CurrentPage&sort=new">Newness </a></li> |
-                            <li><a href="?page=@Model.CurrentPage&sort=price_asc">Price: low to high </a></li> |
-                            <li><a href="?page=@Model.CurrentPage&sort=price_desc">Price: high to low </a></li>
+                            <li><a class="active" href="?keyword=@keyword&page=@Model.CurrentPage&sort=popular">Popularity</a></li> |
+                            <li><a href="?keyword=@keyword&page=@Model.CurrentPage&sort=new">Newness </a></li> |
+                            <li><a href="?keyword=@keyword&page=@Model.CurrentPage&sort=price_asc">Price: low to high </a></li> |
+                            <li><a href="?keyword=@keyword&page=@Model.CurrentPage&sort=price_desc">Price: high to low </a></li>
                         </ul>
                         <div class="clearfix"> </div>
                     </div>
@@ -229,3 +229,4 @@
         </div>
     </div>
 </div>
+

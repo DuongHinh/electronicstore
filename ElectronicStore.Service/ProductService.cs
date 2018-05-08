@@ -28,7 +28,7 @@ namespace ElectronicStore.Service
 
         IEnumerable<Product> GetListProductByCategoryId(int categoryId, int page, int pageSize, string sort, out int totalRow);
 
-        IEnumerable<string> GetListProductByName(string name);
+        IEnumerable<string> GetListNameProduct(string name);
 
         IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow);
 
@@ -183,7 +183,7 @@ namespace ElectronicStore.Service
             return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
-        public IEnumerable<string> GetListProductByName(string name)
+        public IEnumerable<string> GetListNameProduct(string name)
         {
             return this.productRepositories.GetMulti(x => x.Status && x.Name.Contains(name)).Select(y => y.Name);
         }

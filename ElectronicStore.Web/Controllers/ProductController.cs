@@ -242,9 +242,9 @@ namespace ElectronicStore.Web.Controllers
             return View(paginationProduct);
         }
 
-        public JsonResult GetListProductByName(string keyword)
+        public JsonResult GetListNameProduct(string keyword)
         {
-            var model = this.productService.GetListProductByName(keyword);
+            var model = this.productService.GetListNameProduct(keyword);
             return Json(new
             {
                 data = model

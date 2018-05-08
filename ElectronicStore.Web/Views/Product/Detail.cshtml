@@ -148,7 +148,7 @@
                var relatedProducts = (IEnumerable<ElectronicStore.Web.Models.ProductViewModel>)ViewBag.RelatedProducts;
                foreach (var product in relatedProducts)
                {
-                 var url = "/" + product.Alias + ".p-" + product.Id + ".html";
+                 var url = "/" + product.Alias + ".p-" + product.Id;
                 <li>
                     <div class="w3l_related_products_grid">
                         <div class="agile_ecommerce_tab_left mobiles_grid">
