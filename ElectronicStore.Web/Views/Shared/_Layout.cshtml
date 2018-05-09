@@ -157,7 +157,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <li><a href="/" class="act">Home</a></li>
                         <!-- Mega Menu -->
                         @{ Html.RenderAction("Category", "Home"); }
-                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">About Us</a></li>
                         <li class="w3pages">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">News <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -165,7 +165,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <li><a href="codes.html">Short Codes</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact-us">Contact Us</a></li>
+                        <li><a href="/contact-us">Contact Us</a></li>
                     </ul>
                 </div>
             </nav>
@@ -205,5 +205,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         });
     </script>
     <!-- //cart-js -->
+    @RenderSection("embedJS", required: false)
 </body>
 </html>

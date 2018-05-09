@@ -6199,3 +6199,17 @@ td.invert-image a img {
 .sort_nav {
     float: none;
 }
+
+.tag{
+    display:block;
+}
+.taglist li{
+	float:left;
+}
+.error {
+    color: red;
+}
+
+.feedback-infor {
+    margin-left: 6px;
+}

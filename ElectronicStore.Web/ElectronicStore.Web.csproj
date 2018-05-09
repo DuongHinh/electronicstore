@@ -56,6 +56,14 @@
       <HintPath>..\packages\Autofac.WebApi2.3.4.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="BotDetect, Version=4.3.0.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.3.0\lib\net45\BotDetect.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BotDetect.Web.Mvc, Version=4.3.0.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.3.0\lib\net45\BotDetect.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="CKFinder, Version=2.6.0.2792, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>plugin\ckfinder\CKFinder.dll</HintPath>
@@ -182,6 +190,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContactViewModel.cs" />
+    <Compile Include="Models\FeedbackViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\ProductCategoryViewModel.cs" />
     <Compile Include="Models\ProductTagViewModel.cs" />

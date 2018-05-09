@@ -1,10 +1,11 @@
-﻿
+﻿@using BotDetect.Web.Mvc;
+@model ElectronicStore.Web.Models.FeedbackViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-	<!-- breadcrumbs -->
+<!-- breadcrumbs -->
 <div class="breadcrumb_dress">
     <div class="container">
         <ul>
@@ -22,31 +23,54 @@
             <div class="col-md-5 contact-left">
                 <h4>Address</h4>
                 <p>
-                    est eligendi optio cumque nihil impedit quo minus id quod maxime
-                    <span>26 56D Rescue,US</span>
+                    @Model.ContactInfor.Address
                 </p>
                 <ul>
-                    <li>Free Phone :+1 078 4589 2456</li>
-                    <li>Telephone :+1 078 4589 2456</li>
-                    <li>Fax :+1 078 4589 2456</li>
-                    <li><a href="mailto:info@example.com">info@example.com</a></li>
+                    <li>Telephone :@Model.ContactInfor.PhoneNumber</li>
+                    <li>Fax :@Model.ContactInfor.Fax</li>
+                    <li><a href="#">@Model.ContactInfor.Email</a></li>
                 </ul>
             </div>
             <div class="col-md-7 contact-left">
                 <h4>Contact Form</h4>
-                <form action="#" method="post">
-                    <input type="text" name="Name" placeholder="Your Name" required="">
-                    <input type="email" name="Email" placeholder="Your Email" required="">
-                    <input type="text" name="Telephone" placeholder="Telephone No" required="">
-                    <textarea name="message" placeholder="Message..." required=""></textarea>
-                    <input type="submit" value="Submit">
-                </form>
+                <div name="feedback">
+                    @using (Html.BeginForm("SendFeedback", "Contact", FormMethod.Post))
+                    {
+                        if (ViewData["SuccessMessage"] != null)
+                        {
+                            <div class="alert alert-success" role="alert">
+                                Send the message successfully.
+                            </div>
+                        }
+
+                        @Html.ValidationSummary(false, "", new { @class = "error" });
+
+                        @Html.TextBoxFor(model => model.Name, new { @class = "textbox", placeholder = "Your Name" });
+
+                        @Html.TextBoxFor(model => model.Email, new { @class = "textbox feedback-infor", placeholder = "Your Email" });
+
+                        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "textbox feedback-infor", placeholder = "Your Phone Number" });
+
+                        @Html.TextAreaFor(model => model.Message, new { @placeholder = "Your Message..." });
+
+                        <div class="clearfix"> </div>
+                        MvcCaptcha feedbackCaptcha = new MvcCaptcha("feedbackCaptcha");
+                        @Html.Captcha(feedbackCaptcha)
+                        <div class="clearfix"> </div>
+                        <br /><br /><br />
+                        @Html.TextBox("CaptchaCode")
+                        <div class="clearfix"> </div>
+                        <br />
+                        <input type="submit" value="Send">
+                        <div class="clearfix"> </div>
+                    }
+                </div>
             </div>
             <div class="clearfix"> </div>
         </div>
 
         <div class="contact-bottom">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d96908.54934770924!2d-73.74913540000001!3d40.62123259999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sanimal+rescue+service+near+Inwood%2C+New+York%2C+NY%2C+United+States!5e0!3m2!1sen!2sin!4v1436335928062" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.0803010434774!2d105.799743214932!3d20.989417986019703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135acbf7b27964d%3A0x2d92185fb72e9f83!2zTmfDtSA0NzUgTmd1eeG7hW4gVHLDo2k!5e0!3m2!1svi!2s!4v1504968264253" width="800" height="540" frameborder="0" style="border:0" allowfullscreen></iframe>
         </div>
     </div>
 </div>

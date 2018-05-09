@@ -6,7 +6,7 @@ namespace ElectronicStore.Data.Entities
     public class LogError
     {
         [Key]
-        public int ID { set; get; }
+        public int Id { set; get; }
 
         public string Message { set; get; }
 

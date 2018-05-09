@@ -78,8 +78,18 @@
     <Compile Include="Migrations\201805020101131_AddTagField.Designer.cs">
       <DependentUpon>201805020101131_AddTagField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805091800284_AddFieldFaxForTableContact.cs" />
+    <Compile Include="Migrations\201805091800284_AddFieldFaxForTableContact.Designer.cs">
+      <DependentUpon>201805091800284_AddFieldFaxForTableContact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805091848500_AddFieldPhoneNumberForTableFeedback.cs" />
+    <Compile Include="Migrations\201805091848500_AddFieldPhoneNumberForTableFeedback.Designer.cs">
+      <DependentUpon>201805091848500_AddFieldPhoneNumberForTableFeedback.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ContactRepositories.cs" />
+    <Compile Include="Repositories\FeedbackRepositories.cs" />
     <Compile Include="Repositories\LogErrorRepositories.cs" />
     <Compile Include="Repositories\ProductCategoryRepositories.cs" />
     <Compile Include="Repositories\ProductRepositories.cs" />
@@ -96,6 +106,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805020101131_AddTagField.resx">
       <DependentUpon>201805020101131_AddTagField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805091800284_AddFieldFaxForTableContact.resx">
+      <DependentUpon>201805091800284_AddFieldFaxForTableContact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805091848500_AddFieldPhoneNumberForTableFeedback.resx">
+      <DependentUpon>201805091848500_AddFieldPhoneNumberForTableFeedback.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
