@@ -11,6 +11,7 @@ using ElectronicStore.Data.Entities;
 namespace ElectronicStore.Web.Api
 {
     [RoutePrefix("api/productCategories")]
+    [Authorize]
     public class ProductCategoryController : BaseApiController
     {
         private IProductCategoryService productCategoryService;

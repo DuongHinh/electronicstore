@@ -1,18 +1,16 @@
 ﻿angular.module('electronicStoreApp.global.layout',
 	[
-		'ui.router'
+		'ui.router', 'electronicStoreApp.global.services.auth'
 	])
 	.controller('layoutController', [
-		'$scope', '$state', '$rootScope',
-		function ($scope, $state, $rootScope) {
+		'$scope', '$state', '$rootScope', 'authSvc', 'authData',
+		function ($scope, $state, $rootScope, authSvc, authData) {
 		    $rootScope.logo = 'Electronic Store';
-		    $scope.user = {
-		        fullName: 'Duong Hinh',
-                roleName: 'Admin'
-		    }
+
+		    $scope.authInformation = authData.authInformation;
 
 		    $scope.logout = function () {
-		        $state.go("login");
+		        authSvc.logout();
 		    };
 		}
 	])

@@ -12,6 +12,7 @@ using System.Web.Script.Serialization;
 namespace ElectronicStore.Web.Api
 {
     [RoutePrefix("api/product")]
+    [Authorize]
     public class ProductController : BaseApiController
     {
         private IProductService productService;

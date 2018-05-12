@@ -1,20 +1,25 @@
 ﻿angular.module('electronicStoreApp.global.services', ['electronicStoreApp.global.common'])
-.service('apiSvc', ['$http', function ($http) {
+.service('apiSvc', ['$http', 'authTokenSvc',
+    function ($http, authTokenSvc) {
 
-    this.post = function (url, data) {
-        return $http.post(url, data);
-    }
+        this.post = function (url, data) {
+            authTokenSvc.setHeader();
+            return $http.post(url, data);
+        }
 
-    this.put = function (url, data) {
-        return $http.put(url, data);
-    }
+        this.put = function (url, data) {
+            authTokenSvc.setHeader();
+            return $http.put(url, data);
+        }
 
-    this.get = function (url) {
-        return $http.get(url);
-    }
+        this.get = function (url) {
+            authTokenSvc.setHeader();
+            return $http.get(url);
+        }
 
-    this.delete = function (url, data) {
-        return $http.delete(url, data);
+        this.delete = function (url, data) {
+            authTokenSvc.setHeader();
+            return $http.delete(url, data);
     }
 }])
 .service('commonSvc', [function () {

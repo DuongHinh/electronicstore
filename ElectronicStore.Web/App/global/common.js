@@ -1,1 +1,1 @@
-﻿angular.module('electronicStoreApp.global.common', ['ngBootbox', 'ngCkeditor']);
+﻿angular.module('electronicStoreApp.global.common', ['ngBootbox', 'ngCkeditor', 'LocalStorageModule']);

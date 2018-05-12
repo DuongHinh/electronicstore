@@ -1,6 +1,13 @@
 ﻿angular.module('electronicStoreApp.screens.home',
 	[
-		'ui.router'
+		'ui.router',
+        'electronicStoreApp.global.services',
+        'electronicStoreApp.global.directives',
+        'electronicStoreApp.global.common',
+        'ngSanitize',
+        'ui.bootstrap',
+        'ui.bootstrap.tpls',
+        'ui.bootstrap.modal'
 	])
 	.config(function ($stateProvider) {
 	    $stateProvider.state('home', {
@@ -11,8 +18,22 @@
 	})
 	.controller('homeController',
 	[
-		'$state', '$rootScope', '$scope', '$stateParams',
-		function ($state, $rootScope, $scope, $stateParams) {
+		'$state', '$rootScope', '$scope', '$stateParams', '$q', 'apiSvc',
+		function ($state, $rootScope, $scope, $stateParams, $q, apiSvc) {
+
+		    var validateRequest = function () {
+		        var deferred = $q.defer();
+		        var url = 'api/home/redirectRequest';
+		        apiSvc.get(url).then(function (response) {
+		            deferred.resolve(response);
+		        }, function (error) {
+		            console.log(error);
+		            deferred.reject(error);
+		        });
+		        return deferred.promise;
+		    }
+
+		    validateRequest();
 		  
 		   //var data = {
 		   //    labels: ["January", "February", "March", "April", "May"],

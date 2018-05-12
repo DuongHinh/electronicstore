@@ -195,6 +195,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AccountControllerController.cs" />
+    <Compile Include="Api\HomeController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="Api\ProductController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -232,6 +233,7 @@
     <Content Include="App\global\common.js" />
     <Content Include="App\global\directives.js" />
     <Content Include="App\global\filters.js" />
+    <Content Include="App\global\services\authSvc.js" />
     <Content Include="App\global\services\commonSvc.js" />
     <Content Include="App\global\services\productCategoriesSvc.js" />
     <Content Include="App\global\services\productSvc.js" />
@@ -5006,7 +5008,9 @@
     <Content Include="Assets\Admin\js\underscore\underscore.js" />
     <Content Include="Assets\Admin\js\underscore\underscore.string.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

@@ -39,7 +39,7 @@ body {
 	margin-top: 150px;
 }
 
-form[role=login] {
+form[role=form] {
 	color: #5d5d5d;
 	background: #f2f2f2;
 	padding: 26px;
@@ -47,17 +47,17 @@ form[role=login] {
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 }
-	form[role=login] img {
+	form[role=form] img {
 		display: block;
 		margin: 0 auto;
 		margin-bottom: 35px;
 	}
-	form[role=login] input,
-	form[role=login] button {
+	form[role=form] input,
+	form[role=form] button {
 		font-size: 18px;
 		margin: 16px 0;
 	}
-	form[role=login] > div {
+	form[role=form] > div {
 		text-align: center;
 	}
 	
@@ -89,11 +89,11 @@ form[role=login] {
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <section class="login-form">
-                <form role="login" ng-submit="login()">
+                <form role="form" method="post" ng-submit="login()">
                     <div><h3 class="text-center">{{logo}}</h3></div>
                     <!--<img src="http://i.imgur.com/RcmcLv4.png" class="img-responsive" alt="" />-->
-                    <input type="text" name="username" placeholder="Username" required class="form-control input-lg"/>
-                    <input type="password" class="form-control input-lg" id="password" placeholder="Password" required="" />
+                    <input type="text" name="username" placeholder="Username" ng-model="loginData.username" required class="form-control input-lg"/>
+                    <input type="password" id="password" placeholder="Password" ng-model="loginData.password" required class="form-control input-lg"   />
                     <div class="pwstrength_viewport_progress"></div>
                     <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
                 </form>
