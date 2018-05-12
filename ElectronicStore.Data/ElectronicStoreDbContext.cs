@@ -1,23 +1,21 @@
 ﻿using ElectronicStore.Data.Entities;
-using System;
-using System.Collections.Generic;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Common;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ElectronicStore.Data
 {
-    public class ElectronicStoreDbContext : DbContext
+    public class ElectronicStoreDbContext : IdentityDbContext<ApplicationUser>
     {
         public ElectronicStoreDbContext() : base("ElectronicStoreDbContext")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
+
         public ElectronicStoreDbContext(DbConnection connection) : base(connection, true)
         {
         }
+
         public DbSet<About> About { get; set; }
         public DbSet<Contact> Contact { get; set; }
         public DbSet<Feedback> Feedback { get; set; }
@@ -42,8 +40,11 @@ namespace ElectronicStore.Data
 
         protected override void OnModelCreating(DbModelBuilder builder)
         {
-            
-
+            builder.Entity<ApplicationUser>().ToTable("Users");
+            builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId }).ToTable("UserRoles");
+            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId).ToTable("UserLogins");
+            builder.Entity<IdentityRole>().ToTable("Roles");
+            builder.Entity<IdentityUserClaim>().HasKey(i => i.UserId).ToTable("UserClaims");
         }
     }
 }
