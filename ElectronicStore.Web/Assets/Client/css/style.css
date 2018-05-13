@@ -6273,3 +6273,6 @@ td.invert-image a img {
             .e_login ul li .glyphicon-user {
                 color: #3c43a4;
             }
+    validation-summary-errors ul li{
+        list-style: none;
+    }

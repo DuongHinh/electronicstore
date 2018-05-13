@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ElectronicStore.Web.Models.SignUpViewModel
+@using BotDetect.Web.Mvc;
+@{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -20,18 +22,49 @@
         <div class="sign-form">
             <div class="col-md-6 col-md-offset-3">
                 <h4>Thông tin tài khoản</h4>
-                <form action="#" name="sign-up-form" method="post">
-                    <input type="text" name="LastName" placeholder="Họ" class="form-control input-name">
-                    <input type="text" name="MiddleName" placeholder="Tên Đệm" class="form-control input-name">
-                    <input type="text" name="FirstName" placeholder="Tên" class="form-control input-lastname">
+                <br />
+                @using (Html.BeginForm("SignUp", "Account", FormMethod.Post))
+                {
+                    if (ViewData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success">
+                             Bạn đã đăng ký thành công.
+                            <br />Vui lòng click <a href="/sign-in">vào đây </a>để đăng nhập.
+                        </div>
+                    }
+
+                    @Html.AntiForgeryToken();
+
+                    @Html.ValidationSummary(false, "", new { @class = "error" });
+
+                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control input-name", placeholder = "Họ" });
+
+                    @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control input-name", placeholder = "Tên đệm" });
+
+                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control input-lastname", placeholder = "Tên" });
+
                     <div class="clearfix"></div>
-                    <input type="email" name="Email" placeholder="Địa chỉ email"  class="form-control">
-                    <input type="text" name="Telephone" placeholder="Điện thoại liên hệ" class="form-control">
-                    <input type="text" name="Address" placeholder="Địa chỉ" class="form-control">
-                    <input type="text" name="Username" placeholder="Tên người dùng" class="form-control">
-                    <input type="password" name="Password" placeholder="Mật khẩu" class="form-control">                
+
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Địa chỉ email" });
+
+                    @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", placeholder = "Điện thoại" });
+
+                    @Html.TextBoxFor(model => model.Address, new { @class = "form-control", placeholder = "Địa chỉ" });
+
+                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = "Tên người dùng" });
+
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Mật khẩu" });
+
+                    <br />
+                    MvcCaptcha signupCaptcha = new MvcCaptcha("signupCaptcha");
+                    @Html.Captcha(signupCaptcha)
+                    <div class="clearfix"> </div>
+                        <br /> <br />
+                        @Html.TextBox("CaptchaCode");
+
                     <input type="submit" value="Đăng ký">
-                </form>
+                }
+               
             </div>
             <div class="clearfix"> </div>
         </div>

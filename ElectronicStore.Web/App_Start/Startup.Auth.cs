@@ -23,6 +23,7 @@ namespace ElectronicStore.Web.App_Start
             app.CreatePerOwinContext(ElectronicStoreDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
+            app.CreatePerOwinContext<UserManager<ApplicationUser>>(CreateManager);
 
             //Configure the singin Token
             app.CreatePerOwinContext<UserManager<ApplicationUser>>(CreateManager);
