@@ -3,6 +3,13 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<!-- banner -->
+<div class="banner">
+        <div class="container">
+            <h3>Electronic Store, <span>Special Offers</span></h3>
+        </div>
+    </div>
+<!-- //banner -->
 
 <!-- banner-bottom -->
 @*<div class="banner-bottom">
@@ -970,7 +977,7 @@
     </div>*@
 <!-- //modal-video -->
 <!-- banner-bottom1 -->
-<div class="banner-bottom1">
+@*<div class="banner-bottom1">
     <div class="agileinfo_banner_bottom1_grids">
         <div class="col-md-7 agileinfo_banner_bottom1_grid_left">
             <h3>Grand Opening Event With flat<span>20% <i>Discount</i></span></h3>
@@ -986,7 +993,7 @@
         </div>
         <div class="clearfix"> </div>
     </div>
-</div>
+</div>*@
 <!-- //banner-bottom1 -->
 <!-- special-deals -->
 @*<div class="special-deals">
@@ -1066,7 +1073,7 @@
 <!-- new-products -->
 <div class="new-products">
     <div class="container">
-        <h3>New Arrivals</h3>
+        <h3>Hàng mới về</h3>
         <div class="agileinfo_new_products_grids">
             <div class="agileinfo_new_products_grids">
                 @foreach (var product in Model.NewArrivalProducts)
@@ -1093,7 +1100,7 @@
                                     <input type="hidden" name="add" value="1">
                                     <input type="hidden" name="w3ls_item" value="Red Laptop">
                                     <input type="hidden" name="amount" value="500.00">
-                                    <button type="submit" class="w3ls-cart">Add to cart</button>
+                                    <button type="submit" class="w3ls-cart">Thêm vào giỏ hàng</button>
                                 </form>
                             </div>
                         </div>
@@ -1108,7 +1115,7 @@
 <!-- hot-products -->
 <div class="new-products">
     <div class="container">
-        <h3>Hot Product</h3>
+        <h3>Sản phẩm hot</h3>
         <div class="agileinfo_new_products_grids">
             <div class="agileinfo_new_products_grids">
                 @foreach (var product in Model.HotProducts)
@@ -1135,7 +1142,7 @@
                                     <input type="hidden" name="add" value="1">
                                     <input type="hidden" name="w3ls_item" value="Red Laptop">
                                     <input type="hidden" name="amount" value="500.00">
-                                    <button type="submit" class="w3ls-cart">Add to cart</button>
+                                    <button type="submit" class="w3ls-cart">Thêm vào giỏ hàng</button>
                                 </form>
                             </div>
                         </div>
@@ -1154,19 +1161,19 @@
         <div class="sliderfig">
             <ul id="flexiselDemo1">
                 <li>
-                    <img src="/Assets/Client/images/tb1.jpg" alt=" " class="img-responsive" />
+                    <img src="/Assets/Client/images/tb1.jpg" alt="" class="img-responsive" />
                 </li>
                 <li>
-                    <img src="/Assets/Client/images/tb2.jpg" alt=" " class="img-responsive" />
+                    <img src="/Assets/Client/images/tb2.jpg" alt="" class="img-responsive" />
                 </li>
                 <li>
-                    <img src="/Assets/Client/images/tb3.jpg" alt=" " class="img-responsive" />
+                    <img src="/Assets/Client/images/tb3.jpg" alt="" class="img-responsive" />
                 </li>
                 <li>
-                    <img src="/Assets/Client/images/tb4.jpg" alt=" " class="img-responsive" />
+                    <img src="/Assets/Client/images/tb4.jpg" alt="" class="img-responsive" />
                 </li>
                 <li>
-                    <img src="/Assets/Client/images/tb5.jpg" alt=" " class="img-responsive" />
+                    <img src="/Assets/Client/images/tb5.jpg" alt="" class="img-responsive" />
                 </li>
             </ul>
         </div>

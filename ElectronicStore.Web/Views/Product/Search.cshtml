@@ -12,8 +12,8 @@
 <div class="breadcrumb_dress">
     <div class="container">
         <ul>
-            <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> <i>/</i></li>
-            <li>Search Rerults: @keyword - @Model.TotalResults results</li>
+            <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> <i>/</i></li>
+            <li>Kết quả tìm kiếm: @keyword - @Model.TotalResults sản phẩm</li>
         </ul>
     </div>
 </div>
@@ -102,7 +102,7 @@
                 </div>
                 <div class="col-md-6 w3ls_mobiles_grid_right_left">
                     <div class="w3ls_mobiles_grid_right_grid1">
-                        <img src="/Assets/Client/images/47.jpg" alt=" " class="img-responsive" />
+                        <img src="/Assets/Client/images/47.jpg" alt="" class="img-responsive" />
                         <div class="w3ls_mobiles_grid_right_grid1_pos">
                             <h3>Top 10 Latest<span>Mobile </span>& Accessories</h3>
                         </div>
@@ -112,23 +112,15 @@
 
                 <div class="w3ls_mobiles_grid_right_grid2">
                     <div class="w3ls_mobiles_grid_right_grid2_left">
-                        <h3>Results: @Model.TotalResults</h3>
+                        <h3>Kết quả tìm kiếm: @Model.TotalResults</h3>
                     </div>
                     <div class="w3ls_mobiles_grid_right_grid2_right">
-                        @*<select name="select_item" class="select_item">
-                                <option selected="selected">Default sorting</option>
-                                <option>Sort by popularity</option>
-                                <option>Sort by newness</option>
-                                <option>Sort by price: low to high</option>
-                                <option>Sort by price: high to low</option>
-                                <option>Sort by average rating</option>
-                            </select>*@
                         <ul class="sort_nav">
-                            <li>Sorting : </li>
-                            <li><a class="active" href="?keyword=@keyword&page=@Model.CurrentPage&sort=popular">Popularity</a></li> |
-                            <li><a href="?keyword=@keyword&page=@Model.CurrentPage&sort=new">Newness </a></li> |
-                            <li><a href="?keyword=@keyword&page=@Model.CurrentPage&sort=price_asc">Price: low to high </a></li> |
-                            <li><a href="?keyword=@keyword&page=@Model.CurrentPage&sort=price_desc">Price: high to low </a></li>
+                            <li>Sắp xếp theo : </li>
+                            <li><a class="active" href="?keyword=@keyword&page=@Model.CurrentPage&sort=popular">Phổ biến nhất </a></li> |
+                            <li><a href="?keyword=@keyword&page=@Model.CurrentPage&sort=new">Mới nhất </a></li> |
+                            <li><a href="?keyword=@keyword&page=@Model.CurrentPage&sort=price_asc">Giá: thấp > cao </a></li> |
+                            <li><a href="?keyword=@keyword&page=@Model.CurrentPage&sort=price_desc">Giá: thấp < cao </a></li>
                         </ul>
                         <div class="clearfix"> </div>
                     </div>
@@ -161,7 +153,7 @@
                                             <input type="hidden" name="add" value="1" />
                                             <input type="hidden" name="w3ls_item" value="Smart Phone" />
                                             <input type="hidden" name="amount" value="245.00" />
-                                            <button type="submit" class="w3ls-cart">Add to cart</button>
+                                            <button type="submit" class="w3ls-cart">Thêm vào giỏ hàng</button>
                                         </form>
                                     </div>
                                     @*<div class="mobiles_grid_pos">
@@ -221,7 +213,7 @@
                 }
                 else
                 {
-                    <div class="text-center">No record found.</div>
+                    <div class="text-center">Không có sản phẩm nào được tìm thấy.</div>
                 }
 
             </div>

@@ -46,6 +46,20 @@ namespace ElectronicStore.Web
             );
 
             routes.MapRoute(
+               name: "SignUp",
+               url: "sign-up",
+               defaults: new { controller = "Account", action = "SignUp", id = UrlParameter.Optional },
+               namespaces: new string[] { "ElectronicStore.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+               name: "SignIn",
+               url: "sign-in",
+               defaults: new { controller = "Account", action = "SignIn", id = UrlParameter.Optional },
+               namespaces: new string[] { "ElectronicStore.Web.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

@@ -28,7 +28,7 @@ namespace ElectronicStore.Web.Controllers
         }
 
         [HttpPost]
-        [CaptchaValidation("CaptchaCode", "feedbackCaptcha", "Incorrect CAPTCHA code!")]
+        [CaptchaValidation("CaptchaCode", "feedbackCaptcha", "Mã xác nhận không đúng. Thử lại!")]
         public ActionResult SendFeedback(FeedbackViewModel feedback)
         {
             if (ModelState.IsValid)

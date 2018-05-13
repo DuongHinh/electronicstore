@@ -6213,3 +6213,63 @@ td.invert-image a img {
 .feedback-infor {
     margin-left: 6px;
 }
+
+/*sing in*/
+ .sign-form {
+      width: 100% !important;
+    }
+
+    .sign-form input{
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .sign-form .input-name{
+        width: 32.5% !important;
+        float: left;
+        margin-right: 6px;
+    }
+
+    .sign-form .input-lastname{
+        width: 32.5% !important;
+        float: right;
+    }
+
+    .sign-form input[type="submit"] {
+        margin-top: 15px;
+        outline: none;
+        color: #ffffff;
+        font-size: 1em;
+        padding: 10px 0;
+        width: 35%;
+        background: #ff5063;
+        border: none;
+        transition: .5s all;
+        -webkit-transition: .5s all;
+        -moz-transition: .5s all;
+        -o-transition: .5s all;
+        -ms-transition: .5s all;
+    }
+
+    .sign-form input[type="submit"]:hover {
+        background: #3c43a4;
+    }
+
+    .e_login ul li {
+            display: inline;
+            list-style: none;
+        }
+
+        .e_login ul li a {
+            font-size: 14px;
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            text-transform: uppercase;
+        }
+
+        .e_login ul li a:hover{
+            color: #ff5063;
+        }
+
+            .e_login ul li .glyphicon-user {
+                color: #3c43a4;
+            }

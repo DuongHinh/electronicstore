@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- breadcrumbs -->
+<div class="breadcrumb_dress">
+    <div class="container">
+        <ul>
+            <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Trang chủ</a> <i>/</i></li>
+            <li>Đăng ký</li>
+        </ul>
+    </div>
+</div>
+<!-- //breadcrumbs -->
+<!-- mail -->
+<div class="mail">
+    <div class="container">
+        <h3>Đăng ký</h3>
+        <div class="sign-form">
+            <div class="col-md-6 col-md-offset-3">
+                <h4>Thông tin tài khoản</h4>
+                <form action="#" name="sign-up-form" method="post">
+                    <input type="text" name="LastName" placeholder="Họ" class="form-control input-name">
+                    <input type="text" name="MiddleName" placeholder="Tên Đệm" class="form-control input-name">
+                    <input type="text" name="FirstName" placeholder="Tên" class="form-control input-lastname">
+                    <div class="clearfix"></div>
+                    <input type="email" name="Email" placeholder="Địa chỉ email"  class="form-control">
+                    <input type="text" name="Telephone" placeholder="Điện thoại liên hệ" class="form-control">
+                    <input type="text" name="Address" placeholder="Địa chỉ" class="form-control">
+                    <input type="text" name="Username" placeholder="Tên người dùng" class="form-control">
+                    <input type="password" name="Password" placeholder="Mật khẩu" class="form-control">                
+                    <input type="submit" value="Đăng ký">
+                </form>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //mail -->
