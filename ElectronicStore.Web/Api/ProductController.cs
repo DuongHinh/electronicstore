@@ -36,6 +36,7 @@ namespace ElectronicStore.Web.Api
                 else
                 {
                     product.CreatedDate = DateTime.Now;
+                    product.CreatedBy = User.Identity.Name;
                     this.productService.Add(product);
                     this.productService.Save();
                     response = request.CreateResponse(HttpStatusCode.Created, product);
@@ -77,7 +78,7 @@ namespace ElectronicStore.Web.Api
                     dbProduct.Quantity = product.Quantity;
                     dbProduct.Status = product.Status;
                     dbProduct.Tags = product.Tags;
-                    dbProduct.UpdatedBy = product.UpdatedBy;
+                    dbProduct.UpdatedBy = User.Identity.Name;
                     dbProduct.UpdatedDate = DateTime.Now;
                     dbProduct.ViewCount = product.ViewCount;
                     dbProduct.Warranty = product.Warranty;

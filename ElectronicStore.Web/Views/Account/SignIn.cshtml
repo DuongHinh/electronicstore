@@ -1,4 +1,4 @@
-﻿
+﻿@model ElectronicStore.Web.Models.SignInViewModel
 @{
     ViewBag.Title = "SignIn";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -18,14 +18,32 @@
 <div class="mail">
     <div class="container">
         <h3>Đăng nhập</h3>
+
         <div class="sign-form">
             <div class="col-md-6 col-md-offset-3">
                 <h4>Thông tin đăng nhập</h4>
-                <form action="#" name="sign-in-form" method="post">
-                    <input type="text" name="Username" placeholder="Tên người dùng" class="form-control">
-                    <input type="password" name="Password" placeholder="Mật khẩu" class="form-control">   
+                <br />
+                @using (Html.BeginForm("SignIn", "Account", new { redirectUrl = @ViewBag.RedirectUrl }, FormMethod.Post))
+                {
+                    @Html.ValidationSummary(false, "", new { @class = "error" })
+                    
+                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = "Tài khoản" })
+                 
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Mật khẩu" })
+
                     <input type="submit" value="Đăng nhập">
-                </form>
+                }
+
+                <br />
+                <div>
+                    <p>Nếu bạn chưa có tài khoản vui lòng <a class="acount-btn" href="/sign-up">đăng ký</a></p>
+                </div>
+                
+                @*<form action="#" name="sign-in-form" method="post">
+                    <input type="text" name="Username" placeholder="Tên người dùng" class="form-control">
+                    <input type="password" name="Password" placeholder="Mật khẩu" class="form-control">
+                    <input type="submit" value="Đăng nhập">
+                </form>*@
             </div>
             <div class="clearfix"> </div>
         </div>

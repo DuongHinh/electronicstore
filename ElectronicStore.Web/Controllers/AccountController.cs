@@ -2,7 +2,10 @@
 using ElectronicStore.Data.Entities;
 using ElectronicStore.Web.App_Start;
 using ElectronicStore.Web.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -65,7 +68,7 @@ namespace ElectronicStore.Web.Controllers
                 var userByUserName = await this.userManager.FindByNameAsync(model.UserName);
                 if (userByUserName != null)
                 {
-                    ModelState.AddModelError("email", "Tài khoản đã tồn tại");
+                    ModelState.AddModelError("username", "Tài khoản đã tồn tại");
                     return View(model);
                 }
                 var user = new ApplicationUser()
@@ -99,10 +102,53 @@ namespace ElectronicStore.Web.Controllers
             return View();
         }
 
+
         [HttpGet]
-        public ActionResult SignIn()
+        public ActionResult SignIn(string redirectUrl)
         {
+            ViewBag.RedirectUrl = redirectUrl;
             return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> SignIn(SignInViewModel model, string redirectUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = this.userManager.Find(model.UserName, model.Password);
+                if (user != null)
+                {
+                    IAuthenticationManager authManager = HttpContext.GetOwinContext().Authentication;
+                    authManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                    ClaimsIdentity identity = this.userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                    AuthenticationProperties props = new AuthenticationProperties();
+
+                    authManager.SignIn(props, identity);
+                    if (Url.IsLocalUrl(redirectUrl))
+                    {
+                        return Redirect(redirectUrl);
+                    }
+                    else
+                    {
+                        return Redirect("/");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Tên tài khoản hoặc mật khẩu không đúng.");
+                }
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult SignOut()
+        {
+            IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
+            authenticationManager.SignOut();
+            return Redirect("/");
         }
     }
 }
