@@ -128,6 +128,8 @@
     <Compile Include="Repositories\ContactRepositories.cs" />
     <Compile Include="Repositories\FeedbackRepositories.cs" />
     <Compile Include="Repositories\LogErrorRepositories.cs" />
+    <Compile Include="Repositories\OrderDetailRepositories.cs" />
+    <Compile Include="Repositories\OrderRepositories.cs" />
     <Compile Include="Repositories\ProductCategoryRepositories.cs" />
     <Compile Include="Repositories\ProductRepositories.cs" />
     <Compile Include="Repositories\ProductTagRepositories.cs" />

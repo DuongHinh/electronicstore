@@ -218,7 +218,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\ShopingCartController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Core\BaseApiController.cs" />
     <Compile Include="Core\IPagination.cs" />
     <Compile Include="Global.asax.cs">
@@ -3899,6 +3899,7 @@
     <Content Include="Assets\Client\images\tb5.jpg" />
     <Content Include="Assets\Client\js\bootstrap-3.1.1.min.js" />
     <Content Include="Assets\Client\js\controller\accountController.js" />
+    <Content Include="Assets\Client\js\controller\cartController.js" />
     <Content Include="Assets\Client\js\controller\searchController.js" />
     <Content Include="Assets\Client\js\easyResponsiveTabs.js" />
     <Content Include="Assets\Client\js\imagezoom.js" />
@@ -5048,6 +5049,7 @@
     <Content Include="Views\Product\Search.cshtml" />
     <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Account\SignIn.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\screens\admin\groups\" />
@@ -5065,7 +5067,6 @@
     <Folder Include="uploads\" />
     <Folder Include="Views\About\" />
     <Folder Include="Views\Post\" />
-    <Folder Include="Views\ShopingCart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

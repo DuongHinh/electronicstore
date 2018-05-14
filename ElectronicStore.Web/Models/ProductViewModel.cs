@@ -6,6 +6,7 @@ using System.Web;
 
 namespace ElectronicStore.Web.Models
 {
+    [Serializable]
     public class ProductViewModel
     {
         public int Id { set; get; }

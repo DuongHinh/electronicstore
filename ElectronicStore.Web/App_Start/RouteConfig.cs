@@ -60,6 +60,12 @@ namespace ElectronicStore.Web
             );
 
             routes.MapRoute(
+                name: "ShoppingCart",
+                url: "shopping-cart",
+                defaults: new { controller = "Cart", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

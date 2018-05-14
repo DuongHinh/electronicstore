@@ -1,0 +1,62 @@
+﻿@model List<ElectronicStore.Web.Models.CartItemViewModel>
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- breadcrumbs -->
+<div class="breadcrumb_dress">
+    <div class="container">
+        <ul>
+            <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Trang chủ</a> <i>/</i></li>
+            <li>Giỏ hàng</li>
+        </ul>
+    </div>
+</div>
+<!-- //breadcrumbs -->
+
+<div class="mail">
+    <div class="container">
+        @if (Model.Count > 0)
+        {
+            <table class="table" style="width: 100%">
+                <thead>
+                    <tr>
+                        <td>Mã Sản Phẩm</td>
+                        <td>Tên Sản Phẩm</td>
+                        <td>Ảnh Sản Phẩm</td>
+                        <td>Số lượng</td>
+                        <td>Đơn giá</td>
+                        <td>Thành tiền</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Product.Id</td>
+                            <td>@item.Product.Name</td>
+                            <td><img src="@item.Product.Image" width="100" /></td>
+                            <td><input type="number" class="txtQuantity" data-id="@item.Product.Id" value="@item.Quantity" /></td>
+                            <td>@item.Product.Price.ToString("N0")</td>
+                            <td>@((item.Product.Price * item.Quantity).ToString("N0"))</td>
+                            <td><a href="#" data-id="@item.Product.Id" class="btn-delete">Xoá</a></td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+            <button id="btnContinue" class="btn">Tiếp tục mua hàng</button>
+            <button id="btnUpdate" class="btn">Cập nhật giỏ hàng</button>
+            <button id="btnDeleteAll" class="btn">Xoá giỏ hàng</button>
+            <button id="btnPayment" class="btn">Thanh toán</button>
+        }
+        else
+        {
+            <span class="alert alert-warning text-center">Chưa có sản phẩm nào trong giỏ hàng</span>
+        }
+    </div>
+</div>
+
