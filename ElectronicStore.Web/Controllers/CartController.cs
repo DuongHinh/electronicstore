@@ -31,11 +31,26 @@ namespace ElectronicStore.Web.Controllers
         }
 
         public ActionResult AddItem()
-        {if (!Request.IsAuthenticated)
+        {
+            if (!Request.IsAuthenticated)
             {
                 return Redirect("/chua-dang-nhap");
             }
             
+            return View();
+        }
+
+        public ActionResult OrderSuccess()
+        {
+            return View();
+        }
+
+        public ActionResult OrderErrors()
+        {
+            return View();
+        }
+        public ActionResult NotLoggedIn()
+        {
             return View();
         }
     }
