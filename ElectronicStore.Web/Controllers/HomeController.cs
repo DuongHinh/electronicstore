@@ -2,6 +2,7 @@
 using ElectronicStore.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -82,7 +83,13 @@ namespace ElectronicStore.Web.Controllers
         [ChildActionOnly]
         public ActionResult Header()
         {
-            return PartialView();
+            var cart = Session[ConfigurationManager.AppSettings["CartSession"].ToString()];
+            var list = new List<CartItemViewModel>();
+            if (cart != null)
+            {
+                list = (List<CartItemViewModel>)cart;
+            }
+            return PartialView(list);
         }
 
         [ChildActionOnly]

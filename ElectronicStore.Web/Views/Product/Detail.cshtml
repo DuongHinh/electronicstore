@@ -128,7 +128,9 @@
                     <p><i class="item_price">$@Model.Price</i></p>
                 }
 
-                <button type="button" class="w3ls-cart btnAddToCart">Thêm vào giỏ hàng</button>
+                <form action="/add-to-cart?productId=@Model.Id" method="post">
+                    <button type="submit" class="w3ls-cart btnAddToCart">Thêm vào giỏ hàng</button>
+                </form>
             </div>
         </div>
         <div class="clearfix"> </div>
@@ -160,8 +162,9 @@
                                 {
                                     <p><i class="item_price">$@product.Price</i></p>
                                 }
-
-                                <button type="button" class="w3ls-cart btnAddToCart">Thêm vào giỏ hàng</button>
+                                <form action="/add-to-cart?productId=@product.Id" method="post">
+                                    <button type="submit" class="w3ls-cart btnAddToCart">Thêm vào giỏ hàng</button>
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -66,6 +66,24 @@ namespace ElectronicStore.Web
             );
 
             routes.MapRoute(
+                name: "AddToCart",
+                url: "add-to-cart",
+                defaults: new { controller = "Cart", action = "AddItem", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "NotLoggedIn",
+                url: "not-logged-in",
+                defaults: new { controller = "Cart", action = "NotLoggedIn", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "OutOfStock",
+                url: "out-of-stock",
+                defaults: new { controller = "Cart", action = "OutOfStock", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

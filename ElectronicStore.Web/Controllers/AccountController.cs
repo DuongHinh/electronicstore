@@ -5,6 +5,7 @@ using ElectronicStore.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System.Configuration;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -148,6 +149,7 @@ namespace ElectronicStore.Web.Controllers
         {
             IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
             authenticationManager.SignOut();
+            Session[ConfigurationManager.AppSettings["CartSession"].ToString()] = null;
             return Redirect("/");
         }
     }

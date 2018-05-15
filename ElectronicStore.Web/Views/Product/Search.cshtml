@@ -149,7 +149,9 @@
                                             <p><i class="item_price">$@product.Price</i></p>
                                         }
                                         
-                                        <button type="button" class="w3ls-cart btnAddToCart">Thêm vào giỏ hàng</button>
+                                        <form action="/add-to-cart?productId=@product.Id" method="post">
+                                            <button type="submit" class="w3ls-cart btnAddToCart">Thêm vào giỏ hàng</button>
+                                        </form>
                                     </div>
                                     @*<div class="mobiles_grid_pos">
                                             <h6>New</h6>

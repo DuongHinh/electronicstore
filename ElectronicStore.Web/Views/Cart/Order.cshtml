@@ -9,7 +9,7 @@
     <div class="container">
         <ul>
             <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Trang chủ</a> <i>/</i></li>
-            <li>Giỏ hàng</li>
+            <li>Đặt hàng</li>
         </ul>
     </div>
 </div>
@@ -20,7 +20,7 @@
     <div class="container">
         @if (Model.Count > 0)
         {
-            <div class="col-md-10 col-md-offset-1" >
+            <div class="col-md-10 col-md-offset-1">
                 <table class="table">
                     <thead>
                         <tr>
@@ -50,16 +50,6 @@
                     </tbody>
                 </table>
                 <hr />
-                <button id="btnContinue" class="btn btn-success">Tiếp tục mua hàng</button>
-                <button id="btnUpdate" class="btn btn-primary">Cập nhật giỏ hàng</button>
-                <button id="btnDeleteAll" class="btn btn-danger">Xoá giỏ hàng</button>
-                <button id="btnPayment" class="btn btn-info">Đặt hàng</button>
-            </div>
-        }
-        else
-        {
-            <div class="alert alert-success text-center">
-                <p>Chưa có sản phẩm nào trong giỏ hàng. <a href="/" title="Mua hàng">Mua hàng</a></p> 
             </div>
         }
     </div>

@@ -3,10 +3,7 @@
         cart.regEvents();
     },
     regEvents: function () {
-        $('.btnAddToCart').off('click').on('click', function () {
-            window.location.href = "/shopping-cart";
-        });
-        // continue
+        // continue sell
         $('#btnContinue').off('click').on('click', function () {
             window.location.href = "/";
         });
@@ -18,7 +15,7 @@
                 cartList.push({
                     Quantity: $(item).val(),
                     Product: {
-                        ID: $(item).data('id')
+                        Id: $(item).data('id')
                     }
                 });
             });
@@ -30,7 +27,7 @@
                 type: 'POST',
                 success: function (res) {
                     if (res.status == true) {
-                        window.location.href = "/gio-hang";
+                        window.location.href = "/shopping-cart";
                     }
                 }
             })
@@ -44,7 +41,7 @@
                 type: 'POST',
                 success: function (res) {
                     if (res.status == true) {
-                        window.location.href = "/gio-hang";
+                        window.location.href = "/shopping-cart";
                     }
                 }
             })
@@ -59,7 +56,7 @@
                 type: 'POST',
                 success: function (res) {
                     if (res.status == true) {
-                        window.location.href = "/gio-hang";
+                        window.location.href = "/shopping-cart";
                     }
                 }
             })

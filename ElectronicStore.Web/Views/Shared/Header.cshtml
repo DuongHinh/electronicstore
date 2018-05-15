@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNet.Identity;
+﻿@model List<ElectronicStore.Web.Models.CartItemViewModel>
+@using Microsoft.AspNet.Identity;
 <div class="header" id="home1">
     <div class="container">
         <div class="e_login">
@@ -9,7 +10,7 @@
                     @Html.AntiForgeryToken()
                     <ul>
                         <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span></li>
-                        <li><a href="#">@User.Identity.GetUserName()</a></li> |
+                        <li><a href="#" style="text-transform: lowercase">@User.Identity.GetUserName()</a></li> |
                         <li><a href="#" id="btnSignOut">ĐĂNG XUẤT</a></li>
                     </ul>
                 }
@@ -37,10 +38,8 @@
             </div>
         </div>
         <div class="cart cart box_1">
-            <form action="#" method="post" class="last">
-                <input type="hidden" name="cmd" value="_cart" />
-                <input type="hidden" name="display" value="1" />
-                <button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+            <form action="/shopping-cart" method="post">
+                <button class="w3view-cart" type="submit"><i class="fa fa-cart-arrow-down"></i></button> 
             </form>
         </div>
     </div>

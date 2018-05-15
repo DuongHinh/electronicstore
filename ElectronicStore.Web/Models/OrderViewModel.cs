@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 
-namespace ElectronicStore.Data.Entities
+namespace ElectronicStore.Web.Models
 {
-    public class Order
+    public class OrderViewModel
     {
-        [Key]
         public int Id { set; get; }
 
         [Required]
@@ -36,6 +37,6 @@ namespace ElectronicStore.Data.Entities
 
         public bool IsShiped { set; get; }
 
-        public virtual IEnumerable<OrderDetail> OrderDetails { set; get; }
+        public virtual IEnumerable<OrderDetailViewModel> OrderDetails { set; get; }
     }
 }

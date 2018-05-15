@@ -123,6 +123,10 @@
     <Compile Include="Migrations\201805120921009_UsingAspNetIdentity.Designer.cs">
       <DependentUpon>201805120921009_UsingAspNetIdentity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805150029119_UpdateTableOrder.cs" />
+    <Compile Include="Migrations\201805150029119_UpdateTableOrder.Designer.cs">
+      <DependentUpon>201805150029119_UpdateTableOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ContactRepositories.cs" />
@@ -154,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805120921009_UsingAspNetIdentity.resx">
       <DependentUpon>201805120921009_UsingAspNetIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805150029119_UpdateTableOrder.resx">
+      <DependentUpon>201805150029119_UpdateTableOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
