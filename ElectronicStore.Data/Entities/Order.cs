@@ -17,7 +17,6 @@ namespace ElectronicStore.Data.Entities
         [MaxLength(256)]
         public string CustomerAddress { set; get; }
 
-        [Required]
         [MaxLength(256)]
         public string CustomerEmail { set; get; }
 

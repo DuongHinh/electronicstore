@@ -127,6 +127,10 @@
     <Compile Include="Migrations\201805150029119_UpdateTableOrder.Designer.cs">
       <DependentUpon>201805150029119_UpdateTableOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805151712263_SetFieldCustomerEmailIsNullable.cs" />
+    <Compile Include="Migrations\201805151712263_SetFieldCustomerEmailIsNullable.Designer.cs">
+      <DependentUpon>201805151712263_SetFieldCustomerEmailIsNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ContactRepositories.cs" />
@@ -161,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805150029119_UpdateTableOrder.resx">
       <DependentUpon>201805150029119_UpdateTableOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805151712263_SetFieldCustomerEmailIsNullable.resx">
+      <DependentUpon>201805151712263_SetFieldCustomerEmailIsNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

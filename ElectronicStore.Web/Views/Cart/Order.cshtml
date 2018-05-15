@@ -1,7 +1,8 @@
-﻿@model List<ElectronicStore.Web.Models.CartItemViewModel>
+﻿@model ElectronicStore.Web.Models.OrderViewModel
 @{
     ViewBag.Title = "Giỏ hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var Cart = (List<ElectronicStore.Web.Models.CartItemViewModel>)Model.Cart;
 }
 
 <!-- breadcrumbs -->
@@ -18,7 +19,7 @@
 <div class="mail">
     <hr />
     <div class="container">
-        @if (Model.Count > 0)
+        @if (Cart.Count > 0)
         {
             <div class="col-md-10 col-md-offset-1">
                 <table class="table">
@@ -30,28 +31,61 @@
                             <td>Số lượng</td>
                             <td>Đơn giá</td>
                             <td>Thành tiền</td>
-                            <td>Xóa</td>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @{ decimal @totalAmount = 0; }
+                        @foreach (var item in Cart)
                         {
+                            totalAmount += (item.Product.Price * item.Quantity);
+
                             <tr>
                                 <td>@item.Product.Id</td>
                                 <td>@item.Product.Name</td>
                                 <td><img src="@item.Product.Image" width="100" /></td>
-                                <td><input type="number" class="txtQuantity" data-id="@item.Product.Id" value="@item.Quantity" /></td>
+                                <td><input type="number" readonly class="txtQuantity" data-id="@item.Product.Id" value="@item.Quantity" /></td>
                                 <td>@item.Product.Price.ToString("N0")</td>
                                 <td>@((item.Product.Price * item.Quantity).ToString("N0"))</td>
-                                <td><button data-id="@item.Product.Id" class="btn-delete btn btn-danger"><i class="fa fa-minus"></i></button></td>
                             </tr>
                         }
+
+                        <tr>
+                            <td colspan="5" style="text-align: right;">Tổng tiền:</td>
+                            <td>@totalAmount.ToString("N0")</td>
+                        </tr>
 
                     </tbody>
                 </table>
                 <hr />
             </div>
+            <hr />
+            <div class="sign-form">
+                <div class="col-md-6 col-md-offset-3">
+                    <h4>Thông tin đặt hàng</h4>
+                    <br />
+                    @using (Html.BeginForm("Order", "Cart", FormMethod.Post))
+                    {
+                        @Html.ValidationSummary(false, "", new { @class = "error" })
+
+                        @Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control", placeholder = "Họ & tên" })
+
+                        @Html.TextBoxFor(model => model.CustomerAddress, new { @class = "form-control", placeholder = "Địa chỉ" })
+
+                        @Html.TextBoxFor(model => model.CustomerPhone, new { @class = "form-control", placeholder = "Số điện thoại" })
+
+                        @Html.TextBoxFor(model => model.CustomerEmail, new { @class = "form-control", placeholder = "Địa chỉ email" })
+
+                        <input type="submit" value="Đặt hàng">
+                    }
+                </div>
+                <div class="clearfix"> </div>
+            </div>
         }
+        else
+        {
+
+        }
+
     </div>
 </div>
 

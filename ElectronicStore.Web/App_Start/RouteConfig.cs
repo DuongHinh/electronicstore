@@ -72,6 +72,12 @@ namespace ElectronicStore.Web
             );
 
             routes.MapRoute(
+               name: "Order",
+               url: "order",
+               defaults: new { controller = "Cart", action = "Order", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "NotLoggedIn",
                 url: "not-logged-in",
                 defaults: new { controller = "Cart", action = "NotLoggedIn", id = UrlParameter.Optional }

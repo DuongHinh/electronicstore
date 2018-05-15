@@ -16,6 +16,7 @@ using Microsoft.AspNet.Identity;
 using ElectronicStore.Data.Entities;
 using System.Web;
 using Microsoft.Owin.Security.DataProtection;
+using ElectronicStore.Fulcrum;
 
 [assembly: OwinStartup(typeof(ElectronicStore.Web.App_Start.Startup))]
 
@@ -58,6 +59,9 @@ namespace ElectronicStore.Web.App_Start
             builder.RegisterAssemblyTypes(typeof(ProductService).Assembly)
                .Where(t => t.Name.EndsWith("Service"))
                .AsImplementedInterfaces().InstancePerRequest();
+
+            //Appsetting
+            builder.RegisterType<AppSettings>().AsSelf().InstancePerRequest();
 
             Autofac.IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

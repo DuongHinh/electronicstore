@@ -9,7 +9,7 @@ namespace ElectronicStore.Data
     {
         public ElectronicStoreDbContext() : base("ElectronicStoreDbContext")
         {
-            this.Configuration.LazyLoadingEnabled = false;
+            //this.Configuration.LazyLoadingEnabled = true;
         }
 
         public ElectronicStoreDbContext(DbConnection connection) : base(connection, true)

@@ -34,8 +34,10 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @{ decimal @totalAmount = 0; }
                         @foreach (var item in Model)
                         {
+                            totalAmount += (item.Product.Price * item.Quantity);
                             <tr>
                                 <td>@item.Product.Id</td>
                                 <td>@item.Product.Name</td>
@@ -46,6 +48,12 @@
                                 <td><button data-id="@item.Product.Id" class="btn-delete btn btn-danger"><i class="fa fa-minus"></i></button></td>
                             </tr>
                         }
+
+                        <tr>
+                            <td colspan="5" style="text-align: right;">Tổng tiền:</td>
+                            <td>@totalAmount.ToString("N0")</td>
+                            <td></td>
+                        </tr>
 
                     </tbody>
                 </table>

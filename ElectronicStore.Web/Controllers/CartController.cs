@@ -10,6 +10,8 @@ using System.Configuration;
 using ElectronicStore.Web.Models;
 using System.Web.Script.Serialization;
 using ElectronicStore.Data.Entities;
+using ElectronicStore.Fulcrum;
+using System.Text;
 
 namespace ElectronicStore.Web.Controllers
 {
@@ -17,18 +19,23 @@ namespace ElectronicStore.Web.Controllers
     {
         private IProductService productService;
         private IOrderService orderService;
+        private ILogErrorService logErrorService;
+        private IMailService mailService;
         private ApplicationUserManager userManager;
-        private string SessionCart = ConfigurationManager.AppSettings["CartSession"].ToString();
-        public CartController(IProductService productService, IOrderService orderService, ApplicationUserManager userManager)
+        private AppSettings appSettings;
+        public CartController(IProductService productService, IOrderService orderService, ILogErrorService logErrorService, IMailService mailService, ApplicationUserManager userManager, AppSettings appSettings)
         {
             this.productService = productService;
             this.orderService = orderService;
             this.userManager = userManager;
+            this.appSettings = appSettings;
+            this.logErrorService = logErrorService;
+            this.mailService = mailService;
         }
         // GET: ShopingCart
         public ActionResult Index()
         {
-            var cart = Session[SessionCart];
+            var cart = Session[this.appSettings.SessionCart];
             var listItem = cart != null ? (List<CartItemViewModel>)cart : new List<CartItemViewModel>();
             return View(listItem);
         }
@@ -71,7 +78,7 @@ namespace ElectronicStore.Web.Controllers
                 return Redirect("/out-of-stock");
             }
 
-            var cart = Session[SessionCart];
+            var cart = Session[this.appSettings.SessionCart];
             if (cart != null)
             {
                 var list = (List<CartItemViewModel>)cart;
@@ -93,7 +100,7 @@ namespace ElectronicStore.Web.Controllers
                     item.Quantity = 1;
                     list.Add(item);
                    
-                    Session[SessionCart] = list;
+                    Session[this.appSettings.SessionCart] = list;
                 }
             }
             else
@@ -105,7 +112,7 @@ namespace ElectronicStore.Web.Controllers
                 var list = new List<CartItemViewModel>();
                 list.Add(item);
                 
-                Session[SessionCart] = list;
+                Session[this.appSettings.SessionCart] = list;
             }
 
             return RedirectToAction("Index");
@@ -114,7 +121,7 @@ namespace ElectronicStore.Web.Controllers
         public JsonResult Update(string cartModel)
         {
             var jsonCart = new JavaScriptSerializer().Deserialize<List<CartItemViewModel>>(cartModel);
-            var sessionCart = (List<CartItemViewModel>)Session[SessionCart];
+            var sessionCart = (List<CartItemViewModel>)Session[this.appSettings.SessionCart];
 
             foreach (var item in sessionCart)
             {
@@ -126,7 +133,7 @@ namespace ElectronicStore.Web.Controllers
                 }
             }
 
-            Session[SessionCart] = sessionCart;
+            Session[this.appSettings.SessionCart] = sessionCart;
 
             return Json(new
             {
@@ -140,7 +147,7 @@ namespace ElectronicStore.Web.Controllers
         /// <returns></returns>
         public JsonResult DeleteAll()
         {
-            Session[SessionCart] = null;
+            Session[this.appSettings.SessionCart] = null;
             return Json(new
             {
                 status = true
@@ -155,11 +162,11 @@ namespace ElectronicStore.Web.Controllers
         public JsonResult Delete(int id)
         {
             bool status = false;
-            var sessionCart = (List<CartItemViewModel>)Session[SessionCart];
+            var sessionCart = (List<CartItemViewModel>)Session[this.appSettings.SessionCart];
             if (sessionCart != null)
             {
                 sessionCart.RemoveAll(x => x.Product.Id == id);
-                Session[SessionCart] = sessionCart;
+                Session[this.appSettings.SessionCart] = sessionCart;
                 status = true;
             }
             else {
@@ -172,8 +179,24 @@ namespace ElectronicStore.Web.Controllers
             });
         }
 
+        [HttpGet]
+        public ActionResult Order()
+        {
+            var order = new OrderViewModel();
+            var cart = Session[this.appSettings.SessionCart];
+            
+            var listItem = cart != null ? (List<CartItemViewModel>)cart : new List<CartItemViewModel>();
+            order.Cart = listItem;
+            return View(order);
+        }
+
+        [HttpPost]
         public ActionResult Order(OrderViewModel orderViewModel)
         {
+            var cartItem = Session[this.appSettings.SessionCart];
+            var listItem = cartItem != null ? (List<CartItemViewModel>)cartItem : new List<CartItemViewModel>();
+            orderViewModel.Cart = listItem;
+
             if (ModelState.IsValid)
             {
                 var order = new Order();
@@ -186,28 +209,78 @@ namespace ElectronicStore.Web.Controllers
 
                 try
                 {
-                    var cart = (List<CartItemViewModel>)Session[SessionCart];
+                    var cart = (List<CartItemViewModel>)Session[this.appSettings.SessionCart];
                     List<OrderDetail> orderDetails = new List<OrderDetail>();
                     bool isEnough = true;
+                   
                     foreach (var item in cart)
                     {
                         var detail = new OrderDetail();
-                        detail.ProductId = item.ProductId;
+                        detail.ProductId = item.Product.Id;
                         detail.Quantity = item.Quantity;
                         detail.Price = item.Product.Price;
                         orderDetails.Add(detail);
-
-                        isEnough = this.productService.SellProduct(item.ProductId, item.Quantity);
+                        isEnough = this.productService.SellProduct(item.Product.Id, item.Quantity);
                     }
 
                     this.orderService.CreateOrder(order, orderDetails);
                     this.productService.Save();
 
-                    //send mail
-                }
-                catch (Exception)
-                {
+                    
 
+                    //send mail
+                    if (!string.IsNullOrWhiteSpace(orderViewModel.CustomerEmail) && cart != null)
+                    {
+                        StringBuilder builder = new StringBuilder();
+                        builder.Append("Thông tin đơn hàng mới từ Electronic Store");
+                        builder.Append("<br/>");
+                        builder.AppendFormat("Khách hàng: {0}", orderViewModel.CustomerName);
+                        builder.Append("<br/>");
+                        builder.AppendFormat("Địa chỉ: {0}", orderViewModel.CustomerAddress);
+                        builder.Append("<br/>");
+                        builder.AppendFormat("Số điện thoại: {0}", orderViewModel.CustomerPhone);
+                        builder.Append("<br/>");
+                        builder.Append("<br/>");
+
+                        builder.Append("<table style='width: 100 %' cellpadding='5' border='1'>");
+                        builder.Append("<thead>");
+                        builder.Append("<tr>");
+                        builder.Append("<th style='width: 40 %; '>Tên sản phẩm</th>");
+                        builder.Append("<th style'width: 30 %; '>Số lượng</th>");
+                        builder.Append("<th style='width: 30 %; '>Đơn giá</th>");
+                        builder.Append("</tr>");
+                        builder.Append("</thead>");
+                        builder.Append("<tbody>");
+                        decimal totalAmount = 0;
+                        foreach (var item in cart)
+                        {
+                            builder.Append("<tr>");
+                            builder.AppendFormat("<td class='text - left'>{0}</td>", item.Product.Name);
+                            builder.AppendFormat("<td class='font-weight: initial'>{0}</td>", item.Quantity);
+                            builder.AppendFormat("<td class='text - left'>{0}</td>", item.Product.Price);
+                            builder.Append("</tr>");
+
+                            totalAmount += (item.Product.Price * item.Quantity);
+                        }
+
+                        builder.Append("</tbody>");
+                        builder.Append("</table>");
+
+                        builder.Append("<br/>");
+                        builder.AppendFormat("Tổng tiền: {0}", totalAmount);
+
+                        this.mailService.SendMail(orderViewModel.CustomerEmail, "Đơn hàng mới từ Electronic Store", builder.ToString());
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    LogError error = new LogError();
+                    error.Date = DateTime.Now;
+                    error.Message = ex.Message;
+                    error.StackTrace = ex.StackTrace;
+                    this.logErrorService.Create(error);
+                    this.logErrorService.Save();
                     return Redirect("/order-errors");
                 }
 

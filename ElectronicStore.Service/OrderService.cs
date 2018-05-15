@@ -12,6 +12,8 @@ namespace ElectronicStore.Service
     public interface IOrderService
     {
         bool CreateOrder(Order order, List<OrderDetail> orderDetails);
+
+        Order GetById(int id);
     }
 
     public class OrderService : IOrderService
@@ -45,6 +47,11 @@ namespace ElectronicStore.Service
             {
                 throw ex;
             }
+        }
+
+        public Order GetById(int id)
+        {
+            return this.orderRepositories.GetSingleById(id);
         }
     }
 }

@@ -10,20 +10,20 @@ namespace ElectronicStore.Web.Models
     {
         public int Id { set; get; }
 
-        [Required]
-        [MaxLength(256)]
+        [MaxLength(256, ErrorMessage = "Tên không được quá 256 ký tự")]
+        [Required(ErrorMessage = "Bạn chưa nhập họ tên")]
         public string CustomerName { set; get; }
 
-        [Required]
-        [MaxLength(256)]
+        [Required(ErrorMessage = "Bạn chưa nhập địa chỉ")]
+        [MaxLength(256, ErrorMessage = "Địa chỉ không được quá 256 ký tự")]
         public string CustomerAddress { set; get; }
 
-        [Required]
-        [MaxLength(256)]
+        [MaxLength(256, ErrorMessage = "Email không được quá 256 ký tự")]
+        [EmailAddress(ErrorMessage = "Email không hợp lệ")]
         public string CustomerEmail { set; get; }
 
-        [Required]
-        [MaxLength(50)]
+        [MaxLength(50, ErrorMessage = "Số điện thoại không được quá 50 ký tự")]
+        [Required(ErrorMessage = "Bạn chưa nhập số điện thoại")]
         public string CustomerPhone { set; get; }
 
         [MaxLength(256)]
@@ -37,6 +37,6 @@ namespace ElectronicStore.Web.Models
 
         public bool IsShiped { set; get; }
 
-        public virtual IEnumerable<OrderDetailViewModel> OrderDetails { set; get; }
+        public List<CartItemViewModel> Cart { set; get; }
     }
 }
