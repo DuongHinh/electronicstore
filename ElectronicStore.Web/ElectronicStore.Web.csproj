@@ -317,6 +317,7 @@
     <Content Include="Assets\Admin\images\photo2.png" />
     <Content Include="Assets\Admin\images\photo3.jpg" />
     <Content Include="Assets\Admin\images\photo4.jpg" />
+    <Content Include="Assets\Admin\images\photo5.png" />
     <Content Include="Assets\Admin\images\trash.png" />
     <Content Include="Assets\Admin\images\user1-128x128.jpg" />
     <Content Include="Assets\Admin\images\user2-160x160.jpg" />
@@ -3901,6 +3902,9 @@
     <Content Include="Assets\Client\images\tb3.jpg" />
     <Content Include="Assets\Client\images\tb4.jpg" />
     <Content Include="Assets\Client\images\tb5.jpg" />
+    <Content Include="Assets\Client\images\tb6.jpg" />
+    <Content Include="Assets\Client\images\tb7.jpg" />
+    <Content Include="Assets\Client\images\tb8.jpg" />
     <Content Include="Assets\Client\js\bootstrap-3.1.1.min.js" />
     <Content Include="Assets\Client\js\controller\accountController.js" />
     <Content Include="Assets\Client\js\controller\cartController.js" />
