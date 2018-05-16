@@ -47,11 +47,11 @@ form[role=form] {
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 }
-	form[role=form] img {
+	/*form[role=form] img {
 		display: block;
 		margin: 0 auto;
 		margin-bottom: 35px;
-	}
+	}*/
 	form[role=form] input,
 	form[role=form] button {
 		font-size: 18px;
@@ -91,11 +91,10 @@ form[role=form] {
             <section class="login-form">
                 <form role="form" method="post" ng-submit="login()">
                     <div><h3 class="text-center">{{logo}}</h3></div>
-                    <!--<img src="http://i.imgur.com/RcmcLv4.png" class="img-responsive" alt="" />-->
-                    <input type="text" name="username" placeholder="Username" ng-model="loginData.username" required class="form-control input-lg"/>
-                    <input type="password" id="password" placeholder="Password" ng-model="loginData.password" required class="form-control input-lg"   />
+                    <input type="text" name="username" placeholder="Tài khoản" ng-model="loginData.username" required class="form-control input-lg"/>
+                    <input type="password" id="password" placeholder="Mật khẩu" ng-model="loginData.password" required class="form-control input-lg"   />
                     <div class="pwstrength_viewport_progress"></div>
-                    <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
+                    <button type="submit" name="go" class="btn btn-lg btn-primary btn-block"><span>Đăng nhập &nbsp;</span><img ng-show="working" style="margin-right: 5px;" src="Assets/Admin/images/ajax-loader.gif" /></button>
                 </form>
             </section>
         </div>

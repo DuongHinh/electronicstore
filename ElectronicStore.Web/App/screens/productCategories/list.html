@@ -4,7 +4,7 @@
         <h1>&nbsp;</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item">Manage products</li>
+            <li class="breadcrumb-item">Quản lý sản phẩm</li>
             <li><a class="link-active" ui-sref="productCategories">{{title}}</a></li>
         </ol>
     </section>
@@ -24,14 +24,14 @@
                     <div class="col-lg-6">
                         <div class="input-group">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" style="border-radius:unset;" type="button" ng-click="search()">Search</button>
+                                <button class="btn btn-default" style="border-radius:unset;" type="button" ng-click="search()">Tìm kiếm</button>
                             </span>
-                            <input type="text" class="form-control" ng-model="keyword" placeholder="&#xF002; Search by category name" style="border-radius: 0px; font-family:Arial, FontAwesome; direction: ltr; text-align: left;">
+                            <input type="text" class="form-control" ng-model="keyword" placeholder="&#xF002; Tìm theo tên danh mục" style="border-radius: 0px; font-family:Arial, FontAwesome; direction: ltr; text-align: left;">
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <button class="btn btn-success" ui-sref="productCategories.new">&nbsp; New &nbsp;</button>
-                        <button class="btn btn-danger" ng-click="deleteMulti()" ng-disabled="selectedCategoryIds.length === 0">Delete</button>
+                        <button class="btn btn-success" ui-sref="productCategories.new">&nbsp; Thêm &nbsp;</button>
+                        <button class="btn btn-danger" ng-click="deleteMulti()" ng-disabled="selectedCategoryIds.length === 0">Xóa</button>
                     </div>
                 </div>
                 <br />
@@ -40,10 +40,10 @@
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Created Date</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                    <th>Tên</th>
+                                    <th>Ngày tạo</th>
+                                    <th>Trạng thái</th>
+                                    <th>Sửa/Xóa</th>
                                     <th class="text-center">
                                         <input type="checkbox" ng-click="selectAll()"
                                                ng-checked="(selectedCategoryIds.length === productCategories.length) && selectedCategoryIds.length > 0 && productCategories.length > 0" />

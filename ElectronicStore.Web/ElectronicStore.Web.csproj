@@ -291,7 +291,9 @@
     <Content Include="Assets\Admin\css\skins\skin-yellow.min.css" />
     <Content Include="Assets\Admin\css\skins\_all-skins.css" />
     <Content Include="Assets\Admin\css\skins\_all-skins.min.css" />
+    <Content Include="Assets\Admin\images\admin.png" />
     <Content Include="Assets\Admin\images\ajax-loader-big.gif" />
+    <Content Include="Assets\Admin\images\ajax-loader.gif" />
     <Content Include="Assets\Admin\images\avatar.png" />
     <Content Include="Assets\Admin\images\avatar04.png" />
     <Content Include="Assets\Admin\images\avatar2.png" />
@@ -4622,7 +4624,6 @@
     <Content Include="Assets\Common\css\bootstrap-theme.min.css" />
     <Content Include="Assets\Common\css\bootstrap.css" />
     <Content Include="Assets\Common\css\bootstrap.min.css" />
-    <Content Include="Assets\Admin\images\admin.jpg" />
     <Content Include="Assets\Admin\js\bootstrap.min.js" />
     <Content Include="Assets\Admin\js\jquery-3.2.1.min.js" />
     <Content Include="Assets\Admin\js\main.js" />

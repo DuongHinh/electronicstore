@@ -18,14 +18,18 @@
 		        password: ""
 		    };
 
+		    $scope.working = false;
 		    $scope.login = function () {
 		        authSvc.login($scope.loginData.username, $scope.loginData.password).then(function (response) {
 		            if (response != null && response.error != undefined) {
 		                console.log(response.error_description);
 		            }
 		            else {
-		                $injector.get("$state").go("home");
+		                $state.go('home', {}, { reload: true });
 		            }
+		            $scope.working = true;
+		        }, function () {
+		            $scope.working = false;
 		        });
 		    }
 

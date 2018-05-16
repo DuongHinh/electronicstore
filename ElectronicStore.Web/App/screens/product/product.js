@@ -41,7 +41,7 @@
  		'$scope', '$state', '$stateParams', '$rootScope', 'productSvc', '$ngBootbox', '$filter',
         function ($scope, $state, $stateParams, $rootScope, productSvc, $ngBootbox, $filter) {
 
-		    $scope.title = 'Product list';
+		    $scope.title = 'Danh sách sản phẩm';
 		    $scope.loading = true;
 		    $scope.keyword = '';
 		    $scope.itemsPerPage = 10;
@@ -122,7 +122,7 @@
 		'$scope', '$state', '$log', '$stateParams', '$rootScope', 'productSvc', 'productCategoriesSvc', 'commonSvc',
 		function ($scope, $state, $log, $stateParams, $rootScope, productSvc, productCategoriesSvc, commonSvc) {
 
-		    $scope.title = 'Create new product';
+		    $scope.title = 'Thêm mới sản phẩm';
 		    $scope.submitted = false;
 		    $scope.moreImages = [];
 
@@ -211,7 +211,7 @@
 		'$scope', '$state', '$log', '$stateParams', '$rootScope', 'productSvc', 'productCategoriesSvc', 'commonSvc',
 		function ($scope, $state, $log, $stateParams, $rootScope, productSvc, productCategoriesSvc, commonSvc) {
 
-		    $scope.title = 'Update product';
+		    $scope.title = 'Cập nhập sản phẩm';
 		    $scope.submitted = false;
 		    $scope.moreImages = [];
 

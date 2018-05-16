@@ -6,8 +6,8 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="javascript:void(0);"><i class="fa fa-home fa-lg"></i></a></li>
-            <li><a href="javascript:void(0);">Manage product</a></li>
-            <li><a ui-sref="products">Product list</a></li>
+            <li><a href="javascript:void(0);">Quản lý sản phẩm</a></li>
+            <li><a ui-sref="products">Danh sánh sản phẩm</a></li>
             <li><a class="link-active" ui-sref="products.new">{{title}}</a></li>
         </ol>
     </section>
@@ -27,13 +27,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Name</label>
-                                <input class="form-control" placeholder="Enter product name" type="text"
+                                <label>Tên</label>
+                                <input class="form-control" placeholder="Nhập tên sản phẩm" type="text"
                                        ng-maxlength="256" required name="name" ng-model="product.Name"
                                        ng-class="{true:'inputInvalid', false:''}[submitted && formNewProduct.name.$error.required]"
                                        ng-change="getAlias(product.Name)">
-                                <span ng-show="submitted && formNewProduct.name.$error.required" class="invalid">The product name is required</span>
-                                <span ng-show="submitted && formNewProduct.name.$error.maxlength" class="invalid"><br />The product name is only 256 characters</span>
+                                <span ng-show="submitted && formNewProduct.name.$error.required" class="invalid">Bạn chưa nhập tên sản phẩm</span>
+                                <span ng-show="submitted && formNewProduct.name.$error.maxlength" class="invalid"><br />Tên sản phẩm không được quá 256 ký tự</span>
                             </div>
                             <div class="form-group">
                                 <label>Alias</label>
@@ -41,30 +41,30 @@
                                        ng-maxlength="256" required
                                        ng-class="{true:'inputInvalid', false:''}[submitted && formNewProduct.alias.$error.required]"
                                        ng-model="product.Alias">
-                                <span ng-show="submitted && formNewProduct.alias.$error.required" class="invalid">The product alias is required</span>
-                                <span ng-show="submitted && formNewProduct.alias.$error.maxlength" class="invalid"><br />The product alias is only 256 characters</span>
+                                <span ng-show="submitted && formNewProduct.alias.$error.required" class="invalid">Bạn chưa nhập alias</span>
+                                <span ng-show="submitted && formNewProduct.alias.$error.maxlength" class="invalid"><br />Alias không được quá 256 ký tự</span>
                             </div>
                             <div class="form-group">
-                                <label for="exampleSelect1">Category</label>
+                                <label for="exampleSelect1">Danh mục</label>
                                 <select class="form-control" name="category" required
                                         ng-class="{true:'inputInvalid', false:''}[submitted && formNewProduct.category.$error.required]"
                                         ng-model="product.CategoryId"
                                         ng-options="c.Id as c.Name for c in productCategories">
-                                    <option value="" disabled>Select Category</option>
+                                    <option value="" disabled>Chọn danh mục</option>
                                 </select>
-                                <span ng-show="submitted && formNewProduct.category.$error.required" class="invalid">The category is required</span>
+                                <span ng-show="submitted && formNewProduct.category.$error.required" class="invalid">Bạn chưa chọn danh mục</span>
                             </div>
                             <div class="form-group">
-                                <label>Image</label>
+                                <label>Hình ảnh</label>
                                 <div class="row">
                                     <div class="col-md-10"><input type="text" class="form-control" name="image" ng-model="product.Image"></div>
-                                    <div class="col-md-2"><button class="btn btn-default pull-right" style="margin-left:0" type="button" ng-click="chooseImage()">Choose Image</button></div>
+                                    <div class="col-md-2"><button class="btn btn-default pull-right" style="margin-left:0" type="button" ng-click="chooseImage()">Chọn ảnh</button></div>
                                 </div>
                                 <div><img ng-src="{{product.Image}}" width="200" /></div>
                             </div>
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-2"><button class="btn btn-default" type="button" ng-click="chooseMoreImage()">More Images</button></div>
+                                    <div class="col-md-2"><button class="btn btn-default" type="button" ng-click="chooseMoreImage()">Thêm ảnh</button></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -77,36 +77,36 @@
                         </div><!-- /.col -->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Quantity</label>
+                                <label>Số lượng</label>
                                 <input class="form-control" is-integer ng-model="product.Quantity">
                             </div>
                             <div class="form-group">
-                                <label>Original Price</label>
+                                <label>Giá nhập</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">$</span>
-                                    <input class="form-control" is-decimal required name="originalPrice" placeholder="Enter price"
+                                    <input class="form-control" is-decimal required name="originalPrice" placeholder="Nhập giá"
                                            ng-class="{true:'inputInvalid', false:''}[submitted && formNewProduct.originalPrice.$error.required]"
                                            ng-model="product.OriginalPrice">
                                     <span class="input-group-addon">.00</span>
                                 </div>
-                                <span ng-show="submitted && formNewProduct.originalPrice.$error.required" class="invalid">The product original price is required</span>
+                                <span ng-show="submitted && formNewProduct.originalPrice.$error.required" class="invalid">Bạn chưa nhập giá nhập</span>
                             </div>
                             <div class="form-group">
-                                <label>Price</label>
+                                <label>Giá bán</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">$</span>
-                                    <input class="form-control" is-decimal required name="price" placeholder="Enter price"
+                                    <input class="form-control" is-decimal required name="price" placeholder="Nhập giá"
                                            ng-class="{true:'inputInvalid', false:''}[submitted && formNewProduct.price.$error.required]"
                                            ng-model="product.Price">
                                     <span class="input-group-addon">.00</span>
                                 </div>
-                                <span ng-show="submitted && formNewProduct.price.$error.required" class="invalid">&nbsp; The product price is required</span>
+                                <span ng-show="submitted && formNewProduct.price.$error.required" class="invalid">&nbsp; Bạn chưa nhập giá bán</span>
                             </div>
                             <div class="form-group">
-                                <label>Promotion Price</label>
+                                <label>Giá khuyến mãi</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">$</span>
-                                    <input class="form-control" is-decimal placeholder="Enter price" ng-model="product.PromotionPrice">
+                                    <input class="form-control" is-decimal placeholder="Nhập giá" ng-model="product.PromotionPrice">
                                     <span class="input-group-addon">.00</span>
                                 </div>
                             </div>
@@ -117,12 +117,12 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input class="form-check-input" type="checkbox" ng-model="product.Status"> Active
+                                        <input class="form-check-input" type="checkbox" ng-model="product.Status"> Trạng thái
                                     </label>
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input class="form-check-input" type="checkbox" ng-model="product.HotFlag"> Hot product
+                                        <input class="form-check-input" type="checkbox" ng-model="product.HotFlag"> Sản phẩm hot
                                     </label>
                                 </div>
                                 <!--<div class="checkbox">
@@ -134,15 +134,15 @@
                         </div><!-- /.col -->
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Description</label>
+                                <label>Thông tin chi tiết</label>
                                 <textarea class="form-control" name="description" ckeditor ng-model="product.Description"></textarea>
                             </div>
                         </div>
                     </div><!-- /.row -->
                 </div><!-- /.box-body -->
                 <div class="box-footer">
-                    <button class="btn btn-primary" type="submit">Save</button>
-                    <button ui-sref="products" class="btn btn-default">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Lưu</button>
+                    <button ui-sref="products" class="btn btn-default">Hủy</button>
                 </div>
             </form>
         </div><!-- /.box -->

@@ -37,7 +37,7 @@
 	[
 		'$scope', '$state', '$stateParams', '$rootScope', 'productCategoriesSvc', '$ngBootbox',
 		function ($scope, $state, $stateParams, $rootScope, productCategoriesSvc, $ngBootbox) {
-		    $scope.title = 'Product Categories List';
+		    $scope.title = 'Danh mục sản phẩm';
 		    $scope.loading = true;
 		    $scope.keyword = '';
 		    $scope.itemsPerPage = 10;
@@ -118,7 +118,7 @@
 	[
 		'$scope', '$state', '$log', '$stateParams', '$rootScope', 'productCategoriesSvc', 'commonSvc',
 		function ($scope, $state, $log, $stateParams, $rootScope, productCategoriesSvc, commonSvc) {
-		    $scope.title = 'Create new product category';
+		    $scope.title = 'Thêm mới danh mục sản phẩm';
 		    $scope.submitted = false;
 		    $scope.category = {
 		        Status: true,
@@ -178,7 +178,7 @@
 	[
 		'$scope', '$state', '$log', '$stateParams', '$rootScope', 'productCategoriesSvc', 'commonSvc',
 		function ($scope, $state, $log, $stateParams, $rootScope, productCategoriesSvc, commonSvc) {
-		    $scope.title = 'Update product category';
+		    $scope.title = 'Cập nhật danh mục sản phẩm';
 		    $scope.submitted = false;
 		    $scope.getAlias = function (input) {
 		        $scope.category.Alias = commonSvc.getAlias(input);

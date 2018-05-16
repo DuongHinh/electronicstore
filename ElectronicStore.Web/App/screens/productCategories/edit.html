@@ -6,8 +6,8 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="javascript:void(0);"><i class="fa fa-home fa-lg"></i></a></li>
-            <li><a href="javascript:void(0);">Manage product</a></li>
-            <li><a ui-sref="productCategories">Product category list</a></li>
+            <li><a href="javascript:void(0);">Quản lý sản phẩm</a></li>
+            <li><a ui-sref="productCategories">Danh mục sản phẩm</a></li>
             <li><a class="link-active" ui-sref="productCategories.edit">{{title}}</a></li>
         </ol>
     </section>
@@ -27,19 +27,19 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Name</label>
-                                <input class="form-control" placeholder="Enter category name" type="text"
+                                <label>Tên</label>
+                                <input class="form-control" placeholder="Nhập tên sản phẩm" type="text"
                                        ng-maxlength="256" required name="name" ng-model="category.Name"
                                        ng-class="{true:'inputInvalid', false:''}[submitted && formEditCategory.name.$error.required]"
                                        ng-change="getAlias(category.Name)">
-                                <span ng-show="submitted && formEditCategory.name.$error.required" class="invalid">The category name is required</span>
-                                <span ng-show="submitted && formEditCategory.name.$error.maxlength" class="invalid"><br />The category name is only 256 characters</span>
+                                <span ng-show="submitted && formEditCategory.name.$error.required" class="invalid">Bạn chưa nhập tên danh mục</span>
+                                <span ng-show="submitted && formEditCategory.name.$error.maxlength" class="invalid"><br />Tên danh mục không được quá 256 ký tự</span>
                             </div>
                             <div class="form-group">
-                                <label>Image</label>
+                                <label>Hình ảnh</label>
                                 <div class="row">
                                     <div class="col-lg-10"><input type="text" class="form-control" name="image" ng-model="category.Image"></div>
-                                    <div class="col-lg-2"><button class="btn btn-default pull-right" style="margin-left:0" type="button" ng-click="chooseImage()">Choose Image</button></div>
+                                    <div class="col-lg-2"><button class="btn btn-default pull-right" style="margin-left:0" type="button" ng-click="chooseImage()">Chọn ảnh</button></div>
                                 </div>
                                 <div><img ng-src="{{category.Image}}" width="200" /></div>
                             </div>
@@ -51,21 +51,21 @@
                                        ng-maxlength="256" required
                                        ng-class="{true:'inputInvalid', false:''}[submitted && formEditCategory.alias.$error.required]"
                                        ng-model="category.Alias">
-                                <span ng-show="submitted && formEditCategory.alias.$error.required" class="invalid">The category alias is required</span>
-                                <span ng-show="submitted && formEditCategory.alias.$error.maxlength" class="invalid"><br />The category alias is only 256 characters</span>
+                                <span ng-show="submitted && formEditCategory.alias.$error.required" class="invalid">Bạn chưa nhập alias</span>
+                                <span ng-show="submitted && formEditCategory.alias.$error.maxlength" class="invalid"><br />Alias không được quá 256 ký tự</span>
                             </div>
                             <div class="form-group">
                                 <label>Parent category</label>
                                 <select class="form-control" name="category" required
                                         ng-model="category.ParentId"
                                         ng-options="c.Id as c.Name for c in parents">
-                                    <option value="">Select parent</option>
+                                    <option value="">Danh mục cha</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input class="form-check-input" type="checkbox" ng-model="category.Status"> Active
+                                        <input class="form-check-input" type="checkbox" ng-model="category.Status"> Trạng thái
                                     </label>
                                 </div>
                             </div>
@@ -79,8 +79,8 @@
                     </div><!-- /.row -->
                 </div><!-- /.box-body -->
                 <div class="box-footer">
-                    <button class="btn btn-primary" type="submit">Save</button>
-                    <button ui-sref="productCategories" class="btn btn-default">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Lưu</button>
+                    <button ui-sref="productCategories" class="btn btn-default">Hủy</button>
                 </div>
             </form>
         </div><!-- /.box -->
