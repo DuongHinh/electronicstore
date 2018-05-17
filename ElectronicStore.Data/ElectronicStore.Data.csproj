@@ -87,6 +87,7 @@
     <Compile Include="Entities\About.cs" />
     <Compile Include="Entities\Contact.cs" />
     <Compile Include="Entities\Feedback.cs" />
+    <Compile Include="Entities\Group.cs" />
     <Compile Include="Entities\LogError.cs" />
     <Compile Include="Entities\Menu.cs" />
     <Compile Include="Entities\MenuType.cs" />
@@ -98,11 +99,14 @@
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ProductCategory.cs" />
     <Compile Include="Entities\ProductTag.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\RoleGroup.cs" />
     <Compile Include="Entities\Slide.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Core\IRepositories.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
+    <Compile Include="Entities\UserGroup.cs" />
     <Compile Include="Migrations\201804241737292_CreateDatabase.cs" />
     <Compile Include="Migrations\201804241737292_CreateDatabase.Designer.cs">
       <DependentUpon>201804241737292_CreateDatabase.cs</DependentUpon>
@@ -131,17 +135,25 @@
     <Compile Include="Migrations\201805151712263_SetFieldCustomerEmailIsNullable.Designer.cs">
       <DependentUpon>201805151712263_SetFieldCustomerEmailIsNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805170100018_ManageUserByGroups.cs" />
+    <Compile Include="Migrations\201805170100018_ManageUserByGroups.Designer.cs">
+      <DependentUpon>201805170100018_ManageUserByGroups.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ContactRepositories.cs" />
     <Compile Include="Repositories\FeedbackRepositories.cs" />
+    <Compile Include="Repositories\GroupRepositories.cs" />
     <Compile Include="Repositories\LogErrorRepositories.cs" />
     <Compile Include="Repositories\OrderDetailRepositories.cs" />
     <Compile Include="Repositories\OrderRepositories.cs" />
     <Compile Include="Repositories\ProductCategoryRepositories.cs" />
     <Compile Include="Repositories\ProductRepositories.cs" />
     <Compile Include="Repositories\ProductTagRepositories.cs" />
+    <Compile Include="Repositories\RoleGroupRepositories.cs" />
+    <Compile Include="Repositories\RoleRepositories.cs" />
     <Compile Include="Repositories\TagRepositories.cs" />
+    <Compile Include="Repositories\UserGroupRepositories.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -168,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805151712263_SetFieldCustomerEmailIsNullable.resx">
       <DependentUpon>201805151712263_SetFieldCustomerEmailIsNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805170100018_ManageUserByGroups.resx">
+      <DependentUpon>201805170100018_ManageUserByGroups.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

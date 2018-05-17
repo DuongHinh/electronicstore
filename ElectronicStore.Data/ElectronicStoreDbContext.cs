@@ -32,6 +32,10 @@ namespace ElectronicStore.Data
         public DbSet<ProductTag> ProductTag { get; set; }
         public DbSet<Slide> Slide { get; set; }
         public DbSet<Tag> Tag { get; set; }
+        public DbSet<Group> Group { set; get; }
+        public DbSet<Role> Role { set; get; }
+        public DbSet<RoleGroup> RoleGroup { set; get; }
+        public DbSet<UserGroup> UserGroup { set; get; }
 
         public static ElectronicStoreDbContext Create()
         {
