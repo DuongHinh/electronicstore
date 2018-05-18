@@ -25,6 +25,8 @@ namespace ElectronicStore.Data.Core
         // Get an entity by int id
         T GetSingleById(int id);
 
+        T GetSingleById(string id);
+
         IEnumerable<T> GetAll(string[] includes = null);
 
         IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null);
@@ -139,6 +141,11 @@ namespace ElectronicStore.Data.Core
                 return query.FirstOrDefault(expression);
             }
             return dataContext.Set<T>().FirstOrDefault(expression);
+        }
+
+        public T GetSingleById(string id)
+        {
+            return this.dbSet.Find(id);
         }
     }
 }

@@ -201,9 +201,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
+    <Compile Include="Api\GroupController.cs" />
     <Compile Include="Api\HomeController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="Api\ProductController.cs" />
+    <Compile Include="Api\RoleController.cs" />
+    <Compile Include="Api\UserController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -227,15 +230,18 @@
     <Compile Include="Models\CartItemViewModel.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\FeedbackViewModel.cs" />
+    <Compile Include="Models\GroupViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\OrderDetailViewModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\ProductCategoryViewModel.cs" />
     <Compile Include="Models\ProductTagViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\SignInViewModel.cs" />
     <Compile Include="Models\SignUpViewModel.cs" />
     <Compile Include="Models\TagViewModel.cs" />
+    <Compile Include="Models\ApplicationUserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -249,6 +255,10 @@
     <Content Include="App\global\services\productSvc.js" />
     <Content Include="App\global\template\layoutController.js" />
     <Content Include="App\global\template\layout.html" />
+    <Content Include="App\screens\groups\edit.html" />
+    <Content Include="App\screens\groups\groups.js" />
+    <Content Include="App\screens\groups\list.html" />
+    <Content Include="App\screens\groups\new.html" />
     <Content Include="App\screens\home\home.html" />
     <Content Include="App\screens\home\home.js" />
     <Content Include="App\screens\login\login.css" />
@@ -262,6 +272,14 @@
     <Content Include="App\screens\product\list.html" />
     <Content Include="App\screens\product\new.html" />
     <Content Include="App\screens\product\product.js" />
+    <Content Include="App\screens\roles\edit.html" />
+    <Content Include="App\screens\roles\list.html" />
+    <Content Include="App\screens\roles\new.html" />
+    <Content Include="App\screens\roles\roles.js" />
+    <Content Include="App\screens\users\edit.html" />
+    <Content Include="App\screens\users\list.html" />
+    <Content Include="App\screens\users\new.html" />
+    <Content Include="App\screens\users\users.js" />
     <Content Include="Assets\Admin\css\AdminLTE.css" />
     <Content Include="Assets\Admin\css\AdminLTE.min.css" />
     <Content Include="Assets\Admin\css\style.css" />
@@ -5066,7 +5084,7 @@
     <Folder Include="App\screens\admin\roles\" />
     <Folder Include="App\screens\admin\uses\" />
     <Folder Include="App\screens\dashboard\" />
-    <Folder Include="App\screens\post\" />
+    <Folder Include="App\screens\posts\" />
     <Folder Include="App\styles\" />
     <Folder Include="App_Data\" />
     <Folder Include="Assets\Admin\js\checklist-model\" />

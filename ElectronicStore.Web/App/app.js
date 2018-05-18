@@ -23,7 +23,10 @@ angular.module('electronicStoreApp.screens', [
     'electronicStoreApp.screens.login',
     'electronicStoreApp.screens.home',
     'electronicStoreApp.screens.products',
-    'electronicStoreApp.screens.productCategories'
+    'electronicStoreApp.screens.productCategories',
+    'electronicStoreApp.screens.users',
+    'electronicStoreApp.screens.roles',
+    'electronicStoreApp.screens.groups'
 ]);
 
 
