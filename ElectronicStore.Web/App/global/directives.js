@@ -84,4 +84,16 @@
         });
       }
     };
-  });
+}).directive('convertDate', function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, elem, attrs, ctrl) {
+            if (!ctrl) return;
+
+            ctrl.$parsers.push(function (date) {
+                if (angular.isDate(date))
+                    return new Date(date);
+            })
+        }
+    }
+});

@@ -251,8 +251,11 @@
     <Content Include="App\global\filters.js" />
     <Content Include="App\global\services\authSvc.js" />
     <Content Include="App\global\services\commonSvc.js" />
+    <Content Include="App\global\services\groupSvc.js" />
     <Content Include="App\global\services\productCategoriesSvc.js" />
     <Content Include="App\global\services\productSvc.js" />
+    <Content Include="App\global\services\roleSvc.js" />
+    <Content Include="App\global\services\userSvc.js" />
     <Content Include="App\global\template\layoutController.js" />
     <Content Include="App\global\template\layout.html" />
     <Content Include="App\screens\groups\edit.html" />
@@ -276,6 +279,7 @@
     <Content Include="App\screens\roles\list.html" />
     <Content Include="App\screens\roles\new.html" />
     <Content Include="App\screens\roles\roles.js" />
+    <Content Include="App\screens\statistics\statistics.js" />
     <Content Include="App\screens\users\edit.html" />
     <Content Include="App\screens\users\list.html" />
     <Content Include="App\screens\users\new.html" />
@@ -383,6 +387,8 @@
     <Content Include="Assets\Admin\js\bootstrap\js\tooltip.js" />
     <Content Include="Assets\Admin\js\bootstrap\js\transition.js" />
     <Content Include="Assets\Admin\js\bootstrap\package.js" />
+    <Content Include="Assets\Admin\js\checklist-model\checklist-model.js" />
+    <Content Include="Assets\Admin\js\checklist-model\LICENSE.txt" />
     <Content Include="Assets\Admin\js\ckeditor\adapters\jquery.js" />
     <Content Include="Assets\Admin\js\ckeditor\ckeditor.js" />
     <Content Include="Assets\Admin\js\ckeditor\config.js" />
@@ -4977,6 +4983,9 @@
     <Content Include="Assets\Client\js\jquery-ui\README.md" />
     <Content Include="Assets\Client\js\jquery-ui\ui\.DS_Store" />
     <Content Include="Assets\Client\js\jquery-ui\ui\.jshintrc" />
+    <Content Include="Assets\Admin\js\checklist-model\.bower.json" />
+    <Content Include="Assets\Admin\js\checklist-model\bower.json" />
+    <Content Include="Assets\Admin\js\checklist-model\readme.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -5083,11 +5092,9 @@
     <Folder Include="App\screens\admin\groups\" />
     <Folder Include="App\screens\admin\roles\" />
     <Folder Include="App\screens\admin\uses\" />
-    <Folder Include="App\screens\dashboard\" />
     <Folder Include="App\screens\posts\" />
     <Folder Include="App\styles\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Assets\Admin\js\checklist-model\" />
     <Folder Include="Assets\Admin\js\mustache\" />
     <Folder Include="Assets\Admin\js\numeral\" />
     <Folder Include="Assets\Admin\js\toastr\" />

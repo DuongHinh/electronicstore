@@ -1,3 +1,86 @@
 ﻿<div ng-controller="rolesListController">
-    <h3>{{title}}</h3>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>&nbsp;</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item">Quản lý nhóm</li>
+            <li><a class="link-active" ui-sref="groups">{{title}}</a></li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title"><i class="fa fa-th-list"></i> {{title}}</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" style="border-radius:unset;" type="button" ng-click="search()">Tìm kiếm</button>
+                            </span>
+                            <input type="text" class="form-control" ng-model="keyword" placeholder="&#xF002; Tìm theo tên quyền" style="border-radius: 0px; font-family:Arial, FontAwesome; direction: ltr; text-align: left;">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <button class="btn btn-success" ui-sref="roles.new">&nbsp; Thêm &nbsp;</button>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="25%">Tên</th>
+                                    <th width="50%">Mô tả</th>
+                                    <th>Sửa/Xóa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="role in roles">
+                                    <td>{{role.Name}}</td>
+                                    <td>{{role.Description}}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary" title="Edit product" ui-sref="roles.edit({id:role.Id})"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-sm btn-danger" title="Delete product" ng-click="deleteRole(role)"><i class="fa fa-trash"></i></button>
+                                    </td>                          
+                                </tr>
+                                <tr ng-show="roles.length == 0" class="text-center">
+                                    <td colspan="4">Không có bản ghi nào được tìm thấy</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div ng-if="loading" class="text-center">
+                            <img src="/Assets/Admin/images/ajax-loader-big.gif" />
+                        </div>
+                    </div>
+                    <div class="col-lg-12" ng-if="roles.length > 0">
+                        <span class="pull-right">Trang: {{currentPage}}/{{totalPages}} - Tổng số bản ghi: {{totalItems}}</span>
+                    </div>
+                    <div class="col-lg-12">
+                        <nav class="pull-right" ng-show="totalItems > pageSize || true">
+                            <pagination total-items="totalItems"
+                                        items-per-page="itemsPerPage"
+                                        ng-model="currentPage"
+                                        max-size="5"
+                                        ng-show="totalItems > itemsPerPage"
+                                        direction-links="true"
+                                        boundary-links="true"
+                                        rotate="false"
+                                        ng-change="search()"
+                                        class="pagination-sm pull-right">
+                            </pagination>
+                        </nav>
+                    </div>
+                </div>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </section><!-- /.content -->
 </div>

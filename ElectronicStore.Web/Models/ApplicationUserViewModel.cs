@@ -15,7 +15,17 @@ namespace ElectronicStore.Web.Models
 
         public string MiddleName { get; set; }
 
-        public string FullName { get; set; }
+        public string FullName
+        {
+            get {
+                return !string.IsNullOrWhiteSpace(MiddleName) ?
+
+                string.Format("{0} {1} {2}", LastName, MiddleName, FirstName) :
+
+                string.Format("{0} {1}", LastName, FirstName);
+
+            }
+        }
 
         public DateTime? BirthDay { set; get; }
 
@@ -28,6 +38,8 @@ namespace ElectronicStore.Web.Models
         public string UserName { set; get; }
 
         public string PhoneNumber { set; get; }
+
+        public string Address { set; get; }
 
         public IEnumerable<GroupViewModel> Groups { set; get; }
     }

@@ -96,6 +96,7 @@ form[role=form] {
                     <input type="password" id="password" placeholder="Mật khẩu" ng-model="loginData.password" required class="form-control input-lg"   />
                     <div class="pwstrength_viewport_progress"></div>
                     <button type="submit" name="go" class="btn btn-lg btn-primary btn-block"><span>Đăng nhập &nbsp;</span><img ng-show="working" style="margin-right: 5px;" src="Assets/Admin/images/ajax-loader.gif" /></button>
+                    <span ng-show="errorMessage" class="text-danger">{{errorMessage}}</span>
                 </form>
             </section>
         </div>

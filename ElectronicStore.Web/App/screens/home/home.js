@@ -18,8 +18,8 @@
 	})
 	.controller('homeController',
 	[
-		'$state', '$rootScope', '$scope', '$stateParams', '$q', 'apiSvc',
-		function ($state, $rootScope, $scope, $stateParams, $q, apiSvc) {
+		'$state', '$rootScope', '$scope', '$stateParams', '$q', '$window', 'apiSvc',
+		function ($state, $rootScope, $scope, $stateParams, $q, $window, apiSvc) {
 
 		    var validateRequest = function () {
 		        var deferred = $q.defer();
@@ -30,6 +30,8 @@
 		            console.log(error);
 		            deferred.reject(error);
 		        });
+		        //$window.location.reload();
+		        //$state.reload();
 		        return deferred.promise;
 		    }
 

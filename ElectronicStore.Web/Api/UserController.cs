@@ -22,7 +22,7 @@ namespace ElectronicStore.Web.Api
         private IGroupService groupService;
         private IRoleService roleService;
         private ApplicationUserManager userManager;
-        public UserController(ILogErrorService logErrorService, IGroupService groupService, IRoleService roleService, ApplicationUserManager userManager) 
+        public UserController(ILogErrorService logErrorService, IGroupService groupService, IRoleService roleService, ApplicationUserManager userManager)
             : base(logErrorService)
         {
             this.logErrorService = logErrorService;
@@ -31,26 +31,26 @@ namespace ElectronicStore.Web.Api
             this.userManager = userManager;
         }
 
-        [Route("getlistpaging")]
         [HttpGet]
+        [Route("getall")]
         // [Authorize(Roles = "ViewUser")]
-        public HttpResponseMessage GetListPaging(HttpRequestMessage request, string keyword, int skip, int pageSize)
+        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword)
         {
             return CreateHttpResponse(request, () =>
             {
                 var models = this.userManager.Users;
-               
-                if (string.IsNullOrWhiteSpace(keyword))
+
+                if (!string.IsNullOrWhiteSpace(keyword))
                 {
                     models = this.userManager.Users.Where(x => x.UserName.Contains(keyword));
                 }
 
-                var viewModels = models.Select(u => new ApplicationUserViewModel() {
+                var viewModels = models.Select(u => new ApplicationUserViewModel()
+                {
                     Id = u.Id,
                     FirstName = u.FirstName,
                     MiddleName = u.MiddleName,
                     LastName = u.LastName,
-                    FullName = u.GetFullName(),
                     BirthDay = u.BirthDay,
                     Active = u.Active,
                     Email = u.Email,
@@ -59,23 +59,23 @@ namespace ElectronicStore.Web.Api
                     Password = u.PasswordHash
                 });
 
-                var results = viewModels.Skip(skip).Take(pageSize);
+                //var results = viewModels.Skip(skip).Take(pageSize);
 
-                var responseData = new Pagination<ApplicationUserViewModel>()
-                {
-                    Skip = skip,
-                    PageSize = pageSize,
-                    Results = results,
-                    TotalResults = models.Count(),
-                };
+                //var responseData = new Pagination<ApplicationUserViewModel>()
+                //{
+                //    Skip = skip,
+                //    PageSize = pageSize,
+                //    Results = results,
+                //    TotalResults = viewModels.Count(),
+                //};
 
-                var response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                var response = request.CreateResponse(HttpStatusCode.OK, viewModels);
 
                 return response;
             });
         }
 
-        [Route("detail/{id}")]
+        [Route("getbyid")]
         [HttpGet]
         //[Authorize(Roles = "ViewUser")]
         public HttpResponseMessage GetById(HttpRequestMessage request, string id)
@@ -98,13 +98,12 @@ namespace ElectronicStore.Web.Api
                     FirstName = userModel.FirstName,
                     MiddleName = userModel.MiddleName,
                     LastName = userModel.LastName,
-                    FullName = userModel.GetFullName(),
                     BirthDay = userModel.BirthDay,
                     Active = userModel.Active,
                     Email = userModel.Email,
                     PhoneNumber = userModel.PhoneNumber,
                     UserName = userModel.UserName,
-                    Password = userModel.PasswordHash
+                    Address = userModel.Address
                 };
 
                 var listGroup = this.groupService.GetListGroupByUserId(userViewModel.Id);
@@ -116,7 +115,7 @@ namespace ElectronicStore.Web.Api
 
                 foreach (var item in listGroupViewModel)
                 {
-                    item.Roles = this.roleService.GetListRoleByGroupId(item.Id).Select( r => new RoleViewModel() {
+                    item.Roles = this.roleService.GetListRoleByGroupId(item.Id).Select(r => new RoleViewModel() {
                         Id = r.Id,
                         Name = r.Name,
                         Description = r.Description
@@ -130,8 +129,8 @@ namespace ElectronicStore.Web.Api
         }
 
         [HttpPost]
-        [Route("add")]
-        // [Authorize(Roles = "AddUser")]
+        [Route("create")]
+        [Authorize(Roles = "AddUser")]
         public async Task<HttpResponseMessage> Create(HttpRequestMessage request, ApplicationUserViewModel applicationUserViewModel)
         {
             if (ModelState.IsValid)
@@ -145,8 +144,10 @@ namespace ElectronicStore.Web.Api
                     Email = applicationUserViewModel.Email,
                     PhoneNumber = applicationUserViewModel.PhoneNumber,
                     UserName = applicationUserViewModel.UserName,
+                    Address = applicationUserViewModel.Address,
+                    Active = true
                 };
-                
+
                 try
                 {
                     newAppUser.Id = Guid.NewGuid().ToString();
@@ -196,26 +197,23 @@ namespace ElectronicStore.Web.Api
 
         [HttpPut]
         [Route("update")]
-        // [Authorize(Roles = "UpdateUser")]
+        [Authorize(Roles = "UpdateUser")]
         public async Task<HttpResponseMessage> Update(HttpRequestMessage request, ApplicationUserViewModel applicationUserViewModel)
         {
             if (ModelState.IsValid)
             {
-                var appUser = await this.userManager.FindByIdAsync(applicationUserViewModel.Id);
+                var oldUser = await this.userManager.FindByIdAsync(applicationUserViewModel.Id);
                 try
                 {
-                    var newAppUser = new ApplicationUser()
-                    {
-                        Id = applicationUserViewModel.Id,
-                        FirstName = applicationUserViewModel.FirstName,
-                        MiddleName = applicationUserViewModel.MiddleName,
-                        LastName = applicationUserViewModel.LastName,
-                        BirthDay = applicationUserViewModel.BirthDay,
-                        Email = applicationUserViewModel.Email,
-                        PhoneNumber = applicationUserViewModel.PhoneNumber,
-                        UserName = applicationUserViewModel.UserName,
-                    };
-                    var result = await this.userManager.UpdateAsync(appUser);
+                    oldUser.FirstName = applicationUserViewModel.FirstName;
+                    oldUser.LastName = applicationUserViewModel.LastName;
+                    oldUser.MiddleName = applicationUserViewModel.MiddleName;
+                    oldUser.BirthDay = applicationUserViewModel.BirthDay;
+                    oldUser.PhoneNumber = applicationUserViewModel.PhoneNumber;
+                    oldUser.UserName = applicationUserViewModel.UserName;
+                    oldUser.Email = applicationUserViewModel.Email;
+                    oldUser.Address = applicationUserViewModel.Address;
+                    var result = await this.userManager.UpdateAsync(oldUser);
                     if (result.Succeeded)
                     {
                         var listAppUserGroup = new List<UserGroup>();
@@ -230,8 +228,8 @@ namespace ElectronicStore.Web.Api
                             var listRole = this.roleService.GetListRoleByGroupId(group.Id);
                             foreach (var role in listRole)
                             {
-                                await this.userManager.RemoveFromRoleAsync(appUser.Id, role.Name);
-                                await this.userManager.AddToRoleAsync(appUser.Id, role.Name);
+                                await this.userManager.RemoveFromRoleAsync(oldUser.Id, role.Name);
+                                await this.userManager.AddToRoleAsync(oldUser.Id, role.Name);
                             }
                         }
                         this.groupService.AddUserToGroups(listAppUserGroup, applicationUserViewModel.Id);

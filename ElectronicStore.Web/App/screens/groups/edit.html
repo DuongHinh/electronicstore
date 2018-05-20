@@ -1,3 +1,68 @@
 ﻿<div ng-controller="groupsEditController">
-    <h3>{{title}}</h3>
+    <section class="content-header">
+        <h1>
+            &nbsp;
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="javascript:void(0);"><i class="fa fa-home fa-lg"></i></a></li>
+            <li><a href="javascript:void(0);">Quản lý nhóm</a></li>
+            <li><a ui-sref="products">Danh sánh nhóm</a></li>
+            <li><a class="link-active" ui-sref="groups.new">{{title}}</a></li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Horizontal Form -->
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title"><i class="fa fa-plus-square"></i> {{title}}</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <!--<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>-->
+                </div>
+            </div><!-- /.box-header -->
+            <form novalidate role="form" name="formEditGroup" ng-submit="updateGroup()">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="form-group">
+                                <label>Tên</label>
+                                <input class="form-control" placeholder="Nhập tên nhóm" type="text"
+                                       ng-maxlength="250" required name="name" ng-model="group.Name"
+                                       ng-class="{true:'inputInvalid', false:''}[submitted && formEditGroup.name.$error.required]">
+                                <span ng-show="submitted && formEditGroup.name.$error.required" class="invalid">Bạn chưa nhập tên nhóm</span>
+                                <span ng-show="submitted && formEditGroup.name.$error.maxlength" class="invalid"><br />Tên nhóm không được quá 250 ký tự</span>
+                            </div>
+
+
+                        </div><!-- /.col -->
+                        <div class="col-md-6 col-md-offset-3">
+                            <label>Quyền</label>
+                            <div class="form-group">
+                                <div class="checkbox" ng-repeat="role in roles">
+                                    <label>
+                                        <input class="form-check-input" type="checkbox" checklist-model="group.Roles" checklist-value="role"> {{role.Description}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="form-group">
+                                <label>Mô tả</label>
+                                <textarea ng-maxlength="256" type="text" class="form-control" name="description" ng-model="group.Description"></textarea>
+                                <span ng-show="submitted && formNewGroup.description.$error.maxlength" class="invalid"><br />Mô tả không được quá 256 ký tự</span>
+                                {{group.Description}}
+                            </div>
+                        </div>
+                    </div><!-- /.row -->
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+                    <div class="col-md-6 col-md-offset-3">
+                        <button class="btn btn-primary" type="submit">Lưu</button>
+                        <button class="btn btn-default" ui-sref="groups">Hủy</button>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.box -->
+    </section><!-- /.content -->
 </div>

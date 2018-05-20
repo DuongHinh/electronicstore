@@ -71,7 +71,7 @@
 		    }
 
 		    $scope.deleteProduct = function (item) {
-		        $ngBootbox.confirm("Are you sure delete " + item.Name + " ?").then(function () {
+		        $ngBootbox.confirm("Bạn có chắc muốn xóa " + item.Name + " ?").then(function () {
 		            var id = item.Id;
 		            productSvc.deleteProduct(id).then(function (response) {
 		                $state.reload();
@@ -106,7 +106,7 @@
 		    };
 
 		    $scope.deleteMultiProduct = function() {		       
-		        $ngBootbox.confirm("Are you sure delete " + $scope.selectedProductIds.length + " product?").then(function () {
+		        $ngBootbox.confirm("Bạn có muốn xóa " + $scope.selectedProductIds.length + " sản phẩm?").then(function () {
 		            var listProductIds = $scope.selectedProductIds.join();
 		            productSvc.deleteMultiProduct(listProductIds).then(function (response) {
 		                $state.reload();
@@ -183,7 +183,7 @@
 		        $scope.product.MoreImages = angular.toJson($scope.moreImages);
 
 		        productSvc.addNewProduct($scope.product).then(function (record) {
-		            alert('Add new product success!');
+		            alert('Thêm mới sản phẩm thành công!');
 		            $state.go('products');
 		        }, function (error) {
 		            console.log(error);
@@ -282,7 +282,7 @@
 		        $scope.product.MoreImages = angular.toJson($scope.moreImages);
 
 		        productSvc.updateProduct($scope.product).then(function (record) {
-		            alert('Update product success!');
+		            alert('Cập nhật sản phẩm thành công!');
 		            $state.go('products');
 		        }, function (error) {
 		            console.log(error);

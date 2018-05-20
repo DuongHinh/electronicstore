@@ -25,20 +25,21 @@ namespace ElectronicStore.Web.Api
             this.roleService = roleService;
         }
 
-        [Route("getlistpaging")]
+        [Route("FindAllRolePaging")]
         [HttpGet]
-        public HttpResponseMessage GetListPaging(HttpRequestMessage request, string keyword, int skip, int pageSize)
+        public HttpResponseMessage FillAllRole(HttpRequestMessage request, string keyword, int skip, int pageSize)
         {
             return CreateHttpResponse(request, () =>
             {
                 var model = this.roleService.GetAll();
 
-                if (string.IsNullOrWhiteSpace(keyword))
+                if (!string.IsNullOrWhiteSpace(keyword))
                 {
-                    model = model.Where(x => x.Name.Contains(keyword));
+                    model = model.Where(x => x.Name.ToLower().Contains(keyword.ToLower()));
                 }
 
-                var viewModel = model.Select( r => new RoleViewModel() {
+                var viewModel = model.Select(r => new RoleViewModel()
+                {
                     Id = r.Id,
                     Name = r.Name,
                     Description = r.Description
@@ -59,7 +60,7 @@ namespace ElectronicStore.Web.Api
                 return response;
             });
         }
-        [Route("getlistall")]
+        [Route("FindAllRole")]
         [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
@@ -78,9 +79,9 @@ namespace ElectronicStore.Web.Api
                 return response;
             });
         }
-        [Route("detail/{id}")]
+        [Route("getbyid")]
         [HttpGet]
-        public HttpResponseMessage Details(HttpRequestMessage request, string id)
+        public HttpResponseMessage GetById(HttpRequestMessage request, string id)
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -95,7 +96,7 @@ namespace ElectronicStore.Web.Api
         }
 
         [HttpPost]
-        [Route("add")]
+        [Route("create")]
         public HttpResponseMessage Create(HttpRequestMessage request, RoleViewModel roleViewModel)
         {
             if (ModelState.IsValid)
@@ -129,17 +130,14 @@ namespace ElectronicStore.Web.Api
         {
             if (ModelState.IsValid)
             {
-                var role = this.roleService.GetById(roleViewModel.Id);
+                var dbRole = this.roleService.GetById(roleViewModel.Id);
                 try
                 {
-                    role = new Role() {
-                        Id = roleViewModel.Id,
-                        Name = roleViewModel.Name,
-                        Description = roleViewModel.Description
-                    };
-                    this.roleService.Update(role);
+                    dbRole.Name = roleViewModel.Name;
+                    dbRole.Description = roleViewModel.Description;
+                    this.roleService.Update(dbRole);
                     this.roleService.Save();
-                    return request.CreateResponse(HttpStatusCode.OK, role);
+                    return request.CreateResponse(HttpStatusCode.OK, dbRole);
                 }
                 catch (DuplicatedException dex)
                 {

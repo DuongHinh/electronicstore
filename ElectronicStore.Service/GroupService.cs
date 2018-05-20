@@ -71,12 +71,12 @@ namespace ElectronicStore.Service
 
         public IEnumerable<Group> GetListGroupByUserId(string userId)
         {
-            return this.GetListGroupByUserId(userId);
+            return this.groupRepositories.GetListGroupByUserId(userId);
         }
 
         public IEnumerable<ApplicationUser> GetListUserByGroupId(int groupId)
         {
-            return this.GetListUserByGroupId(groupId);
+            return this.groupRepositories.GetListUserByGroupId(groupId);
         }
 
         public void Update(Group group)

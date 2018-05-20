@@ -29,17 +29,18 @@ namespace ElectronicStore.Web.Api
             this.logErrorService = logErrorService;
             this.groupService = groupService;
             this.roleService = roleService;
+            this.userManager = userManager;
         }
 
-        [Route("getlistpaging")]
+        [Route("findallgroup")]
         [HttpGet]
-        public HttpResponseMessage GetListPaging(HttpRequestMessage request, string keyword, int skip, int pageSize)
+        public HttpResponseMessage FindAllGroup(HttpRequestMessage request, string keyword, int skip, int pageSize)
         {
 
             return CreateHttpResponse(request, () =>
             {
                 var model = this.groupService.GetAll();
-                if (string.IsNullOrWhiteSpace(keyword))
+                if (!string.IsNullOrWhiteSpace(keyword))
                 {
                     model = model.Where(x => x.Name.Contains(keyword));
                 }
@@ -66,7 +67,7 @@ namespace ElectronicStore.Web.Api
                 return response;
             });
         }
-        [Route("getlistall")]
+        [Route("getall")]
         [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
@@ -85,9 +86,9 @@ namespace ElectronicStore.Web.Api
                 return response;
             });
         }
-        [Route("detail/{id:int}")]
+        [Route("getbyid")]
         [HttpGet]
-        public HttpResponseMessage Details(HttpRequestMessage request, int id)
+        public HttpResponseMessage GetById(HttpRequestMessage request, int id)
         {
             if (id == 0)
             {
@@ -118,7 +119,7 @@ namespace ElectronicStore.Web.Api
         }
 
         [HttpPost]
-        [Route("add")]
+        [Route("create")]
         public HttpResponseMessage Create(HttpRequestMessage request, GroupViewModel groupViewModel)
         {
             if (ModelState.IsValid)
@@ -172,7 +173,7 @@ namespace ElectronicStore.Web.Api
                     oldGroup.Name = groupViewModel.Name;
                     oldGroup.Description = groupViewModel.Description;
                     this.groupService.Update(oldGroup);
-                    //this.groupService.Save();
+                    this.groupService.Save();
 
                     //save role group
                     var listRoleGroup = new List<RoleGroup>();
