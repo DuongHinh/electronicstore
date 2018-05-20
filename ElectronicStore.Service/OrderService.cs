@@ -14,6 +14,8 @@ namespace ElectronicStore.Service
         bool CreateOrder(Order order, List<OrderDetail> orderDetails);
 
         Order GetById(int id);
+
+        IEnumerable<Order> GetAll();
     }
 
     public class OrderService : IOrderService
@@ -52,6 +54,11 @@ namespace ElectronicStore.Service
         public Order GetById(int id)
         {
             return this.orderRepositories.GetSingleById(id);
+        }
+
+        public IEnumerable<Order> GetAll()
+        {
+            return this.orderRepositories.GetAll();
         }
     }
 }

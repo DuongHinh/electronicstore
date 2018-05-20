@@ -201,8 +201,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
+    <Compile Include="Api\FeedbackController.cs" />
     <Compile Include="Api\GroupController.cs" />
     <Compile Include="Api\HomeController.cs" />
+    <Compile Include="Api\OrderController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="Api\ProductController.cs" />
     <Compile Include="Api\RoleController.cs" />
@@ -251,7 +253,9 @@
     <Content Include="App\global\filters.js" />
     <Content Include="App\global\services\authSvc.js" />
     <Content Include="App\global\services\commonSvc.js" />
+    <Content Include="App\global\services\feedbackSvc.js" />
     <Content Include="App\global\services\groupSvc.js" />
+    <Content Include="App\global\services\orderSvc.js" />
     <Content Include="App\global\services\productCategoriesSvc.js" />
     <Content Include="App\global\services\productSvc.js" />
     <Content Include="App\global\services\roleSvc.js" />
@@ -267,6 +271,8 @@
     <Content Include="App\screens\login\login.css" />
     <Content Include="App\screens\login\login.html" />
     <Content Include="App\screens\login\login.js" />
+    <Content Include="App\screens\orders\list.html" />
+    <Content Include="App\screens\orders\orders.js" />
     <Content Include="App\screens\productCategories\edit.html" />
     <Content Include="App\screens\productCategories\list.html" />
     <Content Include="App\screens\productCategories\new.html" />
@@ -280,6 +286,8 @@
     <Content Include="App\screens\roles\new.html" />
     <Content Include="App\screens\roles\roles.js" />
     <Content Include="App\screens\statistics\statistics.js" />
+    <Content Include="App\screens\systems\feedbacks\feedbacks.html" />
+    <Content Include="App\screens\systems\feedbacks\feedbacks.js" />
     <Content Include="App\screens\users\edit.html" />
     <Content Include="App\screens\users\list.html" />
     <Content Include="App\screens\users\new.html" />
@@ -5101,6 +5109,7 @@
     <Folder Include="Assets\Common\images\" />
     <Folder Include="uploads\" />
     <Folder Include="Views\About\" />
+    <Folder Include="Views\Feedback\" />
     <Folder Include="Views\Post\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,84 @@
+﻿<div ng-controller="orderListController">
+    <section class="content-header">
+        <h1>&nbsp;</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li><a class="link-active" ui-sref="orders">{{title}}</a></li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title"><i class="fa fa-th-list"></i> {{title}}</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" style="border-radius:unset;" type="button" ng-click="search()">Tìm kiếm</button>
+                            </span>
+                            <input type="text" class="form-control" ng-model="keyword" placeholder="&#xF002; Tìm theo tên khách hàng" style="border-radius: 0px; font-family:Arial, FontAwesome; direction: ltr; text-align: left;">
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Khách hàng</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Email</th>
+                                    <th>Số điện thoại</th>                             
+                                    <th>Ngày đặt</th>
+                                    <th>Ngày giao</th>
+                                    <!--<th>Sản phẩm</th>-->
+                                    <th>Tổng tiền</th>  
+                                    <th>Trạng toán</th>
+                                    <th>Giao hàng</th>
+                                    <th>Duyệt đơn hàng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="order in orders">
+                                    <td>{{order.CustumerName}}</td>
+                                    <td>{{order.CustumerAddress}}</td>
+                                    <td>{{order.CustumerEmail}}</td>
+                                    <td>{{order.CustumerPhone}}</td>
+                                    <td>{{order.OrderDate | date:'dd/MM/yyyy'}}</td>
+                                    <td>{{order.ShipDate | date:'dd/MM/yyyy'}}</td>
+                                    <!--<td>
+                                        <div ng-repeat="p in order.Products">{{p.Name}} - {{p.Price}}</div>
+                                    </td>-->
+                                    <td>{{order.Amount}}</td>
+                                    <td>
+                                        <input type="checkbox" ng-checked="order.IsPaymented" ng-model="order.IsPaymented" disabled/>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" ng-checked="order.IsShiped" ng-model="order.IsPaymented" disabled/>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary" title="Edit product" ui-sref="users.edit({id:user.Id})"><i class="fa fa-pencil"></i></button>
+                                    </td>
+                                </tr>
+                                <tr ng-show="orders.length == 0" class="text-center">
+                                    <td colspan="10">Không có bản ghi nào được tìm thấy</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div ng-if="loading" class="text-center">
+                            <img src="/Assets/Admin/images/ajax-loader-big.gif" />
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </section><!-- /.content -->
+</div>

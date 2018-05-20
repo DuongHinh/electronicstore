@@ -13,7 +13,7 @@ namespace ElectronicStore.Service
 
         IEnumerable<Feedback> GetAll();
 
-        IEnumerable<Feedback> GetAll(string keyword, int skip, int pagesize);
+        IEnumerable<Feedback> GetAll(string keyword);
 
         Feedback GetById(int id);
 
@@ -41,16 +41,13 @@ namespace ElectronicStore.Service
             return this.feedbackRepositories.GetAll();
         }
 
-        public IEnumerable<Feedback> GetAll(string keyword, int skip, int pagesize)
+        public IEnumerable<Feedback> GetAll(string keyword)
         {
             var model = this.feedbackRepositories.GetAll();
-            if (string.IsNullOrWhiteSpace(keyword))
+            if (!string.IsNullOrWhiteSpace(keyword))
             {
                 model = model.Where(x => x.Name.Contains(keyword) || x.Message.Contains(keyword));
             }
-
-            model = model.Skip(skip).Take(pagesize);
-
             return model;
         }
 
