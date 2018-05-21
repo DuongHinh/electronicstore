@@ -56,7 +56,7 @@ namespace ElectronicStore.Web.Controllers
                 CategoryId = product.CategoryId,
                 Image = product.Image,
                 MoreImages = product.MoreImages,
-                Price = product.OriginalPrice,
+                Price = product.Price,
                 Quantity = product.Quantity,
                 PromotionPrice = product.PromotionPrice,
                 Warranty = product.Warranty,
