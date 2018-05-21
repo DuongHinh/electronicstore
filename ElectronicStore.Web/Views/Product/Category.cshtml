@@ -115,14 +115,6 @@
                         <h3>@Model.TotalResults sản phẩm</h3>
                     </div>
                     <div class="w3ls_mobiles_grid_right_grid2_right">
-                        @*<select name="select_item" class="select_item">
-                                <option selected="selected">Default sorting</option>
-                                <option>Sort by popularity</option>
-                                <option>Sort by newness</option>
-                                <option>Sort by price: low to high</option>
-                                <option>Sort by price: high to low</option>
-                                <option>Sort by average rating</option>
-                            </select>*@
                         <ul class="sort_nav">
                             <li>Sắp xếp theo : </li>
                             <li><a class="active" href="?page=@Model.CurrentPage&sort=popular">Phổ biến nhất </a></li> |
@@ -150,11 +142,12 @@
                                     <div class="simpleCart_shelfItem">
                                         @if (product.PromotionPrice.HasValue)
                                         {
-                                            <p><span>$@product.PromotionPrice</span> <i class="item_price">$@product.Price</i></p>
+                                            <p><span>@(product.Price.ToString("N0") + " đ")</span></p>
+                                            <p><i class="item_price">@(product.PromotionPrice.Value.ToString("N0") + " đ")</i></p>
                                         }
                                         else
                                         {
-                                            <p><i class="item_price">$@product.Price</i></p>
+                                            <p><i class="item_price">@(product.Price.ToString("N0") + " đ")</i></p>
                                         }
 
                                         <form action="/add-to-cart?productId=@product.Id" method="post">

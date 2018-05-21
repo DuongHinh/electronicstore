@@ -29,11 +29,7 @@ namespace ElectronicStore.Web.Models
 
         public decimal? PromotionPrice { set; get; }
 
-        public int? Warranty { set; get; }
-
         public string Description { set; get; }
-
-        public string Detail { set; get; }
 
         public bool? HomeFlag { set; get; }
 
