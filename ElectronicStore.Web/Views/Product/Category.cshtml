@@ -142,12 +142,11 @@
                                     <div class="simpleCart_shelfItem">
                                         @if (product.PromotionPrice.HasValue)
                                         {
-                                            <p><span>@(product.Price.ToString("N0") + " đ")</span></p>
-                                            <p><i class="item_price">@(product.PromotionPrice.Value.ToString("N0") + " đ")</i></p>
+                                            <p><span>@(product.Price.ToString("N0") + " đ")</span> <i class="item_price" style="font-size: 15px;">@(product.PromotionPrice.Value.ToString("N0") + " đ")</i></p>
                                         }
                                         else
                                         {
-                                            <p><i class="item_price">@(product.Price.ToString("N0") + " đ")</i></p>
+                                            <p><i class="item_price" style="font-size: 15px;">@(product.Price.ToString("N0") + " đ")</i></p>
                                         }
 
                                         <form action="/add-to-cart?productId=@product.Id" method="post">

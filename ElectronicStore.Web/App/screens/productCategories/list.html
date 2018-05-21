@@ -16,7 +16,7 @@
                 <h3 class="box-title"><i class="fa fa-th-list"></i> {{title}}</h3>
                 <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                    <!--<button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>-->
+                   
                 </div>
             </div>
             <div class="box-body">
@@ -31,7 +31,7 @@
                     </div>
                     <div class="col-lg-6">
                         <button class="btn btn-success" ui-sref="productCategories.new">&nbsp; Thêm &nbsp;</button>
-                        <button class="btn btn-danger" ng-click="deleteMulti()" ng-disabled="selectedCategoryIds.length === 0">Xóa</button>
+                        <button class="btn btn-danger pull-right" ng-click="deleteMulti()" ng-disabled="selectedCategoryIds.length === 0">Xóa</button>
                     </div>
                 </div>
                 <br />

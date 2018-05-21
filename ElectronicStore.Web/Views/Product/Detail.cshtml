@@ -81,8 +81,7 @@
             <div class="simpleCart_shelfItem">
                 @if (Model.PromotionPrice.HasValue)
                 {
-                    <p><span>@(Model.Price.ToString("N0") + " đ")</span></p>
-                    <p><i class="item_price">@(Model.PromotionPrice.Value.ToString("N0") + " đ")</i></p>
+                    <p><span>@(Model.Price.ToString("N0") + " đ")</span> <i class="item_price">@(Model.PromotionPrice.Value.ToString("N0") + " đ")</i></p>
                 }
                 else
                 {
@@ -117,8 +116,7 @@
                             <div class="simpleCart_shelfItem">
                                 @if (product.PromotionPrice.HasValue)
                                 {
-                                    <p><span>@(product.Price.ToString("N0") + " đ")</span></p>
-                                    <p><i class="item_price">@(product.Price.ToString("N0") + " đ")</i></p>
+                                    <p><span>@(product.Price.ToString("N0") + " đ")</span> <i class="item_price">@(product.Price.ToString("N0") + " đ")</i></p>
                                 }
                                 else
                                 {
