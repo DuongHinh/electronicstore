@@ -46,7 +46,7 @@
                         </div><!-- /.col -->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Alias</label>
+                                <label>Bí danh</label>
                                 <input class="form-control" type="text" name="alias"
                                        ng-maxlength="256" required
                                        ng-class="{true:'inputInvalid', false:''}[submitted && formEditCategory.alias.$error.required]"
@@ -54,14 +54,14 @@
                                 <span ng-show="submitted && formEditCategory.alias.$error.required" class="invalid">Bạn chưa nhập alias</span>
                                 <span ng-show="submitted && formEditCategory.alias.$error.maxlength" class="invalid"><br />Alias không được quá 256 ký tự</span>
                             </div>
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <label>Parent category</label>
                                 <select class="form-control" name="category" required
                                         ng-model="category.ParentId"
                                         ng-options="c.Id as c.Name for c in parents">
                                     <option value="">Danh mục cha</option>
                                 </select>
-                            </div>
+                            </div>-->
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
