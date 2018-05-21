@@ -46,7 +46,7 @@ namespace ElectronicStore.Service
             var model = this.feedbackRepositories.GetAll();
             if (!string.IsNullOrWhiteSpace(keyword))
             {
-                model = model.Where(x => x.Name.Contains(keyword) || x.Message.Contains(keyword));
+                model = model.Where(x => x.Name.Contains(keyword) || x.Email.Contains(keyword));
             }
             return model;
         }

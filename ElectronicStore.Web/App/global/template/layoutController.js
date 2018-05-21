@@ -12,6 +12,10 @@
 		    $scope.logout = function () {
 		        authSvc.logout();
 		    };
+
+		    $scope.goProduct = function () {
+		        $state.go('products', {}, { reload: true });
+		    }
 		}
 	])
 ;

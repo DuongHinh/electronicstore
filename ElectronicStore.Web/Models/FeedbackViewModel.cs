@@ -11,11 +11,11 @@ namespace ElectronicStore.Web.Models
         public int Id { set; get; }
 
         [MaxLength(250, ErrorMessage = "Tên không được quá 250 ký tự")]
-        [Required(ErrorMessage = "Tên phải nhập")]
+        [Required(ErrorMessage = "Bạn chưa nhập tên")]
         public string Name { set; get; }
 
         [MaxLength(250, ErrorMessage = "Email không được quá 250 ký tự")]
-        [Required(ErrorMessage = "Email phải nhập")]
+        [Required(ErrorMessage = "Bạn chưa nhập email")]
         [EmailAddress(ErrorMessage = "Email không hợp lệ")]
         public string Email { set; get; }
 
@@ -23,6 +23,7 @@ namespace ElectronicStore.Web.Models
         public string PhoneNumber { set; get; }
 
         [MaxLength(500, ErrorMessage = "Tin nhắn không được quá 500 ký tự")]
+        [Required(ErrorMessage = "Bạn chưa nhập tin nhắn")]
         public string Message { set; get; }
 
         public DateTime CreatedDate { set; get; }

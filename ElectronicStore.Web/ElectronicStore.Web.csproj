@@ -285,8 +285,10 @@
     <Content Include="App\screens\roles\list.html" />
     <Content Include="App\screens\roles\new.html" />
     <Content Include="App\screens\roles\roles.js" />
-    <Content Include="App\screens\statistics\statistics.js" />
-    <Content Include="App\screens\systems\feedbacks\feedbacks.html" />
+    <Content Include="App\screens\statistics\revenue\revenue.html" />
+    <Content Include="App\screens\statistics\revenue\revenue.js" />
+    <Content Include="App\screens\systems\feedbacks\detail.html" />
+    <Content Include="App\screens\systems\feedbacks\list.html" />
     <Content Include="App\screens\systems\feedbacks\feedbacks.js" />
     <Content Include="App\screens\users\edit.html" />
     <Content Include="App\screens\users\list.html" />

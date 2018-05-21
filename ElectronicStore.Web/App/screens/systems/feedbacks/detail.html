@@ -1,0 +1,73 @@
+﻿<div ng-controller="feedbackDetailController">
+    <section class="content-header">
+        <h1>
+            &nbsp;
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="javascript:void(0);"><i class="fa fa-home fa-lg"></i></a></li>
+            <li><a href="javascript:void(0);">Quản lý người dùng</a></li>
+            <li><a ui-sref="users">Danh sánh người dùng</a></li>
+            <li><a class="link-active" ui-sref="users.new">{{title}}</a></li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Horizontal Form -->
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title"><i class="fa fa-plus-square"></i> {{title}}</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div><!-- /.box-header -->
+            <form novalidate role="form">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="row form-group">
+                                <div class="col-md-3"><label>Họ Tên</label></div>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text"
+                                            name="name" ng-model="feedback.Name">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-3"><label>Email</label></div>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" name="middleName" ng-model="feedback.Email">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-3"><label>Số điện thoại</label></div>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" name="name" ng-model="feedback.PhoneNumber">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-3"><label>Ngày gửi</label></div>
+                                <div class="col-md-9">
+                                    <input required class="pickerin form-control" id="datesend"
+                                           ng-click="pickerOpen3 = true" type="text" name="injuryDate"
+                                           readonly="readonly" datepicker-append-to-body="true" datepicker-popup="MM/dd/yyyy"
+                                           is-open="pickerOpen3" convert-date ng-model="feedback.CreatedDate"
+                                           style="font-weight: normal;" />
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-3"><label>Tin nhắn</label></div>
+                                <div class="col-md-9">
+                                    <textarea rows="6" style="width: 100%" ng-model="feedback.Message"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+                    <div class="col-md-12">
+                        <button class="btn btn-default" ui-sref="feedbacks">Back</button>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.box -->
+    </section><!-- /.content -->
+</div>

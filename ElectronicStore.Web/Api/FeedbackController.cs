@@ -41,5 +41,19 @@ namespace ElectronicStore.Web.Api
                 return response;
             });
         }
+
+        [Route("getbyid")]
+        [HttpGet]
+        public HttpResponseMessage GetById(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = this.feedbackService.GetById(id);
+
+                var response = request.CreateResponse(HttpStatusCode.OK, model);
+
+                return response;
+            });
+        }
     }
 }

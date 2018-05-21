@@ -7,5 +7,9 @@
             this.getListFeedback = function (keyword, skip, pageSize) {
                 return apiSvc.get('/api/feedbacks/getall?keyword=' + keyword + '&skip=' + skip + '&pageSize=' + pageSize);
             }
+
+            this.getFeedbackById = function (id) {
+                return apiSvc.get('api/feedbacks/getbyid?id=' + id);
+            }
         }
     ])

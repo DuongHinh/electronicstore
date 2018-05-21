@@ -1,4 +1,4 @@
-﻿angular.module('electronicStoreApp.screens.products',
+﻿angular.module('electronicStoreApp.screens.orders',
 	[
 		'ui.router',
         'electronicStoreApp.global.services',
@@ -46,6 +46,10 @@
 
             $scope.search = function () {
                 getListOrder();
+            }
+
+            $scope.print = function(){
+                window.print();
             }
         }
 	]);

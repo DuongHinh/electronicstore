@@ -115,6 +115,10 @@
 		            });		           
 		        });
 		    }
+
+		    $scope.print = function () {
+		        window.print();
+		    }
 		}
 	])
 	.controller('productNewController',
