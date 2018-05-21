@@ -59,9 +59,7 @@ namespace ElectronicStore.Web.Controllers
                 Price = product.Price,
                 Quantity = product.Quantity,
                 PromotionPrice = product.PromotionPrice,
-                Warranty = product.Warranty,
                 Description = product.Description,
-                Detail = product.Detail,
                 HomeFlag = product.HomeFlag,
                 HotFlag = product.HotFlag,
                 ViewCount = product.ViewCount,
@@ -200,11 +198,10 @@ namespace ElectronicStore.Web.Controllers
             if (ModelState.IsValid)
             {
                 var order = new Order();
-                order.CustomerName = orderViewModel.CustomerName;
-                order.CustomerEmail = orderViewModel.CustomerEmail;
-                order.CustomerAddress = orderViewModel.CustomerAddress;
-                order.CustomerPhone = orderViewModel.CustomerPhone;
-                order.PaymentMethod = orderViewModel.PaymentMethod;
+                order.Name = orderViewModel.CustomerName;
+                order.Email = orderViewModel.CustomerEmail;
+                order.Address = orderViewModel.CustomerAddress;
+                order.PhoneNumber = orderViewModel.CustomerPhone;
                 order.OrderDate = DateTime.Now;
 
                 try

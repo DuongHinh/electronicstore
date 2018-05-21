@@ -25,16 +25,20 @@ namespace ElectronicStore.Web.Api
 
         [Route("getall")]
         [HttpGet]
-        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword)
         {
             return CreateHttpResponse(request, () =>
             {
-                var orders = this.orderService.GetAll();
-                var orderDetail = this.orderDetailService.GetAll();
+            var orders = this.orderService.GetAll();
+            var orderDetail = this.orderDetailService.GetAll();
 
-                object orderViewModel = null;
-                if (orders != null && orderDetail != null)
+            object orderViewModel = null;
+            if (orders != null && orderDetail != null)
+            {
+                if (!string.IsNullOrWhiteSpace(keyword))
                 {
+                    orders = orders.Where(x => x.Name.ToLower().Contains(keyword.ToLower()));
+                }
                     orderViewModel = from o in orders
                                      join od in orderDetail
                                      on o.Id equals od.OrderId
@@ -43,15 +47,16 @@ namespace ElectronicStore.Web.Api
                                      {
                                          OrderId = gLine.Key,
                                          Amount = gLine.Sum(x => x.Price * x.Quantity),
-                                         CustumerName = gLine.Select(g => g.Order.CustomerName).FirstOrDefault(),
-                                         CustumerAddress = gLine.Select(g => g.Order.CustomerAddress).FirstOrDefault(),
-                                         CustumerEmail = gLine.Select(g => g.Order.CustomerEmail).FirstOrDefault(),
-                                         CustumerPhone = gLine.Select(g => g.Order.CustomerPhone).FirstOrDefault(),
+                                         Name = gLine.Select(g => g.Order.Name).FirstOrDefault(),
+                                         CustumerAddress = gLine.Select(g => g.Order.Address).FirstOrDefault(),
+                                         CustumerEmail = gLine.Select(g => g.Order.Email).FirstOrDefault(),
+                                         CustumerPhone = gLine.Select(g => g.Order.PhoneNumber).FirstOrDefault(),
                                          OrderDate = gLine.Select(g => g.Order.OrderDate).FirstOrDefault(),
                                          ShipDate = gLine.Select(g => g.Order.ShipDate).FirstOrDefault(),
-                                         IsPaymented = gLine.Select(g => g.Order.IsPaymented).FirstOrDefault(),
-                                         IsShiped = gLine.Select(g => g.Order.IsShiped).FirstOrDefault(),
-                                         Products = gLine.Select(g => g.Product).Select(p => new {Name = p.Name, Price = p.Price })
+                                         Paid = gLine.Select(g => g.Order.Paid).FirstOrDefault(),
+                                         Shipped = gLine.Select(g => g.Order.Shipped).FirstOrDefault(),
+                                         Products = gLine.Select(g => g.Product).Select(p => new {Name = p.Name, Price = p.Price, Image = p.Image }),
+                                         Quantity = gLine.Select(g => g.Quantity)
                                      };
                 }
                 

@@ -18,6 +18,8 @@ namespace ElectronicStore.Web.Models
         [MaxLength(256, ErrorMessage = "Địa chỉ không được quá 256 ký tự")]
         public string CustomerAddress { set; get; }
 
+
+        [Required(ErrorMessage = "Bạn chưa nhập email")]
         [MaxLength(256, ErrorMessage = "Email không được quá 256 ký tự")]
         [EmailAddress(ErrorMessage = "Email không hợp lệ")]
         public string CustomerEmail { set; get; }

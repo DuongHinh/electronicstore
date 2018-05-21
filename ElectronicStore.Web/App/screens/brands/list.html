@@ -1,11 +1,11 @@
-﻿<div ng-controller="productListController">
+﻿<div ng-controller="brandListController">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>&nbsp;</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
             <li class="breadcrumb-item">Quản lý sản phẩm</li>
-            <li><a class="link-active" ui-sref="products">{{title}}</a></li>
+            <li><a class="link-active" ui-sref="brands">{{title}}</a></li>
         </ol>
     </section>
     <!-- Main content -->
@@ -16,7 +16,6 @@
                 <h3 class="box-title"><i class="fa fa-th-list"></i> {{title}}</h3>
                 <div class="box-tools pull-right hidden-print">
                     <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                    <!--<button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>-->
                 </div>
             </div>
             <div class="box-body">
@@ -26,13 +25,11 @@
                             <span class="input-group-btn">
                                 <button class="btn btn-default" style="border-radius:unset;" type="button" ng-click="search()">Tìm kiếm</button>
                             </span>
-                            <input type="text" class="form-control" ng-model="keyword" placeholder="&#xF002; Tìm theo tên sản phẩm" style="border-radius: 0px; font-family:Arial, FontAwesome; direction: ltr; text-align: left;">
+                            <input type="text" class="form-control" ng-model="keyword" placeholder="&#xF002; Tìm theo tên hãng sản xuất" style="border-radius: 0px; font-family:Arial, FontAwesome; direction: ltr; text-align: left;">
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <button class="btn btn-success" ui-sref="products.new">&nbsp; Thêm &nbsp;</button>
-                        <button class="btn btn-print" ng-click="print()"> <i class="fa fa-print"></i> Print</button>
-                        <button class="btn btn-danger pull-right" ng-click="deleteMultiProduct()" ng-disabled="selectedProductIds.length === 0">Xóa</button>
+                        <button class="btn btn-success" ui-sref="brands.new">&nbsp; Thêm &nbsp;</button>
                     </div>
                 </div>
                 <br />
@@ -42,35 +39,22 @@
                             <thead>
                                 <tr>
                                     <th>Tên</th>
-                                    <th>Giá</th>
-                                    <th>Số lượng</th>
                                     <th>Hình ảnh</th>
-                                    <th>Ngày tạo</th>
                                     <th>Trạng thái</th>
                                     <th class="hidden-print">Sửa/Xóa</th>
-                                    <th class="text-center hidden-print">
-                                        <input type="checkbox" ng-click="selectAllProduct()"
-                                               ng-checked="(selectedProductIds.length === products.length) && selectedProductIds.length > 0 && products.length > 0" />
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="product in products">
-                                    <td>{{product.Name}}</td>
-                                    <td>{{product.Price | currency:"$"}}</td>
-                                    <td>{{product.Quantity}}</td>
-                                    <th><img height="100" src="{{product.Image}}"/></th>
-                                    <td>
-                                        {{product.CreatedDate  | date:'MM/dd/yyyy'}}
-                                    </td>
-                                    <td><span ng-show="product.Status" class="greenDot">•</span></td>
+                                <tr ng-repeat="brand in brands">
+                                    <td>{{brand.Name}}</td>                             
+                                    <th><img height="100" src="{{brand.Logo}}" /></th>
+                                    <td><span ng-show="brand.Status" class="greenDot">•</span></td>
                                     <td class="hidden-print">
-                                        <button class="btn btn-sm btn-primary" title="Edit product" ui-sref="products.edit({id:product.Id})"><i class="fa fa-pencil"></i></button>
-                                        <button class="btn btn-sm btn-danger" title="Delete product" ng-click="deleteProduct(product)"><i class="fa fa-trash"></i></button>
+                                        <button class="btn btn-sm btn-primary"  ui-sref="brands.edit({id:brand.Id})"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-sm btn-danger" ng-click="deleteBrand(brand)"><i class="fa fa-trash"></i></button>
                                     </td>
-                                    <td class="text-center hidden-print"><input type="checkbox" ng-click="selectProduct(product)" ng-checked="productSelected(product)" /></td>
                                 </tr>
-                                <tr ng-show="products.length == 0" class="text-center">
+                                <tr ng-show="brands.length == 0" class="text-center">
                                     <td colspan="8">Không có bản ghi nào được tìm thấy</td>
                                 </tr>
                             </tbody>
@@ -79,7 +63,7 @@
                             <img src="/Assets/Admin/images/ajax-loader-big.gif" />
                         </div>
                     </div>
-                    <div class="col-lg-12" ng-if="products">
+                    <div class="col-lg-12" ng-if="brands">
                         <span class="pull-right">Trang: {{currentPage}}/{{totalPages}} - Tổng số bản ghi: {{totalItems}}</span>
                     </div>
                     <div class="col-lg-12">

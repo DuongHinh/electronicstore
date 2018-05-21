@@ -1,0 +1,78 @@
+﻿<div ng-controller="brandEditController">
+    <section class="content-header">
+        <h1>
+            &nbsp;
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="javascript:void(0);"><i class="fa fa-home fa-lg"></i></a></li>
+            <li><a href="javascript:void(0);">Quản lý sản phẩm</a></li>
+            <li><a ui-sref="brands">Danh sách hãng sản xuất</a></li>
+            <li><a class="link-active" ui-sref="productCategories.new">{{title}}</a></li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Horizontal Form -->
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title"><i class="fa fa-plus-square"></i> {{title}}</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div><!-- /.box-header -->
+            <form novalidate role="form" name="formEditBrand" ng-submit="updateBrand()">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Tên</label>
+                                <input class="form-control" placeholder="Nhập tên hãng sản xuất" type="text"
+                                       ng-maxlength="256" required name="name" ng-model="brand.Name"
+                                       ng-class="{true:'inputInvalid', false:''}[submitted && formEditBrand.name.$error.required]"
+                                       ng-change="getAlias(brand.Name)">
+                                <span ng-show="submitted && formEditBrand.name.$error.required" class="invalid">Bạn chưa nhập tên</span>
+                                <span ng-show="submitted && formEditBrand.name.$error.maxlength" class="invalid"><br />Tên không được quá 256 ký tự</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Logo</label>
+                                <div class="row">
+                                    <div class="col-lg-10"><input type="text" class="form-control" name="image" ng-model="brand.Logo"></div>
+                                    <div class="col-lg-2"><button class="btn btn-default pull-right" style="margin-left:0" type="button" ng-click="chooseImage()">Chọn ảnh</button></div>
+                                </div>
+                                <div><img ng-src="{{brand.Logo}}" width="200" /></div>
+                            </div>
+                        </div><!-- /.col -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Bí danh</label>
+                                <input class="form-control" type="text" name="alias"
+                                       ng-maxlength="256" required
+                                       ng-class="{true:'inputInvalid', false:''}[submitted && formEditBrand.alias.$error.required]"
+                                       ng-model="brand.Alias">
+                                <span ng-show="submitted && formEditBrand.alias.$error.required" class="invalid">Bạn chưa nhập bí danh</span>
+                                <span ng-show="submitted && formEditBrand.alias.$error.maxlength" class="invalid"><br />Bí danh không được quá 256 ký tự</span>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input class="form-check-input" type="checkbox" ng-model="brand.Status"> Trạng thái
+                                    </label>
+                                </div>
+                            </div>
+                        </div><!-- /.col -->
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Thông tin chi tiết</label>
+                                <textarea class="form-control" name="description" ckeditor ng-model="brand.Description"></textarea>
+                            </div>
+                        </div>
+                    </div><!-- /.row -->
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+                    <button class="btn btn-primary" type="submit">Lưu</button>
+                    <button ui-sref="brands" class="btn btn-default">Hủy</button>
+                </div>
+            </form>
+        </div><!-- /.box -->
+    </section><!-- /.content -->
+</div>

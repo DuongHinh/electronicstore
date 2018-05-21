@@ -225,7 +225,7 @@
 		        }
                 
 		        productCategoriesSvc.update($scope.category).then(function (record) {
-		            alert('Update product category success!');
+		            alert('Thêm mới danh mục sản phẩm thành công!');
 		            $state.go('productCategories', { reload: true });
 		        }, function (error) {
 		            console.log(error);

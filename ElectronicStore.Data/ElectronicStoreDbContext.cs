@@ -20,8 +20,6 @@ namespace ElectronicStore.Data
         public DbSet<Contact> Contact { get; set; }
         public DbSet<Feedback> Feedback { get; set; }
         public DbSet<LogError> LogError { get; set; }
-        public DbSet<Menu> Menu { get; set; }
-        public DbSet<MenuType> MenuType { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<NewsCategory> NewsCategory { get; set; }
         public DbSet<NewsTag> NewsTag { get; set; }
@@ -31,6 +29,7 @@ namespace ElectronicStore.Data
         public DbSet<ProductCategory> ProductCategory { get; set; }
         public DbSet<ProductTag> ProductTag { get; set; }
         public DbSet<Slide> Slide { get; set; }
+        public DbSet<Brand> Brand { get; set; }
         public DbSet<Tag> Tag { get; set; }
         public DbSet<Group> Group { set; get; }
         public DbSet<Role> Role { set; get; }

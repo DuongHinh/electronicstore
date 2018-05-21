@@ -85,12 +85,12 @@
     <Compile Include="Core\IDbContextFactory.cs" />
     <Compile Include="ElectronicStoreDbContext.cs" />
     <Compile Include="Entities\About.cs" />
+    <Compile Include="Entities\Brand.cs" />
     <Compile Include="Entities\Contact.cs" />
+    <Compile Include="Entities\Enum\TagType.cs" />
     <Compile Include="Entities\Feedback.cs" />
     <Compile Include="Entities\Group.cs" />
     <Compile Include="Entities\LogError.cs" />
-    <Compile Include="Entities\Menu.cs" />
-    <Compile Include="Entities\MenuType.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderDetail.cs" />
     <Compile Include="Entities\News.cs" />
@@ -139,8 +139,25 @@
     <Compile Include="Migrations\201805170100018_ManageUserByGroups.Designer.cs">
       <DependentUpon>201805170100018_ManageUserByGroups.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805210735265_UpdateTableOrder1.cs" />
+    <Compile Include="Migrations\201805210735265_UpdateTableOrder1.Designer.cs">
+      <DependentUpon>201805210735265_UpdateTableOrder1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805210748177_RemoveTableMenu.cs" />
+    <Compile Include="Migrations\201805210748177_RemoveTableMenu.Designer.cs">
+      <DependentUpon>201805210748177_RemoveTableMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805210834038_UpdateTableProductAndAddTableBrand.cs" />
+    <Compile Include="Migrations\201805210834038_UpdateTableProductAndAddTableBrand.Designer.cs">
+      <DependentUpon>201805210834038_UpdateTableProductAndAddTableBrand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805211005522_UpdateTableBrand.cs" />
+    <Compile Include="Migrations\201805211005522_UpdateTableBrand.Designer.cs">
+      <DependentUpon>201805211005522_UpdateTableBrand.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BrandRepositories.cs" />
     <Compile Include="Repositories\ContactRepositories.cs" />
     <Compile Include="Repositories\FeedbackRepositories.cs" />
     <Compile Include="Repositories\GroupRepositories.cs" />
@@ -183,6 +200,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805170100018_ManageUserByGroups.resx">
       <DependentUpon>201805170100018_ManageUserByGroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805210735265_UpdateTableOrder1.resx">
+      <DependentUpon>201805210735265_UpdateTableOrder1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805210748177_RemoveTableMenu.resx">
+      <DependentUpon>201805210748177_RemoveTableMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805210834038_UpdateTableProductAndAddTableBrand.resx">
+      <DependentUpon>201805210834038_UpdateTableProductAndAddTableBrand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805211005522_UpdateTableBrand.resx">
+      <DependentUpon>201805211005522_UpdateTableBrand.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

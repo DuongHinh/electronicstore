@@ -201,6 +201,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
+    <Compile Include="Api\BrandController.cs" />
     <Compile Include="Api\FeedbackController.cs" />
     <Compile Include="Api\GroupController.cs" />
     <Compile Include="Api\HomeController.cs" />
@@ -252,6 +253,7 @@
     <Content Include="App\global\directives.js" />
     <Content Include="App\global\filters.js" />
     <Content Include="App\global\services\authSvc.js" />
+    <Content Include="App\global\services\brandSvc.js" />
     <Content Include="App\global\services\commonSvc.js" />
     <Content Include="App\global\services\feedbackSvc.js" />
     <Content Include="App\global\services\groupSvc.js" />
@@ -262,6 +264,10 @@
     <Content Include="App\global\services\userSvc.js" />
     <Content Include="App\global\template\layoutController.js" />
     <Content Include="App\global\template\layout.html" />
+    <Content Include="App\screens\brands\brands.js" />
+    <Content Include="App\screens\brands\edit.html" />
+    <Content Include="App\screens\brands\list.html" />
+    <Content Include="App\screens\brands\new.html" />
     <Content Include="App\screens\groups\edit.html" />
     <Content Include="App\screens\groups\groups.js" />
     <Content Include="App\screens\groups\list.html" />

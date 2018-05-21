@@ -28,7 +28,7 @@ namespace ElectronicStore.Data.Entities
         [MaxLength(500)]
         public string Description { set; get; }
 
-        public string Detail { set; get; }
+        public string Title { set; get; }
 
         public bool? HomeFlag { set; get; }
 

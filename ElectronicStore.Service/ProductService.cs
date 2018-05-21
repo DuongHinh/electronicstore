@@ -5,6 +5,7 @@ using ElectronicStore.Fulcrum;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using ElectronicStore.Data.Entities.Enum;
 
 namespace ElectronicStore.Service
 {

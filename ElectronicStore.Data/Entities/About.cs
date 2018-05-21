@@ -8,7 +8,6 @@ namespace ElectronicStore.Data.Entities
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string Detail { set; get; }
         public bool Status { set; get; }
     }
 }

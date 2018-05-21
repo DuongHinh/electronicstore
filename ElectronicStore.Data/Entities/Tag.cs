@@ -1,4 +1,5 @@
-﻿using ElectronicStore.Fulcrum;
+﻿using ElectronicStore.Data.Entities.Enum;
+using ElectronicStore.Fulcrum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

@@ -36,13 +36,13 @@
                                 <span ng-show="submitted && formNewProduct.name.$error.maxlength" class="invalid"><br />Tên sản phẩm không được quá 256 ký tự</span>
                             </div>
                             <div class="form-group">
-                                <label>Alias</label>
+                                <label>Bí danh</label>
                                 <input class="form-control" type="text" name="alias"
                                        ng-maxlength="256" required
                                        ng-class="{true:'inputInvalid', false:''}[submitted && formNewProduct.alias.$error.required]"
                                        ng-model="product.Alias">
-                                <span ng-show="submitted && formNewProduct.alias.$error.required" class="invalid">Bạn chưa nhập alias</span>
-                                <span ng-show="submitted && formNewProduct.alias.$error.maxlength" class="invalid"><br />Alias không được quá 256 ký tự</span>
+                                <span ng-show="submitted && formNewProduct.alias.$error.required" class="invalid">Bạn chưa nhập bí danh</span>
+                                <span ng-show="submitted && formNewProduct.alias.$error.maxlength" class="invalid"><br />Bí danh không được quá 256 ký tự</span>
                             </div>
                             <div class="form-group">
                                 <label for="exampleSelect1">Danh mục</label>
@@ -83,31 +83,28 @@
                             <div class="form-group">
                                 <label>Giá nhập</label>
                                 <div class="input-group">
-                                    <span class="input-group-addon">$</span>
                                     <input class="form-control" is-decimal required name="originalPrice" placeholder="Nhập giá"
                                            ng-class="{true:'inputInvalid', false:''}[submitted && formNewProduct.originalPrice.$error.required]"
                                            ng-model="product.OriginalPrice">
-                                    <span class="input-group-addon">.00</span>
+                                    <span class="input-group-addon">đ</span>
                                 </div>
                                 <span ng-show="submitted && formNewProduct.originalPrice.$error.required" class="invalid">Bạn chưa nhập giá nhập</span>
                             </div>
                             <div class="form-group">
                                 <label>Giá bán</label>
                                 <div class="input-group">
-                                    <span class="input-group-addon">$</span>
                                     <input class="form-control" is-decimal required name="price" placeholder="Nhập giá"
                                            ng-class="{true:'inputInvalid', false:''}[submitted && formNewProduct.price.$error.required]"
                                            ng-model="product.Price">
-                                    <span class="input-group-addon">.00</span>
+                                    <span class="input-group-addon">đ</span>
                                 </div>
                                 <span ng-show="submitted && formNewProduct.price.$error.required" class="invalid">&nbsp; Bạn chưa nhập giá bán</span>
                             </div>
                             <div class="form-group">
                                 <label>Giá khuyến mãi</label>
                                 <div class="input-group">
-                                    <span class="input-group-addon">$</span>
                                     <input class="form-control" is-decimal placeholder="Nhập giá" ng-model="product.PromotionPrice">
-                                    <span class="input-group-addon">.00</span>
+                                    <span class="input-group-addon">đ</span>
                                 </div>
                             </div>
                             <div class="form-group">

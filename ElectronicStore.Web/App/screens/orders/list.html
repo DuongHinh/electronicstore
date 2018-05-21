@@ -43,7 +43,7 @@
                                     <th>Số điện thoại</th>                             
                                     <th>Ngày đặt</th>
                                     <th>Ngày giao</th>
-                                    <!--<th>Sản phẩm</th>-->
+                                    <th>Sản phẩm</th>
                                     <th>Tổng tiền</th>  
                                     <th>Trạng thái</th>
                                     <th>Giao hàng</th>
@@ -59,9 +59,9 @@
                                     <td>{{order.CustumerPhone}}</td>
                                     <td>{{order.OrderDate | date:'dd/MM/yyyy'}}</td>
                                     <td>{{order.ShipDate | date:'dd/MM/yyyy'}}</td>
-                                    <!--<td>
-                                        <div ng-repeat="p in order.Products">{{p.Name}} - {{p.Price}}</div>
-                                    </td>-->
+                                    <td>
+                                        <div ng-repeat="p in order.Products">{{order.Quantity[$index]}} {{p.Name}} - {{p.Price}}</div>
+                                    </td>
                                     <td>{{order.Amount}}</td>
                                     <td>
                                         <input type="checkbox" ng-checked="order.IsPaymented" ng-model="order.IsPaymented" disabled/>

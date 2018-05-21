@@ -17,6 +17,9 @@ namespace ElectronicStore.Data.Entities
         public string Alias { set; get; }
 
         public int CategoryId { set; get; }
+
+        public int BrandId { set; get; }
+
         public string Image { set; get; }
 
         [Column(TypeName = "ntext")]
@@ -30,11 +33,7 @@ namespace ElectronicStore.Data.Entities
 
         public decimal? PromotionPrice { set; get; }
 
-        public int? Warranty { set; get; }
-
         public string Description { set; get; }
-
-        public string Detail { set; get; }
 
         public bool? HomeFlag { set; get; }
 
@@ -56,6 +55,9 @@ namespace ElectronicStore.Data.Entities
 
         [ForeignKey("CategoryId")]
         public virtual ProductCategory ProductCategory { set; get; }
+
+        [ForeignKey("BrandId")]
+        public virtual Brand Brand { set; get; }
 
         public string Tags { set; get; }
 

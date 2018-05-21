@@ -66,7 +66,6 @@ namespace ElectronicStore.Web.Api
                     dbProduct.CreatedBy = product.CreatedBy;
                     dbProduct.CreatedDate = product.CreatedDate;
                     dbProduct.Description = product.Description;
-                    dbProduct.Detail = product.Detail;
                     dbProduct.HomeFlag = product.HomeFlag;
                     dbProduct.HotFlag = product.HotFlag;
                     dbProduct.Image = product.Image;
@@ -81,7 +80,6 @@ namespace ElectronicStore.Web.Api
                     dbProduct.UpdatedBy = User.Identity.Name;
                     dbProduct.UpdatedDate = DateTime.Now;
                     dbProduct.ViewCount = product.ViewCount;
-                    dbProduct.Warranty = product.Warranty;
 
                     this.productService.Update(dbProduct);
                     this.productService.Save();
