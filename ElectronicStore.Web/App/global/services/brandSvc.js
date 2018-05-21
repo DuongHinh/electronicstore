@@ -12,6 +12,10 @@
                 return apiSvc.get('api/brands/getbyid?id=' + id);
             }
 
+            this.getAll = function () {
+                return apiSvc.get('api/brands/getlistall?');
+            }
+
             this.addNewBrand = function (data) {
                 return apiSvc.post('api/brands/create', data);
             }

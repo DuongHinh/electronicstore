@@ -54,6 +54,18 @@
                                 </select>
                                 <span ng-show="submitted && formUpdateProduct.category.$error.required" class="invalid">Bạn chưa chọn danh mục</span>
                             </div>
+
+                            <div class="form-group">
+                                <label for="exampleSelect1">Hãng sản xuất</label>
+                                <select class="form-control" name="brand" required
+                                        ng-class="{true:'inputInvalid', false:''}[submitted && formNewProduct.brand.$error.required]"
+                                        ng-model="product.BrandId"
+                                        ng-options="b.Id as b.Name for b in brands">
+                                    <option value="" disabled>Chọn hãng sản xuất</option>
+                                </select>
+                                <span ng-show="submitted && formNewProduct.category.$error.required" class="invalid">Bạn chưa chọn hãng sản xuất</span>
+                            </div>
+
                             <div class="form-group">
                                 <label>Hình ảnh</label>
                                 <div class="row">

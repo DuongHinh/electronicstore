@@ -4,6 +4,7 @@
         'electronicStoreApp.global.services',
         'electronicStoreApp.global.services.products',
         'electronicStoreApp.global.services.productCategories',
+        'electronicStoreApp.services.brands',
         'angularUtils.directives.dirPagination',
         'electronicStoreApp.global.directives',
         'electronicStoreApp.global.common',
@@ -123,12 +124,38 @@
 	])
 	.controller('productNewController',
 	[
-		'$scope', '$state', '$log', '$stateParams', '$rootScope', 'productSvc', 'productCategoriesSvc', 'commonSvc',
-		function ($scope, $state, $log, $stateParams, $rootScope, productSvc, productCategoriesSvc, commonSvc) {
+		'$scope', '$state', '$log', '$stateParams', '$rootScope', 'productSvc', 'productCategoriesSvc', 'commonSvc', 'brandSvc',
+		function ($scope, $state, $log, $stateParams, $rootScope, productSvc, productCategoriesSvc, commonSvc, brandSvc) {
 
 		    $scope.title = 'Thêm mới sản phẩm';
 		    $scope.submitted = false;
 		    $scope.moreImages = [];
+
+
+		    var loadProductCategories = function () {
+		        productCategoriesSvc.getAllCategories('').then(function (response) {
+		            $scope.productCategories = response.data;
+		        }, function (error) {
+		            console.log(error);
+		        });
+		    }
+		   
+		    var loadBrands = function () {
+		        brandSvc.getAll().then(function (response) {
+		            $scope.brands = response.data;
+		        }, function (error) {
+		            console.log(error);
+		        });
+		    }
+
+		    loadBrands();
+
+		    var init = function () {
+		        loadProductCategories();
+		        loadBrands();
+		    }
+
+		    init();
 
 		    $scope.product = {
 		        Status: true,
@@ -184,6 +211,11 @@
 		            return;
 		        }
 
+		        if ($scope.product.BrandId === null) {
+		            return;
+		        }
+
+
 		        $scope.product.MoreImages = angular.toJson($scope.moreImages);
 
 		        productSvc.addNewProduct($scope.product).then(function (record) {
@@ -196,24 +228,13 @@
 
 		    $scope.getAlias = function (input) {
 		        $scope.product.Alias = commonSvc.getAlias(input);
-		    }
-
-		    var loadProductCategories = function () {
-		        productCategoriesSvc.getAllCategories('').then(function (response) {
-		            $scope.productCategories = response.data;
-		        }, function (error) {
-		            console.log(error);
-		        });
-		    }
-
-		    loadProductCategories();
-			
+		    }	
 		}
 	])
     .controller('productEditController',
 	[
-		'$scope', '$state', '$log', '$stateParams', '$rootScope', 'productSvc', 'productCategoriesSvc', 'commonSvc',
-		function ($scope, $state, $log, $stateParams, $rootScope, productSvc, productCategoriesSvc, commonSvc) {
+		'$scope', '$state', '$log', '$stateParams', '$rootScope', 'productSvc', 'productCategoriesSvc', 'commonSvc', 'brandSvc',
+		function ($scope, $state, $log, $stateParams, $rootScope, productSvc, productCategoriesSvc, commonSvc, brandSvc) {
 
 		    $scope.title = 'Cập nhập sản phẩm';
 		    $scope.submitted = false;
@@ -232,7 +253,6 @@
 		        });
 		    }
 
-		    loadProductDetail();
 
 		    var loadProductCategories = function () {
 		        productCategoriesSvc.getAllCategories('').then(function (response) {
@@ -241,8 +261,23 @@
 		            console.log(error);
 		        });
 		    }
+	    
 
-		    loadProductCategories();
+		    var loadBrands = function () {
+		        brandSvc.getAll().then(function (response) {
+		            $scope.brands = response.data;
+		        }, function (error) {
+		            console.log(error);
+		        });
+		    }
+
+		    var init = function () {
+		        loadProductDetail();
+		        loadProductCategories();
+		        loadBrands();
+		    }
+
+		    init();
 
 		    $scope.chooseImage = function () {
 		        var finder = new CKFinder();

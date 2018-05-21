@@ -114,7 +114,6 @@ namespace ElectronicStore.Web.Api
 
         [Route("getall")]
         [HttpGet]
-        [AllowAnonymous]
         public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int skip, int pageSize)
         {
             return CreateHttpResponse(request, () =>
@@ -130,6 +129,18 @@ namespace ElectronicStore.Web.Api
                 };
 
                 var response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                return response;
+            });
+        }
+
+        [Route("getlistall")]
+        [HttpGet]
+        public HttpResponseMessage GetListAll(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var models = this.brandService.GetAll();
+                var response = request.CreateResponse(HttpStatusCode.OK, models);
                 return response;
             });
         }

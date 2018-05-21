@@ -57,7 +57,7 @@
                             <tbody>
                                 <tr ng-repeat="product in products">
                                     <td>{{product.Name}}</td>
-                                    <td>{{product.Price | currency:"$"}}</td>
+                                    <td>{{product.Price | currency:"":0}} đ</td>
                                     <td>{{product.Quantity}}</td>
                                     <th><img height="100" src="{{product.Image}}"/></th>
                                     <td>
