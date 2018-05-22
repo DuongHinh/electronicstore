@@ -84,6 +84,12 @@ namespace ElectronicStore.Web
             );
 
             routes.MapRoute(
+                name: "OrderSuccess",
+                url: "order-success",
+                defaults: new { controller = "Cart", action = "OrderSuccess", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "OutOfStock",
                 url: "out-of-stock",
                 defaults: new { controller = "Cart", action = "OutOfStock", id = UrlParameter.Optional }

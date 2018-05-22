@@ -37,3 +37,21 @@ list-inline {
     color: white;
     font-weight: bold;
 }
+
+.status-success {
+    background-color: #5cb85c;
+    color: white;
+    font-weight: bold;
+}
+
+.status-pending {
+    background-color: #367fa9;
+    color: white;
+    font-weight: bold;
+}
+
+.status-cancel {
+    background-color: #dd4b39;
+    color: white;
+    font-weight: bold;
+}

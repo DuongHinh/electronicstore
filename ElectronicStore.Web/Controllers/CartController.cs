@@ -198,17 +198,23 @@ namespace ElectronicStore.Web.Controllers
             if (ModelState.IsValid)
             {
                 var order = new Order();
-                order.Name = orderViewModel.CustomerName;
-                order.Email = orderViewModel.CustomerEmail;
-                order.Address = orderViewModel.CustomerAddress;
-                order.PhoneNumber = orderViewModel.CustomerPhone;
+                order.Name = orderViewModel.Name;
+                order.Email = orderViewModel.Email;
+                order.Address = orderViewModel.Address;
+                order.PhoneNumber = orderViewModel.PhoneNumber;
                 order.OrderDate = DateTime.Now;
+
+                if (Request.IsAuthenticated)
+                {
+                    order.CustomerId = User.Identity.GetUserId();
+                }
+
 
                 try
                 {
                     var cart = (List<CartItemViewModel>)Session[this.appSettings.SessionCart];
                     List<OrderDetail> orderDetails = new List<OrderDetail>();
-                    bool isEnough = true;
+                    bool checkQuantity = true;
                    
                     foreach (var item in cart)
                     {
@@ -217,7 +223,7 @@ namespace ElectronicStore.Web.Controllers
                         detail.Quantity = item.Quantity;
                         detail.Price = item.Product.Price;
                         orderDetails.Add(detail);
-                        isEnough = this.productService.SellProduct(item.Product.Id, item.Quantity);
+                        checkQuantity = this.productService.SellProduct(item.Product.Id, item.Quantity);
                     }
 
                     this.orderService.CreateOrder(order, orderDetails);
@@ -226,16 +232,16 @@ namespace ElectronicStore.Web.Controllers
                     
 
                     //send mail
-                    if (!string.IsNullOrWhiteSpace(orderViewModel.CustomerEmail) && cart != null)
+                    if (!string.IsNullOrWhiteSpace(orderViewModel.Email) && cart != null)
                     {
                         StringBuilder builder = new StringBuilder();
                         builder.Append("Thông tin đơn hàng mới từ Electronic Store");
                         builder.Append("<br/>");
-                        builder.AppendFormat("Khách hàng: {0}", orderViewModel.CustomerName);
+                        builder.AppendFormat("Khách hàng: {0}", orderViewModel.Name);
                         builder.Append("<br/>");
-                        builder.AppendFormat("Địa chỉ: {0}", orderViewModel.CustomerAddress);
+                        builder.AppendFormat("Địa chỉ: {0}", orderViewModel.Address);
                         builder.Append("<br/>");
-                        builder.AppendFormat("Số điện thoại: {0}", orderViewModel.CustomerPhone);
+                        builder.AppendFormat("Số điện thoại: {0}", orderViewModel.PhoneNumber);
                         builder.Append("<br/>");
                         builder.Append("<br/>");
 
@@ -266,7 +272,7 @@ namespace ElectronicStore.Web.Controllers
                         builder.Append("<br/>");
                         builder.AppendFormat("Tổng tiền: {0}", totalAmount);
 
-                        this.mailService.SendMail(orderViewModel.CustomerEmail, "Đơn hàng mới từ Electronic Store", builder.ToString());
+                        this.mailService.SendMail(orderViewModel.Email, "Đơn hàng mới từ Electronic Store", builder.ToString());
                     }
 
                 }

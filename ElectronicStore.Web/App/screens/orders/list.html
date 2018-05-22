@@ -39,42 +39,46 @@
                                     <th>Mã đơn hàng</th>
                                     <th>Khách hàng</th>
                                     <th>Địa chỉ</th>
-                                    <th>Email</th>
                                     <th>Số điện thoại</th>                             
                                     <th>Ngày đặt</th>
                                     <th>Ngày giao</th>
-                                    <th>Sản phẩm</th>
                                     <th>Tổng tiền</th>  
-                                    <th>Trạng thái</th>
+                                    <th>Thanh toán</th>
                                     <th>Giao hàng</th>
+                                    <th>Trạng thái</th>
                                     <th class="hidden-print"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="order in orders">
                                     <td>{{order.OrderId}}</td>
-                                    <td>{{order.CustumerName}}</td>
-                                    <td>{{order.CustumerAddress}}</td>
-                                    <td>{{order.CustumerEmail}}</td>
-                                    <td>{{order.CustumerPhone}}</td>
+                                    <td>{{order.Name}}</td>
+                                    <td>{{order.Address}}</td>
+                                    <td>{{order.Phone}}</td>
                                     <td>{{order.OrderDate | date:'dd/MM/yyyy'}}</td>
                                     <td>{{order.ShipDate | date:'dd/MM/yyyy'}}</td>
+                                    <td>{{order.Amount | currency:"":0}} đ</td>
                                     <td>
-                                        <div ng-repeat="p in order.Products">{{order.Quantity[$index]}} {{p.Name}} - {{p.Price}}</div>
+                                        <span ng-class="{ 0:'status-pending', 1:'status-success', 2:'status-cancel'}[order.PaymentStatus]">
+                                            {{order.PaymentStatus | paymentFilter}}
+                                        </span>
                                     </td>
-                                    <td>{{order.Amount}}</td>
                                     <td>
-                                        <input type="checkbox" ng-checked="order.IsPaymented" ng-model="order.IsPaymented" disabled/>
+                                        <span  ng-class="{0:'status-pending', 1:'status-pending', 2:'status-success', 3:'status-cancel'}[order.ShipStatus]">
+                                           {{order.ShipStatus | shipFilter}}
+                                        </span>
                                     </td>
                                     <td>
-                                        <input type="checkbox" ng-checked="order.IsShiped" ng-model="order.IsPaymented" disabled/>
+                                        <span ng-class="{0:'status-pending', 1:'status-success', 2:'status-cancel'}[order.Status]">
+                                            {{order.Status | statusFilter}}
+                                        </span>
                                     </td>
                                     <td class="hidden-print">
-                                        <button class="btn btn-sm btn-primary" title="Chi tiết đơn hàng"><i class="fa fa-eye-slash"></i></button>
+                                        <button class="btn btn-sm btn-primary" title="Chi tiết đơn hàng" ui-sref="orders.detail({id:order.OrderId})"><i class="fa fa-eye-slash"></i></button>
                                     </td>
                                 </tr>
                                 <tr ng-show="orders.length == 0" class="text-center">
-                                    <td colspan="10">Không có bản ghi nào được tìm thấy</td>
+                                    <td colspan="11">Không có bản ghi nào được tìm thấy</td>
                                 </tr>
                             </tbody>
                         </table>

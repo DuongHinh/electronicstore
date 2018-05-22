@@ -7,5 +7,13 @@
             this.getListOrder = function () {
                 return apiSvc.get('/api/order/getall?keyword=');
             }
+
+            this.getOrderDetail = function (orderId) {
+                return apiSvc.get('/api/order/getdetail?orderId=' + orderId);
+            }
+
+            this.updateOrderStatus = function (data) {
+                return apiSvc.put('/api/order/updateOrderStatus', data);
+            }
         }
     ])

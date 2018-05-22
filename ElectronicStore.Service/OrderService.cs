@@ -16,6 +16,10 @@ namespace ElectronicStore.Service
         Order GetById(int id);
 
         IEnumerable<Order> GetAll();
+
+        void Update(Order order);
+
+        void Save();
     }
 
     public class OrderService : IOrderService
@@ -59,6 +63,16 @@ namespace ElectronicStore.Service
         public IEnumerable<Order> GetAll()
         {
             return this.orderRepositories.GetAll();
+        }
+
+        public void Save()
+        {
+            this.unitOfWork.Save();
+        }
+
+        public void Update(Order order)
+        {
+            this.orderRepositories.Update(order);
         }
     }
 }

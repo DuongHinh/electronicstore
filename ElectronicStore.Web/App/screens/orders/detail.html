@@ -1,0 +1,117 @@
+﻿<div ng-controller="orderDetailController">
+    <section class="content-header">
+        <h1>
+            &nbsp;
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="javascript:void(0);"><i class="fa fa-home fa-lg"></i></a></li>
+            <li><a ui-sref="orders">Quản lý đơn hàng</a></li>
+            <li><a class="link-active" ui-sref="orders.detail({id:order.OrderId})">{{title}}</a></li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Horizontal Form -->
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title"><i class="fa fa-plus-square"></i> {{title}}</h3>
+                <div class="box-tools pull-right hidden-print">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div><!-- /.box-header -->
+            <form novalidate role="form">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="row form-group">
+                                <table class="table">
+                                    <tr>
+                                        <td width="25%""><label>Mã đơn hàng</label></td>
+                                        <td width="25%">{{order.OrderId}}</td>
+                                        <td width="25%"><label>Trạng thái</label></td>
+                                        <td width="25%">
+                                            <select class="form-control"
+                                                    ng-options="s.id as s.value for s in statusArr"
+                                                    ng-model="order.Status"></select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="25%"><label>Họ tên</label></td>
+                                        <td width="25%">{{order.Name}}</td>
+                                        <td width="25%"><label>Địa chỉ</label></td>
+                                        <td width="25%">{{order.Address}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="25%"><label>Số điện thoại</label></td>
+                                        <td width="25%">{{order.PhoneNumber}}</td>
+                                        <td width="25%"><label>Email</label></td>
+                                        <td width="25%">{{order.Email}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="25%"><label>Ngày đặt</label></td>
+                                        <td width="25%">
+                                            <input required class="pickerin form-control" id="OrderDate"
+                                                   ng-click="pickerOpen5 = true" type="text" name="OrderDate"
+                                                   readonly="readonly" datepicker-append-to-body="true" datepicker-popup="MM/dd/yyyy"
+                                                   is-open="pickerOpen5" convert-date ng-model="order.OrderDate"
+                                                   style="font-weight: normal;" disabled />
+                                        </td>
+                                        <td width="25%"><label>Ngày giao</label></td>
+                                        <td width="25%">
+                                            <input required class="pickerin form-control" id="ShipDate"
+                                                   ng-click="pickerOpen6 = true" type="text" name="ShipDate" placeholder="Ngày giao"
+                                                   datepicker-append-to-body="true" datepicker-popup="MM/dd/yyyy"
+                                                   is-open="pickerOpen6" convert-date ng-model="order.ShipDate"
+                                                   style="font-weight: normal;" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="25%"><label>Thanh toán</label></td>
+                                        <td width="25%">
+                                            <select class="form-control" 
+                                                    ng-options="p.id as p.value for p in paymentStatusArr"
+                                                    ng-model="order.PaymentStatus"></select>
+                                        </td>
+                                        <td width="25%"><label>Giao hàng</label></td>
+                                        <td width="25%">
+                                            <select class="form-control"
+                                                    ng-options="sh.id as sh.value for sh in shipStatusArr"
+                                                    ng-model="order.ShipStatus"></select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th width="25%">Sản phẩm</th>
+                                        <th width="25%">Hình ảnh</th>
+                                        <th width="25%">Đơn giá</th>
+                                        <th width="25%">Số lượng</th>
+                                    </tr>
+                                    <tr ng-repeat="p in order.Products">
+                                        <td>{{p.Name}}</td>
+                                        <td><img height="100" src="{{p.Image}}" /></td>
+                                        <td>{{p.Price | currency:"":0}} đ</td>
+                                        <td>{{order.Quantities[$index]}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold">Tổng tiền</td>
+                                        <td></td>
+                                        <td>{{order.Amount | currency:"":0}} đ</td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.box-body -->
+                <div class="box-footer hidden-print">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="row form-group">
+                            <button class="btn btn-default" ui-sref="orders">Quay lại</button>
+                            <button class="btn btn-primary" ng-click="updateOrderStatus()">Cập nhật</button>
+                            <button class="btn btn-print" ng-click="print()"><i class="fa fa-print"></i>&nbsp; In &nbsp;</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.box -->
+    </section><!-- /.content -->
+</div>

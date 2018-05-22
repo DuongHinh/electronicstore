@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using static ElectronicStore.Data.Entities.Enum.OrderEnum;
 
 namespace ElectronicStore.Data.Entities
 {
@@ -29,11 +30,11 @@ namespace ElectronicStore.Data.Entities
 
         public DateTime? ShipDate { set; get; }
 
-        public bool Paid { set; get; }
+        public PaymentStatus PaymentStatus { set; get; }
 
-        public bool Shipped { set; get; }
+        public ShipStatus ShipStatus { set; get; }
 
-        public bool Status { set; get; }
+        public OrderStatus Status { set; get; }
 
         [StringLength(128)]
         [Column(TypeName = "nvarchar")]

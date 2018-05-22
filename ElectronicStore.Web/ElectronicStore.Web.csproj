@@ -245,6 +245,7 @@
     <Compile Include="Models\SignUpViewModel.cs" />
     <Compile Include="Models\TagViewModel.cs" />
     <Compile Include="Models\ApplicationUserViewModel.cs" />
+    <Compile Include="Models\UpdateOrderViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -277,6 +278,7 @@
     <Content Include="App\screens\login\login.css" />
     <Content Include="App\screens\login\login.html" />
     <Content Include="App\screens\login\login.js" />
+    <Content Include="App\screens\orders\detail.html" />
     <Content Include="App\screens\orders\list.html" />
     <Content Include="App\screens\orders\orders.js" />
     <Content Include="App\screens\productCategories\edit.html" />
@@ -5103,6 +5105,8 @@
     <Content Include="Views\Cart\NotLoggedIn.cshtml" />
     <Content Include="Views\Cart\OutOfStock.cshtml" />
     <Content Include="Views\Cart\Order.cshtml" />
+    <Content Include="Views\Cart\OrderErrors.cshtml" />
+    <Content Include="Views\Cart\OrderSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\screens\admin\groups\" />
