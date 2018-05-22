@@ -88,8 +88,8 @@ namespace ElectronicStore.Web.Controllers
                 await this.userManager.CreateAsync(user, model.Password);
 
                 var userCreate = await this.userManager.FindByEmailAsync(model.Email);
-                if (userCreate != null)
-                    await this.userManager.AddToRolesAsync(userCreate.Id, new string[] { "User" });
+                //if (userCreate != null)
+                //    await this.userManager.AddToRolesAsync(userCreate.Id, new string[] { "User" });
 
                 //string content = System.IO.File.ReadAllText(Server.MapPath("/Assets/client/template/newuser.html"));
                 //content = content.Replace("{{UserName}}", adminUser.FullName);

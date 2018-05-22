@@ -229,19 +229,18 @@ namespace ElectronicStore.Web.Controllers
                     this.orderService.CreateOrder(order, orderDetails);
                     this.productService.Save();
 
-                    
-
+                    var orderDetailCreated = this.orderService.GetDetailOrderByOrderId(order.Id);
                     //send mail
                     if (!string.IsNullOrWhiteSpace(orderViewModel.Email) && cart != null)
                     {
                         StringBuilder builder = new StringBuilder();
                         builder.Append("Thông tin đơn hàng mới từ Electronic Store");
                         builder.Append("<br/>");
-                        builder.AppendFormat("Khách hàng: {0}", orderViewModel.Name);
+                        builder.AppendFormat("Khách hàng: {0}", orderDetailCreated.Name);
                         builder.Append("<br/>");
-                        builder.AppendFormat("Địa chỉ: {0}", orderViewModel.Address);
+                        builder.AppendFormat("Địa chỉ: {0}", orderDetailCreated.Address);
                         builder.Append("<br/>");
-                        builder.AppendFormat("Số điện thoại: {0}", orderViewModel.PhoneNumber);
+                        builder.AppendFormat("Số điện thoại: {0}", orderDetailCreated.PhoneNumber);
                         builder.Append("<br/>");
                         builder.Append("<br/>");
 
@@ -254,23 +253,31 @@ namespace ElectronicStore.Web.Controllers
                         builder.Append("</tr>");
                         builder.Append("</thead>");
                         builder.Append("<tbody>");
-                        decimal totalAmount = 0;
-                        foreach (var item in cart)
+                        //decimal totalAmount = 0;
+                        int[] ArrQuantity = orderDetailCreated.Quantities.ToArray();
+                        int i = 0;
+                        foreach (var item in orderDetailCreated.Products)
                         {
+                            if (i == orderDetailCreated.Products.Count())
+                            {
+                                break;
+                            }
+
                             builder.Append("<tr>");
-                            builder.AppendFormat("<td class='text - left'>{0}</td>", item.Product.Name);
-                            builder.AppendFormat("<td class='font-weight: initial'>{0}</td>", item.Quantity);
-                            builder.AppendFormat("<td class='text - left'>{0}</td>", item.Product.Price);
+                            builder.AppendFormat("<td class='text - left'>{0}</td>", item.Name);
+                            builder.AppendFormat("<td class='font-weight: initial'>{0}</td>", ArrQuantity[i]);
+                            builder.AppendFormat("<td class='text - left'>{0}</td>", item.Price.ToString("N0") + " đ");
                             builder.Append("</tr>");
 
-                            totalAmount += (item.Product.Price * item.Quantity);
+                            //totalAmount += (item.Price * ArrQuantity[i]);
+                            i++;
                         }
 
                         builder.Append("</tbody>");
                         builder.Append("</table>");
 
                         builder.Append("<br/>");
-                        builder.AppendFormat("Tổng tiền: {0}", totalAmount);
+                        builder.AppendFormat("Tổng tiền: {0}", orderDetailCreated.Amount.ToString("N0") + " đ");
 
                         this.mailService.SendMail(orderViewModel.Email, "Đơn hàng mới từ Electronic Store", builder.ToString());
                     }

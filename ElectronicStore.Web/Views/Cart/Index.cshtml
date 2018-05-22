@@ -27,9 +27,9 @@
                             <td>Mã Sản Phẩm</td>
                             <td>Tên Sản Phẩm</td>
                             <td>Ảnh Sản Phẩm</td>
-                            <td>Số lượng</td>
-                            <td>Đơn giá</td>
-                            <td>Thành tiền</td>
+                            <td width="10%">Số lượng</td>
+                            <td width="15%">Đơn giá</td>
+                            <td width="15%">Thành tiền</td>
                             <td>Xóa</td>
                         </tr>
                     </thead>
@@ -43,15 +43,15 @@
                                 <td>@item.Product.Name</td>
                                 <td><img src="@item.Product.Image" width="100" /></td>
                                 <td><input type="number" class="txtQuantity" data-id="@item.Product.Id" value="@item.Quantity" /></td>
-                                <td>@item.Product.Price.ToString("N0")</td>
-                                <td>@((item.Product.Price * item.Quantity).ToString("N0"))</td>
+                                <td>@(item.Product.Price.ToString("N0") + " đ")</td>
+                                <td>@((item.Product.Price * item.Quantity).ToString("N0") + " đ")</td>
                                 <td><button data-id="@item.Product.Id" class="btn-delete btn btn-danger"><i class="fa fa-minus"></i></button></td>
                             </tr>
                         }
 
                         <tr>
                             <td colspan="5" style="text-align: right;">Tổng tiền:</td>
-                            <td>@totalAmount.ToString("N0")</td>
+                            <td>@(totalAmount.ToString("N0") + " đ")</td>
                             <td></td>
                         </tr>
 
