@@ -27,20 +27,20 @@
                             <div class="row form-group">
                                 <div class="col-md-3"><label>Họ Tên</label></div>
                                 <div class="col-md-9">
-                                    <input class="form-control" type="text"
+                                    <input class="form-control" type="text" readonly
                                             name="name" ng-model="feedback.Name">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-3"><label>Email</label></div>
                                 <div class="col-md-9">
-                                    <input class="form-control" type="text" name="middleName" ng-model="feedback.Email">
+                                    <input readonly class="form-control" type="text" name="middleName" ng-model="feedback.Email">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-3"><label>Số điện thoại</label></div>
                                 <div class="col-md-9">
-                                    <input class="form-control" type="text" name="name" ng-model="feedback.PhoneNumber">
+                                    <input readonly class="form-control" type="text" name="name" ng-model="feedback.PhoneNumber">
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -50,13 +50,13 @@
                                            ng-click="pickerOpen3 = true" type="text" name="injuryDate"
                                            readonly="readonly" datepicker-append-to-body="true" datepicker-popup="MM/dd/yyyy"
                                            is-open="pickerOpen3" convert-date ng-model="feedback.CreatedDate"
-                                           style="font-weight: normal;" />
+                                           style="font-weight: normal;" disabled/>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-3"><label>Tin nhắn</label></div>
                                 <div class="col-md-9">
-                                    <textarea rows="6" style="width: 100%" ng-model="feedback.Message"></textarea>
+                                    <textarea rows="10" readonly style="width: 100%" ng-model="feedback.Message"></textarea>
                                 </div>
                             </div>
                         </div>

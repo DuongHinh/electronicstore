@@ -7,6 +7,8 @@ using System.Net.Http;
 using System.Web.Http;
 using ElectronicStore.Service;
 using ElectronicStore.Web.Models;
+using System.Text;
+using static ElectronicStore.Data.Entities.Enum.OrderEnum;
 
 namespace ElectronicStore.Web.Api
 {
@@ -17,53 +19,24 @@ namespace ElectronicStore.Web.Api
         private ILogErrorService logErrorService;
         private IOrderDetailService orderDetailService;
         private IOrderService orderService;
-        public OrderController(ILogErrorService logErrorService, IOrderDetailService orderDetailService, IOrderService orderService) : base(logErrorService)
+        private IMailService mailService;
+        public OrderController(ILogErrorService logErrorService, IOrderDetailService orderDetailService, IOrderService orderService, IMailService mailService) : base(logErrorService)
         {
             this.orderDetailService = orderDetailService;
             this.orderService = orderService;
             this.logErrorService = logErrorService;
+            this.mailService = mailService;
         }
 
         [Route("getall")]
         [HttpGet]
-        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword)
+        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int? status)
         {
             return CreateHttpResponse(request, () =>
             {
-            var orders = this.orderService.GetAll();
-            var orderDetail = this.orderDetailService.GetAll();
+                var orderViewModels = this.orderService.GetAllOrder(keyword, status);
 
-            object orderViewModel = null;
-            if (orders != null && orderDetail != null)
-            {
-                if (!string.IsNullOrWhiteSpace(keyword))
-                {
-                    orders = orders.Where(x => x.Name.ToLower().Contains(keyword.ToLower()));
-                }
-                    orderViewModel = from o in orders
-                                     join od in orderDetail
-                                     on o.Id equals od.OrderId
-                                     group od by o.Id into gLine
-                                     select new
-                                     {
-                                         OrderId = gLine.Key,
-                                         Amount = gLine.Sum(x => x.Price * x.Quantity),
-                                         Name = gLine.Select(g => g.Order.Name).FirstOrDefault(),
-                                         Address = gLine.Select(g => g.Order.Address).FirstOrDefault(),
-                                         Email = gLine.Select(g => g.Order.Email).FirstOrDefault(),
-                                         PhoneNumber = gLine.Select(g => g.Order.PhoneNumber).FirstOrDefault(),
-                                         OrderDate = gLine.Select(g => g.Order.OrderDate).FirstOrDefault(),
-                                         ShipDate = gLine.Select(g => g.Order.ShipDate).FirstOrDefault(),
-                                         PaymentStatus = gLine.Select(g => g.Order.PaymentStatus).FirstOrDefault(),
-                                         ShipStatus = gLine.Select(g => g.Order.ShipStatus).FirstOrDefault(),
-                                         Status = gLine.Select(g => g.Order.Status).FirstOrDefault(),
-                                         Products = gLine.Select(g => g.Product).Select(p => new {Name = p.Name, Price = p.Price, Image = p.Image }),
-                                         Quantities = gLine.Select(g => g.Quantity)
-                                     };
-                }
-                
-
-                var response = request.CreateResponse(HttpStatusCode.OK, orderViewModel);
+                var response = request.CreateResponse(HttpStatusCode.OK, orderViewModels);
                 return response;
             });
         }
@@ -74,37 +47,7 @@ namespace ElectronicStore.Web.Api
         {
             return CreateHttpResponse(request, () =>
             {
-                var orders = this.orderService.GetAll();
-                var orderDetail = this.orderDetailService.GetAll();
-
-                object orderViewModel = null;
-                if (orders != null && orderDetail != null)
-                {
-                    orders.Where(o => o.Id == orderId);
-
-                    orderViewModel = (from o in orders
-                                     join od in orderDetail
-                                     on o.Id equals od.OrderId
-                                     group od by o.Id into gLine
-                                     select new
-                                     {
-                                         OrderId = gLine.Key,
-                                         Amount = gLine.Sum(x => x.Price * x.Quantity),
-                                         Name = gLine.Select(g => g.Order.Name).FirstOrDefault(),
-                                         Address = gLine.Select(g => g.Order.Address).FirstOrDefault(),
-                                         Email = gLine.Select(g => g.Order.Email).FirstOrDefault(),
-                                         PhoneNumber = gLine.Select(g => g.Order.PhoneNumber).FirstOrDefault(),
-                                         OrderDate = gLine.Select(g => g.Order.OrderDate).FirstOrDefault(),
-                                         ShipDate = gLine.Select(g => g.Order.ShipDate).FirstOrDefault(),
-                                         PaymentStatus = gLine.Select(g => g.Order.PaymentStatus).FirstOrDefault(),
-                                         ShipStatus = gLine.Select(g => g.Order.ShipStatus).FirstOrDefault(),
-                                         Status = gLine.Select(g => g.Order.Status).FirstOrDefault(),
-                                         Products = gLine.Select(g => g.Product).Select(p => new { Name = p.Name, Price = p.Price, Image = p.Image }),
-                                         Quantities = gLine.Select(g => g.Quantity)
-                                     }).FirstOrDefault();
-                }
-
-
+                var orderViewModel = this.orderService.GetDetailOrderByOrderId(orderId);
                 var response = request.CreateResponse(HttpStatusCode.OK, orderViewModel);
                 return response;
             });
@@ -131,6 +74,54 @@ namespace ElectronicStore.Web.Api
                     this.orderService.Update(dbOrder);
                     this.orderService.Save();
                     response = request.CreateResponse(HttpStatusCode.Created, dbOrder);
+
+                    var orderDetail = this.orderService.GetDetailOrderByOrderId(orderVm.Id);
+                    if (orderDetail != null && orderVm.PaymentStatus == PaymentStatus.Paid && dbOrder.PaymentStatus != orderVm.PaymentStatus)
+                    {
+                        string title = "Thanh toán thành công đơn hàng từ Electrolic Store";
+                        StringBuilder builder = new StringBuilder();
+                        builder.AppendFormat("{0}", title);
+                        builder.Append("<br/>");
+                        builder.AppendFormat("Khách hàng: {0}", orderDetail.Name);
+                        builder.Append("<br/>");
+                        builder.AppendFormat("Địa chỉ: {0}", orderDetail.Address);
+                        builder.Append("<br/>");
+                        builder.AppendFormat("Số điện thoại: {0}", orderDetail.PhoneNumber);
+                        builder.Append("<br/>");
+                        builder.Append("<br/>");
+
+                        builder.Append("<table style='width: 100 %' cellpadding='5' border='1'>");
+                        builder.Append("<thead>");
+                        builder.Append("<tr>");
+                        builder.Append("<th style='width: 40 %; '>Tên sản phẩm</th>");
+                        builder.Append("<th style'width: 30 %; '>Số lượng</th>");
+                        builder.Append("<th style='width: 30 %; '>Đơn giá</th>");
+                        builder.Append("</tr>");
+                        builder.Append("</thead>");
+                        builder.Append("<tbody>");
+                        int[] ArrQuantity = orderDetail.Quantities.ToArray();
+                        int i = 0;
+                        foreach (var item in orderDetail.Products)
+                        {
+                            if (i == orderDetail.Products.Count())
+                            {
+                                break;
+                            }
+                            builder.Append("<tr>");
+                            builder.AppendFormat("<td class='text - left'>{0}</td>", item.Name);
+                            builder.AppendFormat("<td class='font-weight: initial'>{0}</td>", ArrQuantity[i]);
+                            builder.AppendFormat("<td class='text - left'>{0}</td>", item.Price.ToString("N0") + " đ");
+                            builder.Append("</tr>");
+                            i++;
+                        }
+
+                        builder.Append("</tbody>");
+                        builder.Append("</table>");
+
+                        builder.Append("<br/>");
+                        builder.AppendFormat("Tổng tiền: {0}", orderDetail.Amount.ToString("N0") + " đ");
+                        this.mailService.SendMail(orderDetail.Email, title, builder.ToString());
+                    }
                 }
 
                 return response;

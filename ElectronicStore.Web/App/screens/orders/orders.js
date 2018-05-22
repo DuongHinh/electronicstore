@@ -36,10 +36,21 @@
             $scope.title = 'Quản lý đơn hàng';
             $scope.loading = true;
             $scope.keyword = '';
-  
+            $scope.itemsPerPage = 10
+
+            $scope.statusArr = [
+                { id: 0, value: "Đang xử lý" },
+                { id: 1, value: "Đã xong" },
+                { id: 2, value: "Hủy" }
+            ];
+
+            $scope.orderStatus = null;
 
             var getListOrder = function () {
-                orderSvc.getListOrder().then(function (response) {
+                if ($scope.orderStatus === undefined || $scope.orderStatus === '') {
+                    $scope.orderStatus = null;
+                }
+                orderSvc.getListOrder($scope.keyword, $scope.orderStatus).then(function (response) {
                     $scope.orders = response.data;
                     console.log($scope.orders);
                     $scope.loading = false;
@@ -94,7 +105,7 @@
             ];
 
             $scope.statusArr = [
-                { id: 0, value: "Chờ xác nhận" },
+                { id: 0, value: "Đang xử lý" },
                 { id: 1, value: "Đã xong" },
                 { id: 2, value: "Hủy" }
             ];
@@ -149,7 +160,7 @@
     }).filter('statusFilter', function () {
         return function (input) {
             if (input == 0)
-                return 'Chờ xác nhận';
+                return 'Đang xử lý';
             else if (input == 1)
                 return 'Đã xong';
             else if (input == 2)

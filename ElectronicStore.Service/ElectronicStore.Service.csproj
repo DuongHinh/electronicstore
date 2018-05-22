@@ -67,6 +67,7 @@
     <Compile Include="OrderService.cs" />
     <Compile Include="ProductCategoryService.cs" />
     <Compile Include="ProductService.cs" />
+    <Compile Include="Projection\OrderProjection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleService.cs" />
   </ItemGroup>

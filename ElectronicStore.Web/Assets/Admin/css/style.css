@@ -42,16 +42,26 @@ list-inline {
     background-color: #5cb85c;
     color: white;
     font-weight: bold;
+    text-align: center;
 }
 
 .status-pending {
-    background-color: #367fa9;
+    background-color: #ffc107;
     color: white;
     font-weight: bold;
+    text-align: center;
+}
+
+.status-pending1 {
+    background-color: #3c8dbc;
+    color: white;
+    font-weight: bold;
+    text-align: center;
 }
 
 .status-cancel {
     background-color: #dd4b39;
     color: white;
     font-weight: bold;
+    text-align: center;
 }

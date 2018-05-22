@@ -4,8 +4,8 @@
         '$q', '$timeout', '$http', 'apiSvc',
         function ($q, $timeout, $http, apiSvc) {
 
-            this.getListOrder = function () {
-                return apiSvc.get('/api/order/getall?keyword=');
+            this.getListOrder = function (keyword, status) {
+                return apiSvc.get('/api/order/getall?keyword=' + keyword + '&status=' + status);
             }
 
             this.getOrderDetail = function (orderId) {
