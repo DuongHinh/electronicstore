@@ -7,5 +7,9 @@
             this.getProfitAndRevenue = function (date) {
                 return apiSvc.get('/api/statistic/GetProfitAndRevenue?date=' + date);
             }
+
+            this.getHomePageStaticstic = function () {
+                return apiSvc.get('/api/statistic/GetHomePageStaticstic?');
+            }
         }
     ])

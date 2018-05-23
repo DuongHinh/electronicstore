@@ -11,7 +11,7 @@ namespace ElectronicStore.Data.Repositories
 {
     public interface IOrderRepositories : IRepositories<Order>
     {
-        IEnumerable<ProfitAndRevenueProjection> GetStaticsticProfitAndRevenuePerWeek(string date);
+        IEnumerable<ProfitAndRevenueProjection> GetWeeklyProfitAndRevenue(string date);
     }
 
     public class OrderRepositories : Repositories<Order>, IOrderRepositories
@@ -20,7 +20,7 @@ namespace ElectronicStore.Data.Repositories
         {
         }
 
-        public IEnumerable<ProfitAndRevenueProjection> GetStaticsticProfitAndRevenuePerWeek(string date)
+        public IEnumerable<ProfitAndRevenueProjection> GetWeeklyProfitAndRevenue(string date)
         {
             IEnumerable<ProfitAndRevenueProjection> query = DbContext.Database.SqlQuery<ProfitAndRevenueProjection>(
                 "spGetStaticsticProfitAndRevenuePerWeek @date",

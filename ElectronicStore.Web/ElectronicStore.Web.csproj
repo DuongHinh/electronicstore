@@ -5158,6 +5158,7 @@
     <Folder Include="Assets\Admin\js\mustache\" />
     <Folder Include="Assets\Admin\js\numeral\" />
     <Folder Include="Assets\Admin\js\toastr\" />
+    <Folder Include="Assets\Admin\staticstic\" />
     <Folder Include="Assets\Common\images\" />
     <Folder Include="uploads\" />
     <Folder Include="Views\About\" />

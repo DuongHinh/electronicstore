@@ -10,7 +10,7 @@ namespace ElectronicStore.Service
 {
     public interface IStaticsticService
     {
-        IEnumerable<ProfitAndRevenueProjection> GetStaticsticProfitAndRevenuePerWeek(string date);
+        IEnumerable<ProfitAndRevenueProjection> GetWeeklyProfitAndRevenue(string date);
     }
 
     public class StaticsticService : IStaticsticService
@@ -20,9 +20,9 @@ namespace ElectronicStore.Service
         {
             this.orderRepositories = orderRepositories;
         }
-        public IEnumerable<ProfitAndRevenueProjection> GetStaticsticProfitAndRevenuePerWeek(string date)
+        public IEnumerable<ProfitAndRevenueProjection> GetWeeklyProfitAndRevenue(string date)
         {
-            return orderRepositories.GetStaticsticProfitAndRevenuePerWeek(date);
+            return orderRepositories.GetWeeklyProfitAndRevenue(date);
         }
     }
 }

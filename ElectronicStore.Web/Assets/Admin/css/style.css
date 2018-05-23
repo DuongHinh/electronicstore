@@ -65,3 +65,16 @@ list-inline {
     font-weight: bold;
     text-align: center;
 }
+
+ #clock {
+        margin: auto;
+        width: 100% !important;
+        padding: 30px;
+        font-family: Verdana;
+        background: teal;
+        color: white;
+        font-size: 3em;
+        border-radius: 0px;
+        font-weight: bold;
+        text-align: center;
+    }
