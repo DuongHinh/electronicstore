@@ -172,6 +172,7 @@
     <Compile Include="Repositories\ProductCategoryRepositories.cs" />
     <Compile Include="Repositories\ProductRepositories.cs" />
     <Compile Include="Repositories\ProductTagRepositories.cs" />
+    <Compile Include="Repositories\Projections\ProfitAndRevenueProjection.cs" />
     <Compile Include="Repositories\RoleGroupRepositories.cs" />
     <Compile Include="Repositories\RoleRepositories.cs" />
     <Compile Include="Repositories\TagRepositories.cs" />

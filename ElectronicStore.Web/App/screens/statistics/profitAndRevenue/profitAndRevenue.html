@@ -1,0 +1,121 @@
+﻿<div ng-controller="profitAndRevenueController">
+    <section class="content-header">
+        <h1>&nbsp;</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li><a class="link-active" ui-sref="revenue">{{title}}</a></li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title"><i class="fa fa-th-list"></i> {{title}}</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <div ng-click="pickerOpen10 = true">
+                                <label class="titleText">Tuần &nbsp;</label>
+                                <span class="soCalendar"><i class="fa fa-calendar"> &nbsp;</i></span>
+                                <input class="picker text-center" style="width: 160px;" type="text"
+                                       datepicker-append-to-body="true" datepicker-popup="MM/dd/yyyy"
+                                       is-open="pickerOpen10" placeholder="{{thisWeek | date:'MM/dd/yyyy'}}"
+                                       ng-model="selectedDate" convert-date ng-change="refresh()" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <!-- Left col -->
+                    <!--<section class="col-md-7">
+                        
+                        <div class="nav-tabs-custom">
+                          
+                            <ul class="nav nav-tabs pull-right">
+                                <li class="active"><a href="#" data-toggle="tab">Doanh thu & lợi nhuận</a></li>
+    
+                            </ul>
+                            <div class="tab-content no-padding">
+                               
+                                <canvas id="revenueChart" style="width: 100%"></canvas>
+                            </div>
+                        </div>
+
+                    </section>-->
+                   <!-- /.Left col -->
+                    <section class="col-md-7">
+                        <!-- Map box -->
+                        <div class="box box-solid">
+                            <div class="box-header">
+                                <!-- tools box -->
+                                <i class="fa fa-bar-chart"></i>
+                                <h3 class="box-title">
+                                    Biểu đồ dữ liệu thống kê
+                                </h3>
+                                <div class="pull-right">
+                                   <span style="width: 5px; height: 10px; background-color:#00a65a">&nbsp;&nbsp;&nbsp;&nbsp;</span> Doanh thu
+                                   <span style="width: 5px; height: 10px; background-color:#f56954">&nbsp;&nbsp;&nbsp;&nbsp;</span> Lợi nhuận
+                                </div>                            
+                            </div>
+                            <div class="box-body">
+                                <div class="tab-content no-padding">
+                                    <canvas id="revenueChart" style="width: 100%"></canvas>
+                                </div>
+                            </div><!-- /.box-body-->
+                            <div class="box-footer no-border">
+                            </div>
+                        </div>
+                    </section><!-- right col -->
+                    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+                    <section class="col-md-5">
+                        <!-- Map box -->
+                        <div class="box box-solid">
+                            <div class="box-header">
+                                <!-- tools box -->
+                                <i class="fa fa-table"></i>
+                                <h3 class="box-title">
+                                    Bảng dữ liệu thống kê
+                                </h3>
+                            </div>
+                            <div class="box-body">
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td>Ngày</td>
+                                            <td>Doanh thu</td>
+                                            <td>Lợi nhuận</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in sourceData">
+                                            <td>
+                                                {{arrayDays[$index] | date:'MM/dd/yyyy'}}
+                                            </td>
+                                            <td>
+                                                {{item.Revenue | currency:"":0}} đ
+                                            </td>
+                                            <td>
+                                                {{item.Profit | currency:"":0}} đ
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div><!-- /.box-body-->
+                            <div class="box-footer no-border">
+                            </div>
+                        </div>
+                    </section>
+                <!-- right col -->
+                </div><!-- /.row (main row) -->
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </section><!-- /.content -->
+</div>

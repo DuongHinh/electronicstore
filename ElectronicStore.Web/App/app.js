@@ -29,7 +29,7 @@ angular.module('electronicStoreApp.screens', [
     'electronicStoreApp.screens.groups',
     'electronicStoreApp.screens.orders',
     'electronicStoreApp.screens.feedbacks',
-    'electronicStoreApp.screens.statistics.revenue',
+    'electronicStoreApp.screens.statistics',
     'electronicStoreApp.screens.brands'
 ]);
 
@@ -44,7 +44,7 @@ angular.module('electronicStoreApp.screens.roles', []);
 angular.module('electronicStoreApp.screens.groups', []);
 angular.module('electronicStoreApp.screens.orders', []);
 angular.module('electronicStoreApp.screens.feedbacks', []);
-angular.module('electronicStoreApp.screens.statistics.revenue', []);
+angular.module('electronicStoreApp.screens.statistics', []);
 angular.module('electronicStoreApp.screens.brands', [])
 
 electronicStoreApp.config([
