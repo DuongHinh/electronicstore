@@ -27,7 +27,7 @@ namespace ElectronicStore.Data.Entities.Enum
         {
             Pending = 0,
             Done = 1,
-            Cancelled = 3
+            Cancelled = 2
         }
     }
 }
