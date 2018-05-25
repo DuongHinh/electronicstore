@@ -66,7 +66,6 @@ namespace ElectronicStore.Web.Api
                     dbProduct.CreatedBy = product.CreatedBy;
                     dbProduct.CreatedDate = product.CreatedDate;
                     dbProduct.Description = product.Description;
-                    dbProduct.HomeFlag = product.HomeFlag;
                     dbProduct.HotFlag = product.HotFlag;
                     dbProduct.Image = product.Image;
                     dbProduct.MoreImages = product.MoreImages;
@@ -76,7 +75,6 @@ namespace ElectronicStore.Web.Api
                     dbProduct.PromotionPrice = product.PromotionPrice;
                     dbProduct.Quantity = product.Quantity;
                     dbProduct.Status = product.Status;
-                    dbProduct.Tags = product.Tags;
                     dbProduct.UpdatedBy = User.Identity.Name;
                     dbProduct.UpdatedDate = DateTime.Now;
                     dbProduct.ViewCount = product.ViewCount;

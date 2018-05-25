@@ -36,15 +36,13 @@ namespace ElectronicStore.Web.Controllers
                 Quantity = p.Quantity,
                 PromotionPrice = p.PromotionPrice,
                 Description = p.Description,
-                HomeFlag = p.HomeFlag,
                 HotFlag = p.HotFlag,
                 ViewCount = p.ViewCount,
                 CreatedDate = p.CreatedDate,
                 CreatedBy = p.CreatedBy,
                 UpdatedDate = p.UpdatedDate,
                 UpdatedBy = p.UpdatedBy,
-                Status = p.Status,
-                Tags = p.Tags
+                Status = p.Status
             });
 
             var hotProductViewModel = hotProductModel.Select(p => new ProductViewModel()
@@ -59,15 +57,13 @@ namespace ElectronicStore.Web.Controllers
                 Quantity = p.Quantity,
                 PromotionPrice = p.PromotionPrice,
                 Description = p.Description,
-                HomeFlag = p.HomeFlag,
                 HotFlag = p.HotFlag,
                 ViewCount = p.ViewCount,
                 CreatedDate = p.CreatedDate,
                 CreatedBy = p.CreatedBy,
                 UpdatedDate = p.UpdatedDate,
                 UpdatedBy = p.UpdatedBy,
-                Status = p.Status,
-                Tags = p.Tags
+                Status = p.Status
             });
 
             homeViewModel.NewArrivalProducts = newArrivalProductViewModel;

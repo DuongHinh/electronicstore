@@ -67,29 +67,6 @@ namespace ElectronicStore.Service
         {
             var product = this.productRepositories.Add(Product);
             this.unitOfWork.Save();
-            if (!string.IsNullOrEmpty(Product.Tags))
-            {
-                string[] tags = Product.Tags.Split(',');
-                for (var i = 0; i < tags.Length; i++)
-                {
-                    var tagAlias = StringHelper.GetUnsignString(tags[i]);
-                    if (!this.tagRepositories.Any(x => x.Alias == tagAlias))
-                    {
-                        Tag tag = new Tag();
-                        tag.Alias = tagAlias;
-                        tag.Name = tags[i];                     
-                        tag.Type = TagType.Product;
-                        this.tagRepositories.Add(tag);
-                        this.unitOfWork.Save();
-
-                        ProductTag productTag = new ProductTag();
-                        productTag.ProductId = Product.Id;
-                        productTag.TagId = tag.Id;
-                        this.productTagRepositories.Add(productTag);
-                        //this.unitOfWork.Save();
-                    }
-                }
-            }
             return product;
         }
 
@@ -124,29 +101,6 @@ namespace ElectronicStore.Service
         public void Update(Product Product)
         {
             this.productRepositories.Update(Product);
-            if (!string.IsNullOrEmpty(Product.Tags))
-            {
-                string[] tags = Product.Tags.Split(',');
-                for (var i = 0; i < tags.Length; i++)
-                {
-                    var tagAlias = StringHelper.GetUnsignString(tags[i]);
-                    if (!this.tagRepositories.Any(x => x.Alias == tagAlias))
-                    {
-                        Tag tag = new Tag();
-                        tag.Alias = tagAlias;
-                        tag.Name = tags[i];
-                        tag.Type = TagType.Product;
-                        this.tagRepositories.Add(tag);
-                        this.unitOfWork.Save();
-
-                        this.productTagRepositories.DeleteMulti(x => x.ProductId == Product.Id);
-                        ProductTag productTag = new ProductTag();
-                        productTag.ProductId = Product.Id;
-                        productTag.TagId = tag.Id;
-                        this.productTagRepositories.Add(productTag);
-                    }
-                }
-            }
         }
 
         public IEnumerable<Product> GetNewArrival(int count)

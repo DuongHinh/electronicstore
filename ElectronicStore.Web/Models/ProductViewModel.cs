@@ -31,8 +31,6 @@ namespace ElectronicStore.Web.Models
 
         public string Description { set; get; }
 
-        public bool? HomeFlag { set; get; }
-
         public bool? HotFlag { set; get; }
 
         public int? ViewCount { set; get; }
@@ -48,8 +46,6 @@ namespace ElectronicStore.Web.Models
         public bool Status { set; get; }
 
         public virtual ProductCategoryViewModel ProductCategory { set; get; }
-
-        public string Tags { set; get; }
 
         public virtual IEnumerable<ProductTagViewModel> ProductTag { set; get; }
     }

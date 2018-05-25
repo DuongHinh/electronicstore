@@ -60,15 +60,13 @@ namespace ElectronicStore.Web.Controllers
                 Quantity = product.Quantity,
                 PromotionPrice = product.PromotionPrice,
                 Description = product.Description,
-                HomeFlag = product.HomeFlag,
                 HotFlag = product.HotFlag,
                 ViewCount = product.ViewCount,
                 CreatedDate = product.CreatedDate,
                 CreatedBy = product.CreatedBy,
                 UpdatedDate = product.UpdatedDate,
                 UpdatedBy = product.UpdatedBy,
-                Status = product.Status,
-                Tags = product.Tags
+                Status = product.Status
             };
 
             if (productViewModel.Quantity == 0)

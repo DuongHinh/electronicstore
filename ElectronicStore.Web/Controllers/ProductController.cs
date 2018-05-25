@@ -34,15 +34,13 @@ namespace ElectronicStore.Web.Controllers
                 Quantity = productModel.Quantity,
                 PromotionPrice = productModel.PromotionPrice,
                 Description = productModel.Description,
-                HomeFlag = productModel.HomeFlag,
                 HotFlag = productModel.HotFlag,
                 ViewCount = productModel.ViewCount,
                 CreatedDate = productModel.CreatedDate,
                 CreatedBy = productModel.CreatedBy,
                 UpdatedDate = productModel.UpdatedDate,
                 UpdatedBy = productModel.UpdatedBy,
-                Status = productModel.Status,
-                Tags = productModel.Tags
+                Status = productModel.Status
             };
 
             var relatedProduct = this.productService.GetReatedProducts(id, 6);
@@ -57,28 +55,17 @@ namespace ElectronicStore.Web.Controllers
                 Quantity = p.Quantity,
                 PromotionPrice = p.PromotionPrice,
                 Description = p.Description,
-                HomeFlag = p.HomeFlag,
                 HotFlag = p.HotFlag,
                 ViewCount = p.ViewCount,
                 CreatedDate = p.CreatedDate,
                 CreatedBy = p.CreatedBy,
                 UpdatedDate = p.UpdatedDate,
                 UpdatedBy = p.UpdatedBy,
-                Status = p.Status,
-                Tags = p.Tags
+                Status = p.Status
             });
 
             List<string> listImages = new JavaScriptSerializer().Deserialize<List<string>>(productViewModel.MoreImages);
             ViewBag.MoreImages = listImages;
-
-            var listTag = this.productService.GetListTagByProductId(id);
-
-            ViewBag.Tags = listTag.Select(t => new TagViewModel() {
-                Id = t.Id,
-                Name = t.Name,
-                Alias = t.Alias,
-                Type = t.Type
-            });
 
             return View(productViewModel);
         }
@@ -99,15 +86,13 @@ namespace ElectronicStore.Web.Controllers
                 Quantity = p.Quantity,
                 PromotionPrice = p.PromotionPrice,
                 Description = p.Description,
-                HomeFlag = p.HomeFlag,
                 HotFlag = p.HotFlag,
                 ViewCount = p.ViewCount,
                 CreatedDate = p.CreatedDate,
                 CreatedBy = p.CreatedBy,
                 UpdatedDate = p.UpdatedDate,
                 UpdatedBy = p.UpdatedBy,
-                Status = p.Status,
-                Tags = p.Tags
+                Status = p.Status
             });
 
             var category = this.productCategoryService.GetById(id);
@@ -157,15 +142,13 @@ namespace ElectronicStore.Web.Controllers
                 Quantity = p.Quantity,
                 PromotionPrice = p.PromotionPrice,
                 Description = p.Description,
-                HomeFlag = p.HomeFlag,
                 HotFlag = p.HotFlag,
                 ViewCount = p.ViewCount,
                 CreatedDate = p.CreatedDate,
                 CreatedBy = p.CreatedBy,
                 UpdatedDate = p.UpdatedDate,
                 UpdatedBy = p.UpdatedBy,
-                Status = p.Status,
-                Tags = p.Tags
+                Status = p.Status
             });
 
             ViewBag.Keyword = keyword;
@@ -198,27 +181,15 @@ namespace ElectronicStore.Web.Controllers
                 Quantity = p.Quantity,
                 PromotionPrice = p.PromotionPrice,
                 Description = p.Description,
-                HomeFlag = p.HomeFlag,
                 HotFlag = p.HotFlag,
                 ViewCount = p.ViewCount,
                 CreatedDate = p.CreatedDate,
                 CreatedBy = p.CreatedBy,
                 UpdatedDate = p.UpdatedDate,
                 UpdatedBy = p.UpdatedBy,
-                Status = p.Status,
-                Tags = p.Tags
+                Status = p.Status
             });
 
-            var tag = this.productService.GetTag(tagId);
-
-
-            ViewBag.Tags = new TagViewModel()
-            {
-                Id = tag.Id,
-                Name = tag.Name,
-                Alias = tag.Alias,
-                Type = tag.Type
-            };
 
             var paginationProduct = new Pagination<ProductViewModel>()
             {
