@@ -37,6 +37,8 @@ namespace ElectronicStore.Service
 
         IEnumerable<Tag> GetListTagByProductId(int id);
 
+        void IncreaseView(int id);
+
         Tag GetTag(int tagId);
 
         IEnumerable<Product> GetListProductByTag(int tagId, int page, int pageSize, string sort, out int totalRow);
@@ -226,6 +228,16 @@ namespace ElectronicStore.Service
             else
                 query = this.productRepositories.GetAll();
             return query;
+        }
+
+        public void IncreaseView(int id)
+        {
+            var product = this.productRepositories.GetSingleById(id);
+            if (product.ViewCount.HasValue)
+                product.ViewCount += 1;
+            else
+                product.ViewCount = 1;
+            this.unitOfWork.Save();
         }
     }
 }

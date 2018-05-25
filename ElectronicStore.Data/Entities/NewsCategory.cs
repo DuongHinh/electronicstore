@@ -24,12 +24,8 @@ namespace ElectronicStore.Data.Entities
 
         public int? ParentId { set; get; }
 
-        public int? DisplayOrder { set; get; }
-
         [MaxLength(256)]
         public string Image { set; get; }
-
-        public bool? HomeFlag { set; get; }
 
         public DateTime? CreatedDate { set; get; }
 

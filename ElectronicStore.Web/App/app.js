@@ -30,7 +30,9 @@ angular.module('electronicStoreApp.screens', [
     'electronicStoreApp.screens.orders',
     'electronicStoreApp.screens.feedbacks',
     'electronicStoreApp.screens.statistics',
-    'electronicStoreApp.screens.brands'
+    'electronicStoreApp.screens.brands',
+    'electronicStoreApp.screens.newsCategories',
+    'electronicStoreApp.screens.news',
 ]);
 
 
@@ -45,7 +47,9 @@ angular.module('electronicStoreApp.screens.groups', []);
 angular.module('electronicStoreApp.screens.orders', []);
 angular.module('electronicStoreApp.screens.feedbacks', []);
 angular.module('electronicStoreApp.screens.statistics', []);
-angular.module('electronicStoreApp.screens.brands', [])
+angular.module('electronicStoreApp.screens.brands', []);
+angular.module('electronicStoreApp.screens.newsCategories', []);
+angular.module('electronicStoreApp.screens.news', []);
 
 electronicStoreApp.config([
        '$stateProvider', '$urlRouterProvider',

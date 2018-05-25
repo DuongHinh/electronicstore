@@ -12,7 +12,7 @@ namespace ElectronicStore.Data.Entities
 
         [Required]
         [MaxLength(256)]
-        public string Name { set; get; }
+        public string Title { set; get; }
 
         [Required]
         [MaxLength(256)]
@@ -27,8 +27,6 @@ namespace ElectronicStore.Data.Entities
 
         [MaxLength(500)]
         public string Description { set; get; }
-
-        public string Title { set; get; }
 
         public int? ViewCount { set; get; }
 
@@ -46,8 +44,6 @@ namespace ElectronicStore.Data.Entities
 
         [ForeignKey("CategoryId")]
         public virtual NewsCategory NewsCategory { set; get; }
-
-        public string Tags { set; get; }
 
         public virtual IEnumerable<NewsTag> NewsTag { set; get; }
     }

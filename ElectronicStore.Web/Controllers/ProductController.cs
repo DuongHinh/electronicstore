@@ -22,6 +22,7 @@ namespace ElectronicStore.Web.Controllers
         // GET: Product
         public ActionResult Detail(int id)
         {
+            this.productService.IncreaseView(id);
             var productModel = this.productService.GetById(id);
             var productViewModel = new ProductViewModel() {
                 Id = productModel.Id,

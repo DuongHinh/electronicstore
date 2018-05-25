@@ -18,21 +18,6 @@
                     <!--<button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>-->
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 col-xs-6 pull-right">
-                        <a href="https://www.accuweather.com/vi/vn/hanoi/353412/weather-forecast/353412" class="aw-widget-legal">
-                            <!--
-                            By accessing and/or using this code snippet, you agree to AccuWeather’s terms and conditions (in English) which can be found at https://www.accuweather.com/en/free-weather-widgets/terms and AccuWeather’s Privacy Statement (in English) which can be found at https://www.accuweather.com/en/privacy.
-                            -->
-                        </a><div id="awcc1527064801432" class="aw-widget-current" data-locationkey="" data-unit="c" data-language="vi" data-useip="true" data-uid="awcc1527064801432"></div>
-                        <script type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
-                    </div>
-                    <div class="col-lg-6 col-xs-6">
-                        <div id="clock"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="box-body">
-                <div class="row">
                     <div class="col-lg-3 col-xs-6">
                         <!-- small box -->
                         <div class="small-box bg-aqua">
@@ -86,6 +71,19 @@
                         </div>
                     </div><!-- ./col -->
                 </div><!-- /.row -->
+
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <!--<div class="col-lg-6 col-xs-6 pull-right">
+                        <a href="https://www.accuweather.com/vi/vn/hanoi/353412/weather-forecast/353412" class="aw-widget-legal">
+                        </a><div id="awcc1527064801432" class="aw-widget-current" data-locationkey="" data-unit="c" data-language="vi" data-useip="true" data-uid="awcc1527064801432"></div>
+                        <script type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
+                    </div>-->
+                    <!--<div class="col-lg-6 col-xs-6">
+                        <div id="clock"></div>
+                    </div>-->
+                </div>
             </div><!-- /.box-body -->
             <div class="box-footer">
             </div><!-- /.box-footer-->
@@ -93,24 +91,25 @@
     </section><!-- /.content -->
 </div>
 <script>
-    function clock() {
-        var time = new Date();
-        var hour = time.getHours();
-        var minute = time.getMinutes();
-        var second = time.getSeconds();
-        if (hour < 10) {
-            hour = "0" + hour;
-        }
-        if (minute < 10) {
-            minute = "0" + minute;
-        }
-        if (second < 10) {
-            second = "0" + second;
-        }
+    //function clock() {
+    //    var time = new Date();
+    //    var hour = time.getHours();
+    //    var minute = time.getMinutes();
+    //    var second = time.getSeconds();
+    //    if (hour < 10) {
+    //        hour = "0" + hour;
+    //    }
+    //    if (minute < 10) {
+    //        minute = "0" + minute;
+    //    }
+    //    if (second < 10) {
+    //        second = "0" + second;
+    //    }
 
-        document.getElementById("clock").innerHTML = '<i class="fa fa-clock-o"></i>  &nbsp;' + hour + ":" + minute + ":" + second;
-    }
+    //    document.getElementById("clock").innerHTML = '<i class="fa fa-clock-o"></i>  &nbsp;' + hour + ":" + minute + ":" + second;
+    //    setTimeout("clock()", 1000);
+    //}
 
-    setInterval("clock()", 1000)
+    //clock();
 </script>
 

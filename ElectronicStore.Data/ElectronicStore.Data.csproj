@@ -164,6 +164,14 @@
     <Compile Include="Migrations\201805250536437_RemoveTagFiedld.Designer.cs">
       <DependentUpon>201805250536437_RemoveTagFiedld.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805251010503_RemoveCulumnTagInNewsTable.cs" />
+    <Compile Include="Migrations\201805251010503_RemoveCulumnTagInNewsTable.Designer.cs">
+      <DependentUpon>201805251010503_RemoveCulumnTagInNewsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805251020221_RemoveColumnNameInTableNews.cs" />
+    <Compile Include="Migrations\201805251020221_RemoveColumnNameInTableNews.Designer.cs">
+      <DependentUpon>201805251020221_RemoveColumnNameInTableNews.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BrandRepositories.cs" />
@@ -171,6 +179,8 @@
     <Compile Include="Repositories\FeedbackRepositories.cs" />
     <Compile Include="Repositories\GroupRepositories.cs" />
     <Compile Include="Repositories\LogErrorRepositories.cs" />
+    <Compile Include="Repositories\NewsCategoryRepositories.cs" />
+    <Compile Include="Repositories\NewsRepositories.cs" />
     <Compile Include="Repositories\OrderDetailRepositories.cs" />
     <Compile Include="Repositories\OrderRepositories.cs" />
     <Compile Include="Repositories\ProductCategoryRepositories.cs" />
@@ -228,6 +238,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805250536437_RemoveTagFiedld.resx">
       <DependentUpon>201805250536437_RemoveTagFiedld.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805251010503_RemoveCulumnTagInNewsTable.resx">
+      <DependentUpon>201805251010503_RemoveCulumnTagInNewsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805251020221_RemoveColumnNameInTableNews.resx">
+      <DependentUpon>201805251020221_RemoveColumnNameInTableNews.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -70,11 +70,16 @@
                 @Html.Raw(@Model.Description)
             </div>
             <div class="color-quality">
-               
                 <div class="color-quality-left">
-                    <h5>Số lượng : @Model.Quantity</h5>
                    
 
+
+                </div>
+                <div class="color-quality-right">
+                    <h5>Số lượng :</h5>
+                    <div class="quantity">
+                        @Model.Quantity
+                    </div>
                 </div>
                 <div class="clearfix"> </div>
             </div>

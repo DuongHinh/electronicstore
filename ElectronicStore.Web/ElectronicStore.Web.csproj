@@ -205,6 +205,8 @@
     <Compile Include="Api\FeedbackController.cs" />
     <Compile Include="Api\GroupController.cs" />
     <Compile Include="Api\HomeController.cs" />
+    <Compile Include="Api\NewsCategoryController.cs" />
+    <Compile Include="Api\NewsController.cs" />
     <Compile Include="Api\OrderController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="Api\ProductController.cs" />
@@ -259,6 +261,8 @@
     <Content Include="App\global\services\commonSvc.js" />
     <Content Include="App\global\services\feedbackSvc.js" />
     <Content Include="App\global\services\groupSvc.js" />
+    <Content Include="App\global\services\newsCategoriesSvc.js" />
+    <Content Include="App\global\services\newsSvc.js" />
     <Content Include="App\global\services\orderSvc.js" />
     <Content Include="App\global\services\productCategoriesSvc.js" />
     <Content Include="App\global\services\productSvc.js" />
@@ -280,6 +284,14 @@
     <Content Include="App\screens\login\login.css" />
     <Content Include="App\screens\login\login.html" />
     <Content Include="App\screens\login\login.js" />
+    <Content Include="App\screens\newsCategories\new.html" />
+    <Content Include="App\screens\newsCategories\edit.html" />
+    <Content Include="App\screens\newsCategories\list.html" />
+    <Content Include="App\screens\newsCategories\newsCategories.js" />
+    <Content Include="App\screens\news\edit.html" />
+    <Content Include="App\screens\news\list.html" />
+    <Content Include="App\screens\news\new.html" />
+    <Content Include="App\screens\news\news.js" />
     <Content Include="App\screens\orders\detail.html" />
     <Content Include="App\screens\orders\list.html" />
     <Content Include="App\screens\orders\orders.js" />
@@ -5152,7 +5164,6 @@
     <Folder Include="App\screens\admin\groups\" />
     <Folder Include="App\screens\admin\roles\" />
     <Folder Include="App\screens\admin\uses\" />
-    <Folder Include="App\screens\posts\" />
     <Folder Include="App\styles\" />
     <Folder Include="App_Data\" />
     <Folder Include="Assets\Admin\js\mustache\" />
