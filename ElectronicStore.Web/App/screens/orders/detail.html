@@ -89,7 +89,7 @@
                                     <tr ng-repeat="p in order.Products">
                                         <td>{{p.Name}}</td>
                                         <td><img height="100" src="{{p.Image}}" /></td>
-                                        <td>{{p.Price | currency:"":0}} đ</td>
+                                        <td>{{order.Prices[$index] | currency:"":0}} đ</td>
                                         <td>{{order.Quantities[$index]}}</td>
                                     </tr>
                                     <tr>

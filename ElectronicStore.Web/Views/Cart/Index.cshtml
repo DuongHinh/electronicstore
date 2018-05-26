@@ -37,14 +37,16 @@
                         @{ decimal @totalAmount = 0; }
                         @foreach (var item in Model)
                         {
-                            totalAmount += (item.Product.Price * item.Quantity);
+
+                            totalAmount += (item.Product.PromotionPrice.HasValue ? (item.Product.PromotionPrice.Value * item.Quantity) : (item.Product.Price * item.Quantity));
                             <tr>
                                 <td>@item.Product.Id</td>
                                 <td>@item.Product.Name</td>
                                 <td><img src="@item.Product.Image" width="100" /></td>
                                 <td><input type="number" class="txtQuantity" data-id="@item.Product.Id" value="@item.Quantity" /></td>
-                                <td>@(item.Product.Price.ToString("N0") + " đ")</td>
-                                <td>@((item.Product.Price * item.Quantity).ToString("N0") + " đ")</td>
+                                <td>@(item.Product.PromotionPrice.HasValue ? (item.Product.PromotionPrice.Value.ToString("N0") + " đ") : (item.Product.Price.ToString("N0") + " đ"))</td>
+                                
+                                <td>@(item.Product.PromotionPrice.HasValue ? ((item.Product.PromotionPrice.Value * item.Quantity).ToString("N0") + " đ") : ((item.Product.Price * item.Quantity).ToString("N0") + " đ"))</td>
                                 <td><button data-id="@item.Product.Id" class="btn-delete btn btn-danger"><i class="fa fa-minus"></i></button></td>
                             </tr>
                         }
@@ -58,10 +60,10 @@
                     </tbody>
                 </table>
                 <hr />
-                <button id="btnContinue" class="btn btn-success">Tiếp tục mua hàng</button>
+                <button id="btnContinue" class="btn btn-success">Tiếp tục mua sắm</button>
                 <button id="btnUpdate" class="btn btn-primary">Cập nhật giỏ hàng</button>
                 <button id="btnDeleteAll" class="btn btn-danger">Xoá giỏ hàng</button>
-                <button id="btnPayment" class="btn btn-info">Đặt hàng</button>
+                <button id="btnPayment" class="btn btn-info">Tiến hành đặt hàng</button>
             </div>
         }
         else

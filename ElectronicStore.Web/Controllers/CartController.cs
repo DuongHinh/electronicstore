@@ -219,7 +219,7 @@ namespace ElectronicStore.Web.Controllers
                         var detail = new OrderDetail();
                         detail.ProductId = item.Product.Id;
                         detail.Quantity = item.Quantity;
-                        detail.Price = item.Product.Price;
+                        detail.Price = item.Product.PromotionPrice.HasValue ? item.Product.PromotionPrice.Value : item.Product.Price;
                         orderDetails.Add(detail);
                         checkQuantity = this.productService.SellProduct(item.Product.Id, item.Quantity);
                     }
@@ -253,6 +253,7 @@ namespace ElectronicStore.Web.Controllers
                         builder.Append("<tbody>");
                         //decimal totalAmount = 0;
                         int[] ArrQuantity = orderDetailCreated.Quantities.ToArray();
+                        decimal[] ArrPrice = orderDetailCreated.Prices.ToArray();
                         int i = 0;
                         foreach (var item in orderDetailCreated.Products)
                         {
@@ -264,7 +265,7 @@ namespace ElectronicStore.Web.Controllers
                             builder.Append("<tr>");
                             builder.AppendFormat("<td class='text - left'>{0}</td>", item.Name);
                             builder.AppendFormat("<td class='font-weight: initial'>{0}</td>", ArrQuantity[i]);
-                            builder.AppendFormat("<td class='text - left'>{0}</td>", item.Price.ToString("N0") + " đ");
+                            builder.AppendFormat("<td class='text - left'>{0}</td>", ArrPrice[i].ToString("N0") + " đ");
                             builder.Append("</tr>");
 
                             //totalAmount += (item.Price * ArrQuantity[i]);

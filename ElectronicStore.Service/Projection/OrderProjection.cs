@@ -22,13 +22,13 @@ namespace ElectronicStore.Service.Projection
         public OrderStatus Status { get; set; }
         public IEnumerable<ProductOrderProjection> Products { get; set; }
         public IEnumerable<int> Quantities { get; set; }
+        public IEnumerable<decimal> Prices { get; set; }
     }
 
     public class ProductOrderProjection
     {
         public int Id { set; get; }
         public string Name { get; set; }
-        public decimal Price { get; set; }
         public string Image { get; set; }
     }
 }

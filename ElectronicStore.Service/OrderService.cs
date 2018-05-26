@@ -108,8 +108,9 @@ namespace ElectronicStore.Service
                                      PaymentStatus = gLine.Select(g => g.Order.PaymentStatus).FirstOrDefault(),
                                      ShipStatus = gLine.Select(g => g.Order.ShipStatus).FirstOrDefault(),
                                      Status = gLine.Select(g => g.Order.Status).FirstOrDefault(),
-                                     Products = gLine.Select(g => g.Product).Select(p => new ProductOrderProjection { Name = p.Name, Price = p.Price, Image = p.Image }),
-                                     Quantities = gLine.Select(g => g.Quantity)
+                                     Products = gLine.Select(g => g.Product).Select(p => new ProductOrderProjection { Name = p.Name, Image = p.Image }),
+                                     Quantities = gLine.Select(g => g.Quantity),
+                                     Prices = gLine.Select(g => g.Price)
                                  }).ToList();
 
                 if (!string.IsNullOrWhiteSpace(keyword))
@@ -148,8 +149,9 @@ namespace ElectronicStore.Service
                                       PaymentStatus = gLine.Select(g => g.Order.PaymentStatus).FirstOrDefault(),
                                       ShipStatus = gLine.Select(g => g.Order.ShipStatus).FirstOrDefault(),
                                       Status = gLine.Select(g => g.Order.Status).FirstOrDefault(),
-                                      Products = gLine.Select(g => g.Product).Select(p => new ProductOrderProjection{ Id = p.Id, Name = p.Name, Price = p.Price, Image = p.Image }),
-                                      Quantities = gLine.Select(g => g.Quantity)
+                                      Products = gLine.Select(g => g.Product).Select(p => new ProductOrderProjection { Id = p.Id, Name = p.Name, Image = p.Image }),
+                                      Quantities = gLine.Select(g => g.Quantity),
+                                      Prices = gLine.Select(g => g.Price)
                                   }).FirstOrDefault();
             }
 
