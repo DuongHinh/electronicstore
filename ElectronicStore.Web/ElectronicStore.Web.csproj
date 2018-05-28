@@ -225,6 +225,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -240,6 +241,8 @@
     <Compile Include="Models\FooterViewModel.cs" />
     <Compile Include="Models\GroupViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\NewsCategoryViewModel.cs" />
+    <Compile Include="Models\NewsViewModel.cs" />
     <Compile Include="Models\OrderDetailViewModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\ProductCategoryViewModel.cs" />
@@ -5161,6 +5164,9 @@
     <Content Include="Views\Cart\Order.cshtml" />
     <Content Include="Views\Cart\OrderErrors.cshtml" />
     <Content Include="Views\Cart\OrderSuccess.cshtml" />
+    <Content Include="Views\Shared\NewsCategory.cshtml" />
+    <Content Include="Views\News\Category.cshtml" />
+    <Content Include="Views\News\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\screens\admin\groups\" />

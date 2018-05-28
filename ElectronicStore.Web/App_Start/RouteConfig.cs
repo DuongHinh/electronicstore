@@ -46,6 +46,20 @@ namespace ElectronicStore.Web
             );
 
             routes.MapRoute(
+                 name: "New Category",
+                 url: "{alias}.nc-{id}",
+                 defaults: new { controller = "News", action = "Category", id = UrlParameter.Optional },
+                 namespaces: new string[] { "ElectronicStore.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+               name: "News Detail",
+               url: "{alias}.n-{id}",
+               defaults: new { controller = "News", action = "Detail", id = UrlParameter.Optional },
+               namespaces: new string[] { "ElectronicStore.Web.Controllers" }
+           );
+
+            routes.MapRoute(
                name: "SignUp",
                url: "sign-up",
                defaults: new { controller = "Account", action = "SignUp", id = UrlParameter.Optional },

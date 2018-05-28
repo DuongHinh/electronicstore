@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ElectronicStore.Web.Models.NewsViewModel>
+@{
+    var category = (ElectronicStore.Web.Models.NewsCategoryViewModel)ViewBag.Category;
+    ViewBag.Title = "Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+	<!-- breadcrumbs -->
+<div class="breadcrumb_dress">
+    <div class="container">
+        <ul>
+            <li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> <i>/</i></li>
+            <li>@category.Name</li>
+        </ul>
+    </div>
+</div>
+<!-- //breadcrumbs -->
+<!-- faq -->
+<div class="faq">
+    <div class="container">
+        @if (Model.Count() > 0)
+        {
+            <div class="w3l_faq_grids">
+                @foreach (var item in Model)
+                {
+                    var url = "/" + item.Alias + ".n-" + item.Id;
+                    
+                    <div class="w3l_faq_grid">
+                        <a href="@url"><h3>@item.Title</h3></a>
+                        <p>
+                            @item.Description
+                        </p>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p class="text-center">Không có bản ghi nào được tìm thấy</p>
+        }
+       
+    </div>
+</div>

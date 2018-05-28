@@ -23,6 +23,8 @@ namespace ElectronicStore.Service
 
         News GetById(int id);
 
+        IEnumerable<News> GetListNewstByCategoryId(int categoryId);
+
         void Save();
     }
     public class NewsService : INewsService
@@ -64,6 +66,11 @@ namespace ElectronicStore.Service
         public News GetById(int id)
         {
             return this.newsRepositories.GetSingleById(id);
+        }
+
+        public IEnumerable<News> GetListNewstByCategoryId(int categoryId)
+        {
+            return this.newsRepositories.GetMulti(x => x.Status && x.CategoryId == categoryId);
         }
 
         public void Save()

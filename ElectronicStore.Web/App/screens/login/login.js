@@ -24,7 +24,7 @@
 		    $scope.login = function () {
 		        authSvc.login($scope.loginData.username, $scope.loginData.password).then(function (response) {
 		            if (response != null && response.error != undefined) {
-		                console.log(response.error_description);
+		                alert(response.error_description);
 		            }
 		            else {
 		                $state.go('home', {}, { reload: true });

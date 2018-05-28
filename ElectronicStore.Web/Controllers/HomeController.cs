@@ -15,12 +15,14 @@ namespace ElectronicStore.Web.Controllers
         private IProductService productService;
         private IContactService contactService;
         private IBrandService brandService;
-        public HomeController(IProductCategoryService productCategoryService, IProductService productService, IContactService contactService, IBrandService brandService)
+        private INewsCategoryService newsCategoryService;
+        public HomeController(IProductCategoryService productCategoryService, IProductService productService, IContactService contactService, IBrandService brandService, INewsCategoryService newsCategoryService)
         {
             this.productCategoryService = productCategoryService;
             this.productService = productService;
             this.contactService = contactService;
             this.brandService = brandService;
+            this.newsCategoryService = newsCategoryService;
         }
         // GET: Home
         public ActionResult Index()
@@ -167,6 +169,27 @@ namespace ElectronicStore.Web.Controllers
                 DisplayOrder = c.ParentId,
                 Image = c.Image,
                 HomeFlag = c.HomeFlag,
+                CreatedDate = c.CreatedDate,
+                CreatedBy = c.CreatedBy,
+                UpdatedDate = c.UpdatedDate,
+                UpdatedBy = c.UpdatedBy,
+                Status = c.Status
+            });
+            return PartialView(viewModel);
+        }
+
+        [ChildActionOnly]
+        public ActionResult NewsCategory()
+        {
+            var model = this.newsCategoryService.GetAll();
+            var viewModel = model.Select(c => new NewsCategoryViewModel()
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Alias = c.Alias,
+                Description = c.Description,
+                ParentId = c.ParentId,
+                Image = c.Image,
                 CreatedDate = c.CreatedDate,
                 CreatedBy = c.CreatedBy,
                 UpdatedDate = c.UpdatedDate,
