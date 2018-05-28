@@ -96,27 +96,12 @@
         <h3>Hãng sản xuất</h3>
         <div class="sliderfig">
             <ul id="flexiselDemo1">
-                <li>
-                    <img src="/Assets/Client/images/tb1.jpg" alt="" class="img-responsive" />
-                </li>
-                <li>
-                    <img src="/Assets/Client/images/tb2.jpg" alt="" class="img-responsive" />
-                </li>
-                <li>
-                    <img src="/Assets/Client/images/tb3.jpg" alt="" class="img-responsive" />
-                </li>
-                <li>
-                    <img src="/Assets/Client/images/tb5.jpg" alt="" class="img-responsive" />
-                </li>
-                <li>
-                    <img src="/Assets/Client/images/tb6.jpg" alt="" class="img-responsive" />
-                </li>
-                <li>
-                    <img src="/Assets/Client/images/tb7.jpg" alt="" class="img-responsive" />
-                </li>
-                <li>
-                    <img src="/Assets/Client/images/tb8.jpg" alt="" class="img-responsive" />
-                </li>
+                @foreach (var brand in Model.Brands)
+                {
+                    <li>
+                        <img src="@brand.Logo" alt="@brand.Logo" class="img-responsive" />
+                    </li>
+                }
             </ul>
         </div>
         <script type="text/javascript">

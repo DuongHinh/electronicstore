@@ -1,5 +1,7 @@
 ﻿@model ElectronicStore.Web.Core.Pagination<ElectronicStore.Web.Models.ProductViewModel>
 @{
+    var listCategory = (IEnumerable<ElectronicStore.Web.Models.ProductCategoryViewModel>)ViewBag.ListCategory;
+    var listBrand = (IEnumerable<ElectronicStore.Web.Models.BrandViewModel>)ViewBag.ListBrand;
     var keyword = ViewBag.Keyword;
     var pageIndex = Model.CurrentPage;
     var startPageIndex = Math.Max(1, Model.CurrentPage - Model.MaxPage / 2);
@@ -24,90 +26,31 @@
         <div class="w3ls_mobiles_grids">
             <div class="col-md-4 w3ls_mobiles_grid_left">
                 <div class="w3ls_mobiles_grid_left_grid">
-                    <h3>Categories</h3>
+                    <h3>Danh mục</h3>
                     <div class="w3ls_mobiles_grid_left_grid_sub">
-                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingOne">
-                                    <h4 class="panel-title asd">
-                                        <a class="pa_italic" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>New Arrivals
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                    <div class="panel-body panel_text">
-                                        <ul>
-                                            <li><a href="products.html">Mobiles</a></li>
-                                            <li><a href="products1.html">Laptop</a></li>
-                                            <li><a href="products2.html">Tv</a></li>
-                                            <li><a href="products.html">Wearables</a></li>
-                                            <li><a href="products2.html">Refrigerator</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingTwo">
-                                    <h4 class="panel-title asd">
-                                        <a class="pa_italic collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>Accessories
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                    <div class="panel-body panel_text">
-                                        <ul>
-                                            <li><a href="products2.html">Grinder</a></li>
-                                            <li><a href="products2.html">Heater</a></li>
-                                            <li><a href="products2.html">Kid's Toys</a></li>
-                                            <li><a href="products2.html">Filters</a></li>
-                                            <li><a href="products2.html">AC</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <ul class="panel_bottom">
-                            <li><a href="products.html">Summer Store</a></li>
-                            <li><a href="products.html">Featured Brands</a></li>
-                            <li><a href="products.html">Today's Deals</a></li>
-                            <li><a href="products.html">Latest Watches</a></li>
+                            @foreach (var ct in listCategory)
+                            {
+                                var url = "/" + ct.Alias + ".pc-" + ct.Id;
+                                <li><a href="@url">@ct.Name</a></li>
+                            }
                         </ul>
                     </div>
                 </div>
                 <div class="w3ls_mobiles_grid_left_grid">
-                    <h3>Price</h3>
+                    <h3>Nhà sản xuất</h3>
                     <div class="w3ls_mobiles_grid_left_grid_sub">
-                        <div class="ecommerce_color ecommerce_size">
-                            <ul>
-                                <li><a href="#">Below $ 100</a></li>
-                                <li><a href="#">$ 100-500</a></li>
-                                <li><a href="#">$ 1k-10k</a></li>
-                                <li><a href="#">$ 10k-20k</a></li>
-                                <li><a href="#">$ Above 20k</a></li>
-                            </ul>
-                        </div>
+                        <ul class="panel_bottom">
+                            @foreach (var item in listBrand)
+                            {
+                                <li><a href="products.html">@item.Name</a></li>
+                            }
+                        </ul>
                     </div>
                 </div>
+    
             </div>
             <div class="col-md-8 w3ls_mobiles_grid_right">
-                <div class="col-md-6 w3ls_mobiles_grid_right_left">
-                    <div class="w3ls_mobiles_grid_right_grid1">
-                        <img src="/Assets/Client/images/46.jpg" alt="" class="img-responsive" />
-                        <div class="w3ls_mobiles_grid_right_grid1_pos1">
-                            <h3>Smart Phones<span>Up To</span> 15% Discount</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 w3ls_mobiles_grid_right_left">
-                    <div class="w3ls_mobiles_grid_right_grid1">
-                        <img src="/Assets/Client/images/47.jpg" alt="" class="img-responsive" />
-                        <div class="w3ls_mobiles_grid_right_grid1_pos">
-                            <h3>Top 10 Latest<span>Mobile </span>& Accessories</h3>
-                        </div>
-                    </div>
-                </div>
                 <div class="clearfix"> </div>
 
                 <div class="w3ls_mobiles_grid_right_grid2">
@@ -117,7 +60,7 @@
                     <div class="w3ls_mobiles_grid_right_grid2_right">
                         <ul class="sort_nav">
                             <li>Sắp xếp theo : </li>
-                            <li><a class="active" href="?keyword=@keyword&page=@Model.CurrentPage&sort=popular">Phổ biến nhất </a></li> |
+                            <li><a class="active" href="?keyword=@keyword&page=@Model.CurrentPage&sort=view_count">Xem nhiều nhất </a></li> |
                             <li><a href="?keyword=@keyword&page=@Model.CurrentPage&sort=new">Mới nhất </a></li> |
                             <li><a href="?keyword=@keyword&page=@Model.CurrentPage&sort=price_asc">Giá: thấp > cao </a></li> |
                             <li><a href="?keyword=@keyword&page=@Model.CurrentPage&sort=price_desc">Giá: thấp < cao </a></li>

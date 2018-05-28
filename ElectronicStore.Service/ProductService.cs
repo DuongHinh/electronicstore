@@ -121,7 +121,7 @@ namespace ElectronicStore.Service
 
             switch (sort)
             {
-                case "popular":
+                case "view_count":
                     query = query.OrderByDescending(x => x.ViewCount);
                     break;
                 case "price_asc":
@@ -151,7 +151,7 @@ namespace ElectronicStore.Service
 
             switch (sort)
             {
-                case "popular":
+                case "view_count":
                     query = query.OrderByDescending(x => x.ViewCount);
                     break;
                 case "price_asc":
@@ -192,7 +192,7 @@ namespace ElectronicStore.Service
 
             switch (sort)
             {
-                case "popular":
+                case "view_count":
                     query = query.OrderByDescending(x => x.ViewCount);
                     break;
                 case "price_asc":

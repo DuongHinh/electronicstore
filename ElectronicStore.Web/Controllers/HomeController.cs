@@ -13,11 +13,14 @@ namespace ElectronicStore.Web.Controllers
     {
         private IProductCategoryService productCategoryService;
         private IProductService productService;
-
-        public HomeController(IProductCategoryService productCategoryService, IProductService productService)
+        private IContactService contactService;
+        private IBrandService brandService;
+        public HomeController(IProductCategoryService productCategoryService, IProductService productService, IContactService contactService, IBrandService brandService)
         {
             this.productCategoryService = productCategoryService;
             this.productService = productService;
+            this.contactService = contactService;
+            this.brandService = brandService;
         }
         // GET: Home
         public ActionResult Index()
@@ -25,6 +28,7 @@ namespace ElectronicStore.Web.Controllers
             var homeViewModel = new HomeViewModel();
             var newArrivalProductModel = this.productService.GetNewArrival(4);
             var hotProductModel = this.productService.GetHotProduct(4);
+            var brandsModel = this.brandService.GetAll();
             var newArrivalProductViewModel = newArrivalProductModel.Select(p => new ProductViewModel() {
                 Id = p.Id,
                 Name = p.Name,
@@ -66,8 +70,19 @@ namespace ElectronicStore.Web.Controllers
                 Status = p.Status
             });
 
+            var brandsViewModel = brandsModel.Select(b => new BrandViewModel()
+            {
+                Id = b.Id,
+                Name = b.Name,
+                Logo = b.Logo,
+                Description = b.Description,
+                Alias = b.Alias,
+                Status = b.Status,
+            });
+
             homeViewModel.NewArrivalProducts = newArrivalProductViewModel;
             homeViewModel.HotProducts = hotProductViewModel;
+            homeViewModel.Brands = brandsViewModel;
 
             return View(homeViewModel);
         }
@@ -87,7 +102,41 @@ namespace ElectronicStore.Web.Controllers
         [ChildActionOnly]
         public ActionResult Footer()
         {
-            return PartialView();
+            var footerViewModel = new FooterViewModel();
+            var productCategoriesModel = this.productCategoryService.GetAll();
+            var contactModel = this.contactService.GetInforContact();
+
+            var productCategoriesViewModel = productCategoriesModel.Select(c => new ProductCategoryViewModel()
+            {
+               Id = c.Id,
+               Name = c.Name,
+               Alias = c.Alias,
+               Description = c.Description,
+               ParentId = c.ParentId,
+               DisplayOrder = c.DisplayOrder,
+               Image = c.Image,
+               HomeFlag = c.HomeFlag,
+               CreatedDate = c.CreatedDate,
+               CreatedBy = c.CreatedBy,
+               UpdatedDate = c.UpdatedDate,
+               UpdatedBy = c.UpdatedBy,
+               Status = c.Status
+            });
+
+            var contactViewModel = new ContactViewModel();
+            contactViewModel.Id = contactModel.Id;
+            contactViewModel.Name = contactModel.Name;
+            contactViewModel.Address = contactModel.Address;
+            contactViewModel.Email = contactModel.Email;
+            contactViewModel.PhoneNumber = contactModel.PhoneNumber;
+            contactViewModel.Fax = contactModel.Fax;
+            contactViewModel.Other = contactModel.Other;
+            contactViewModel.Status = contactModel.Status;
+
+            footerViewModel.ContactInfo = contactViewModel;
+            footerViewModel.ProductCategories = productCategoriesViewModel;
+
+            return PartialView(footerViewModel);
         }
 
         public ActionResult About()

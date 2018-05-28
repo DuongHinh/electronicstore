@@ -12,12 +12,14 @@ namespace ElectronicStore.Web.Controllers
 {
     public class ProductController : Controller
     {
-        IProductService productService;
-        IProductCategoryService productCategoryService;
-        public ProductController(IProductService productService, IProductCategoryService productCategoryService)
+        private IProductService productService;
+        private IProductCategoryService productCategoryService;
+        private IBrandService brandService;
+        public ProductController(IProductService productService, IProductCategoryService productCategoryService, IBrandService brandService)
         {
             this.productService = productService;
             this.productCategoryService = productCategoryService;
+            this.brandService = brandService;
         }
         // GET: Product
         public ActionResult Detail(int id)
@@ -114,6 +116,35 @@ namespace ElectronicStore.Web.Controllers
                 Status = category.Status
             };
 
+            var lstCategory = this.productCategoryService.GetAll();
+            ViewBag.ListCategory = lstCategory.Select(c => new ProductCategoryViewModel()
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Alias = c.Alias,
+                Description = c.Description,
+                ParentId = c.ParentId,
+                DisplayOrder = c.DisplayOrder,
+                Image = c.Image,
+                HomeFlag = c.HomeFlag,
+                CreatedDate = c.CreatedDate,
+                CreatedBy = c.CreatedBy,
+                UpdatedDate = c.UpdatedDate,
+                UpdatedBy = c.UpdatedBy,
+                Status = c.Status
+            });
+
+            var lstBrand = this.brandService.GetAll();
+            ViewBag.ListBrand = lstBrand.Select(b => new BrandViewModel()
+            {
+                Id = b.Id,
+                Name = b.Name,
+                Logo = b.Logo,
+                Description = b.Description,
+                Alias = b.Alias,
+                Status = b.Status,
+            });
+
             var paginationProduct = new Pagination<ProductViewModel>()
             {
                 PageSize = pageSize,
@@ -153,6 +184,36 @@ namespace ElectronicStore.Web.Controllers
             });
 
             ViewBag.Keyword = keyword;
+
+            var lstCategory = this.productCategoryService.GetAll();
+            ViewBag.ListCategory = lstCategory.Select(c => new ProductCategoryViewModel()
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Alias = c.Alias,
+                Description = c.Description,
+                ParentId = c.ParentId,
+                DisplayOrder = c.DisplayOrder,
+                Image = c.Image,
+                HomeFlag = c.HomeFlag,
+                CreatedDate = c.CreatedDate,
+                CreatedBy = c.CreatedBy,
+                UpdatedDate = c.UpdatedDate,
+                UpdatedBy = c.UpdatedBy,
+                Status = c.Status
+            });
+
+            var lstBrand = this.brandService.GetAll();
+            ViewBag.ListBrand = lstBrand.Select(b => new BrandViewModel()
+            {
+                Id = b.Id,
+                Name = b.Name,
+                Logo = b.Logo,
+                Description = b.Description,
+                Alias = b.Alias,
+                Status = b.Status,
+            });
+
             var paginationProduct = new Pagination<ProductViewModel>()
             {
                 PageSize = pageSize,
