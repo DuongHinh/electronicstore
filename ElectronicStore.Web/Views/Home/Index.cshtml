@@ -98,8 +98,9 @@
             <ul id="flexiselDemo1">
                 @foreach (var brand in Model.Brands)
                 {
-                    <li>
-                        <img src="@brand.Logo" alt="@brand.Logo" class="img-responsive" />
+                    var url = "/" + brand.Alias + ".b-" + brand.Id;
+                    <li>                      
+                        <a href="@url"><img src="@brand.Logo" alt="@brand.Logo" class="img-responsive" /></a>
                     </li>
                 }
             </ul>
