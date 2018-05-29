@@ -13,7 +13,7 @@ namespace ElectronicStore.Fulcrum
         {
 
         }
-        public string SessionCart = ConfigurationManager.AppSettings["CartSession"].ToString();
+        public string SessionCart = "CART_SESSION";
 
         public string FromEmailAddress = ConfigurationManager.AppSettings["FromEmailAddress"].ToString();
 

@@ -122,9 +122,19 @@ namespace ElectronicStore.Web.Controllers
             foreach (var item in sessionCart)
             {
                 var jsonItem = jsonCart.SingleOrDefault(x => x.Product.Id == item.Product.Id);
+                var product = this.productService.GetById(jsonItem.Product.Id);
 
-                if (jsonItem != null)
+                if (jsonItem != null && product != null)
                 {
+                    if (jsonItem.Quantity > product.Quantity)
+                    {
+                        return Json(new
+                        {
+                            status = false,
+                            productName = product.Name
+                        });
+                    }
+
                     item.Quantity = jsonItem.Quantity;
                 }
             }
@@ -212,7 +222,6 @@ namespace ElectronicStore.Web.Controllers
                 {
                     var cart = (List<CartItemViewModel>)Session[this.appSettings.SessionCart];
                     List<OrderDetail> orderDetails = new List<OrderDetail>();
-                    bool checkQuantity = true;
                    
                     foreach (var item in cart)
                     {
@@ -221,7 +230,7 @@ namespace ElectronicStore.Web.Controllers
                         detail.Quantity = item.Quantity;
                         detail.Price = item.Product.PromotionPrice.HasValue ? item.Product.PromotionPrice.Value : item.Product.Price;
                         orderDetails.Add(detail);
-                        checkQuantity = this.productService.SellProduct(item.Product.Id, item.Quantity);
+                        this.productService.SellProduct(item.Product.Id, item.Quantity);
                     }
 
                     this.orderService.CreateOrder(order, orderDetails);

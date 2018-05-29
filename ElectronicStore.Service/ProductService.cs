@@ -39,7 +39,7 @@ namespace ElectronicStore.Service
 
         IEnumerable<Product> GetListProductByBrandId(int brandId, int page, int pageSize, string sort, out int totalRow);
 
-        bool SellProduct(int productId, int quantity);
+        void SellProduct(int productId, int quantity);
 
         IEnumerable<Product> GetListProduct(string keyword);
 
@@ -197,13 +197,15 @@ namespace ElectronicStore.Service
             return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
-        public bool SellProduct(int productId, int quantity)
+        public void SellProduct(int productId, int quantity)
         {
             var product = this.productRepositories.GetSingleById(productId);
             if (product.Quantity < quantity)
-                return false;
-            product.Quantity -= quantity;
-            return true;
+                product.Quantity = 0;
+            else
+            {
+                product.Quantity -= quantity;
+            }
         }
 
         public IEnumerable<Product> GetListProduct(string keyword)

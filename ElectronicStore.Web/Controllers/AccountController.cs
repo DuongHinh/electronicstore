@@ -1,5 +1,6 @@
 ﻿using BotDetect.Web.Mvc;
 using ElectronicStore.Data.Entities;
+using ElectronicStore.Fulcrum;
 using ElectronicStore.Web.App_Start;
 using ElectronicStore.Web.Models;
 using Microsoft.AspNet.Identity;
@@ -17,11 +18,12 @@ namespace ElectronicStore.Web.Controllers
     {
         private ApplicationSignInManager signInManager;
         private ApplicationUserManager userManager;
-
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        private AppSettings appSettings;
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, AppSettings appSettings)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            this.appSettings = appSettings;
         }
 
         public ApplicationSignInManager SignInManager
@@ -88,14 +90,7 @@ namespace ElectronicStore.Web.Controllers
                 await this.userManager.CreateAsync(user, model.Password);
 
                 var userCreate = await this.userManager.FindByEmailAsync(model.Email);
-                //if (userCreate != null)
-                //    await this.userManager.AddToRolesAsync(userCreate.Id, new string[] { "User" });
-
-                //string content = System.IO.File.ReadAllText(Server.MapPath("/Assets/client/template/newuser.html"));
-                //content = content.Replace("{{UserName}}", adminUser.FullName);
-                //content = content.Replace("{{Link}}", ConfigHelper.GetByKey("CurrentLink") + "dang-nhap.html");
-
-                //MailHelper.SendMail(adminUser.Email, "Đăng ký thành công", content);
+               
 
                 ViewData["SuccessMessage"] = "Đăng ký thành công";
             }
@@ -149,7 +144,7 @@ namespace ElectronicStore.Web.Controllers
         {
             IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
             authenticationManager.SignOut();
-            Session[ConfigurationManager.AppSettings["CartSession"].ToString()] = null;
+            Session[this.appSettings.SessionCart] = null;
             return Redirect("/");
         }
     }

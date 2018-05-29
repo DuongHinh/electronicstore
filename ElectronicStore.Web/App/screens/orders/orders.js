@@ -52,7 +52,7 @@
                 }
                 orderSvc.getListOrder($scope.keyword, $scope.orderStatus).then(function (response) {
                     $scope.orders = response.data;
-                    console.log($scope.orders);
+                    //console.log($scope.orders);
                     $scope.loading = false;
                 }, function (error) {
                     $scope.loading = false;
@@ -82,6 +82,7 @@
                 orderSvc.getOrderDetail(parseInt($stateParams.id)).then(function (response) {
                     $scope.order = response.data;
                     console.log($scope.order);
+                    $scope.oldStatus = response.data.Status;
                     $scope.loading = false;
                 }, function (error) {
                     $scope.loading = false;

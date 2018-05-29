@@ -20,12 +20,19 @@ namespace ElectronicStore.Web.Api
         private IOrderDetailService orderDetailService;
         private IOrderService orderService;
         private IMailService mailService;
-        public OrderController(ILogErrorService logErrorService, IOrderDetailService orderDetailService, IOrderService orderService, IMailService mailService) : base(logErrorService)
+        private IProductService productService;
+        public OrderController(ILogErrorService logErrorService, 
+                                IOrderDetailService orderDetailService, 
+                                IOrderService orderService, 
+                                IMailService mailService,
+                                IProductService productService
+                                ) : base(logErrorService)
         {
             this.orderDetailService = orderDetailService;
             this.orderService = orderService;
             this.logErrorService = logErrorService;
             this.mailService = mailService;
+            this.productService = productService;
         }
 
         [Route("getall")]
@@ -76,6 +83,30 @@ namespace ElectronicStore.Web.Api
                     response = request.CreateResponse(HttpStatusCode.Created, dbOrder);
 
                     var orderDetail = this.orderService.GetDetailOrderByOrderId(orderVm.Id);
+
+                    if (orderDetail != null && orderVm.Status == OrderStatus.Cancelled)
+                    {
+                        int[] ArrQuantity = orderDetail.Quantities.ToArray();
+                        int i = 0;
+                        foreach (var item in orderDetail.Products)
+                        {
+                            if (i == orderDetail.Products.Count())
+                            {
+                                break;
+                            }
+                            var dbProduct = this.productService.GetById(item.Id);
+                            if (dbProduct != null)
+                            {
+                                dbProduct.Quantity += ArrQuantity[i];
+                                this.productService.Update(dbProduct);
+                                this.productService.Save();
+                            }
+
+                            i++;
+                        }
+                    }
+
+
                     if (orderDetail != null && orderVm.PaymentStatus == PaymentStatus.Paid && dbOrder.PaymentStatus != orderVm.PaymentStatus)
                     {
                         string title = "Thanh toán thành công đơn hàng từ Electrolic Store";

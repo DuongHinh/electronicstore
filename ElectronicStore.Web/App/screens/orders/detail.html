@@ -30,7 +30,7 @@
                                         <td width="25%">{{order.OrderId}}</td>
                                         <td width="25%"><label>Trạng thái</label></td>
                                         <td width="25%">
-                                            <select class="form-control"
+                                            <select class="form-control" ng-disabled="oldStatus == 2"
                                                     ng-options="s.id as s.value for s in statusArr"
                                                     ng-model="order.Status"></select>
                                         </td>

@@ -29,6 +29,11 @@
                     if (res.status == true) {
                         window.location.href = "/shopping-cart";
                     }
+
+                    if (res.status == false) {
+                        alert(res.productName + " không đủ hàng");
+                        window.location.href = "/shopping-cart";
+                    }
                 }
             })
         });
