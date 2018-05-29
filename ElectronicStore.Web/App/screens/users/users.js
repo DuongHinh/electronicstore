@@ -83,7 +83,7 @@
 		function ($scope, $state, $log, $stateParams, $rootScope, productSvc, productCategoriesSvc, commonSvc, userSvc, groupSvc) {
 
 		    $scope.title = 'Thêm mới người dùng';
-
+		    $scope.submitted = false;
 		    $scope.user = {
 		        Groups: []
 		    }
@@ -91,14 +91,52 @@
 		    var loadGroup = function () {
 		        groupSvc.getAll().then(function (response) {
 		            $scope.groups = response.data;
-		            console.log($scope.groups);
+		            //console.log($scope.groups);
 		        }, function (error) {
 		            console.log(error);
 		        });
 		    }
 		    loadGroup();
 
+		    var validateEmail = function (email) {
+		        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		        return re.test(email);
+		    }
+
 		    $scope.addNewUser = function () {
+		        $scope.submitted = true;
+		        if ($scope.user.LastName === undefined || $scope.user.LastName === '' || $scope.user.LastName === null || $scope.user.LastName.length > 256) {
+		            return;
+		        }
+
+		        if ($scope.user.FirstName === undefined || $scope.user.FirstName === '' || $scope.user.FirstName === null || $scope.user.FirstName.length > 256) {
+		            return;
+		        }
+
+		        if ($scope.user.MiddleName != null && $scope.user.MiddleName.length > 256) {
+		            return;
+		        }
+
+		        if ($scope.user.Address != null && $scope.user.Address.length > 256) {
+		            return;
+		        }
+
+		        if ($scope.user.PhoneNumber != null && $scope.user.PhoneNumber.length > 50) {
+		            return;
+		        }
+
+		        if ($scope.user.Email === undefined || $scope.user.Email === '' || $scope.user.Email === null || validateEmail($scope.user.Email) === false) {
+		            return;
+		        }
+
+		        if ($scope.user.UserName === undefined || $scope.user.UserName === '' || $scope.user.UserName === null || $scope.user.UserName.length > 256) {
+		            return;
+		        }
+
+		        if ($scope.user.Password === undefined || $scope.user.Password === '' || $scope.user.Password === null || $scope.user.Password.length < 6) {
+		            return;
+		        }
+
 		        userSvc.addNewUser($scope.user).then(function (response) {
 		            alert('Thêm mới người dùng thành công!');
 		            $state.go('users');
@@ -116,7 +154,7 @@
 		function ($scope, $state, $log, $stateParams, $rootScope, userSvc, groupSvc, commonSvc) {
 
 		    $scope.title = 'Cập nhập người dùng';
-
+		    $scope.submitted = false;
 		    $scope.user = {};
 
 		    var convertDate = function (inputDate) {
@@ -146,8 +184,43 @@
 		    }
 		    loadGroup();
 
+		    var validateEmail = function (email) {
+		        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		        return re.test(email);
+		    }
+
 
 		    $scope.updateUser = function () {
+
+		        $scope.submitted = true;
+		        if ($scope.user.LastName === undefined || $scope.user.LastName === '' || $scope.user.LastName === null || $scope.user.LastName.length > 256) {
+		            return;
+		        }
+
+		        if ($scope.user.FirstName === undefined || $scope.user.FirstName === '' || $scope.user.FirstName === null || $scope.user.FirstName.length > 256) {
+		            return;
+		        }
+
+		        if ($scope.user.MiddleName != null && $scope.user.MiddleName.length > 256) {
+		            return;
+		        }
+
+		        if ($scope.user.Address != null && $scope.user.Address.length > 256) {
+		            return;
+		        }
+
+		        if ($scope.user.PhoneNumber != null && $scope.user.PhoneNumber.length > 50) {
+		            return;
+		        }
+
+		        if ($scope.user.Email === undefined || $scope.user.Email === '' || $scope.user.Email === null || validateEmail($scope.user.Email) === false) {
+		            return;
+		        }
+
+		        if ($scope.user.UserName === undefined || $scope.user.UserName === '' || $scope.user.UserName === null || $scope.user.UserName.length > 256) {
+		            return;
+		        }
+
 		        userSvc.updateUser($scope.user).then(function (response) {
 		            alert('Cập nhật người dùng thành công!');
 		            $state.go('users');

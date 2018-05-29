@@ -85,6 +85,7 @@
 		function ($scope, $state, $log, $stateParams, $rootScope, commonSvc, groupSvc, roleSvc) {
 
 		    $scope.title = 'Thêm mới nhóm';
+		    $scope.submitted = false;
 		    $scope.group = {
 		        Id: 0,
 		        Roles: []
@@ -102,7 +103,8 @@
 
 		    $scope.addNewGroup = function () {
 		        $scope.submitted = true;
-		        if ($scope.group.Name === '' || $scope.group.Name === null || $scope.group.Name === undefined) {
+		      
+		        if ($scope.group.Name === '' || $scope.group.Name === null || $scope.group.Name === undefined || $scope.group.Name.length > 250) {
 		            return;
 		        }
 		        if ($scope.group.Description != null && $scope.group.Description.length > 250) {
@@ -148,7 +150,7 @@
 
 		    $scope.updateGroup = function () {
 		        $scope.submitted = true;
-		        if ($scope.group.Name === '' || $scope.group.Name === null || $scope.group.Name === undefined) {
+		        if ($scope.group.Name === '' || $scope.group.Name === null || $scope.group.Name === undefined || $scope.group.Name.length > 250) {
 		            return;
 		        }
 

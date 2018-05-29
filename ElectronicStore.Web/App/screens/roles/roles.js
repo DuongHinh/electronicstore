@@ -93,7 +93,7 @@
 
 		    $scope.addNewRole = function () {
 		        $scope.submitted = true;
-		        if ($scope.role.Name === '' || $scope.role.Name === null || $scope.role.Name === undefined) {
+		        if ($scope.role.Name === '' || $scope.role.Name === null || $scope.role.Name === undefined || $scope.role.Name.length > 256) {
 		            return;
 		        }
 
@@ -132,7 +132,7 @@
 
 		    $scope.updateRole = function () {
 		        $scope.submitted = true;
-		        if ($scope.role.Name === '' || $scope.role.Name === null || $scope.role.Name === undefined) {
+		        if ($scope.role.Name === '' || $scope.role.Name === null || $scope.role.Name === undefined || $scope.role.Name.length > 256) {
 		            return;
 		        }
 

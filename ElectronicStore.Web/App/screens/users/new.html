@@ -30,56 +30,55 @@
                                     <input class="form-control" placeholder="Nhập họ" type="text"
                                            ng-maxlength="128" required name="lastName" ng-model="user.LastName"
                                            ng-class="{true:'inputInvalid', false:''}[submitted && formAddUser.lastName.$error.required]">
-                                    <span ng-show="submitted && formAddUser.lastName.$error.required" class="invalid">Bạn chưa nhập tên nhóm</span>
-                                    <span ng-show="submitted && formAddUser.lastName.$error.maxlength" class="invalid"><br />Tên nhóm không được quá 128 ký tự</span>
+                                    <span ng-show="submitted && formAddUser.lastName.$error.required" class="invalid">Bạn chưa nhập họ</span>
+                                    <span ng-show="submitted && formAddUser.lastName.$error.maxlength" class="invalid"><br />Họ không được quá 128 ký tự</span>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-3"><label>Tên đệm</label></div>
                                 <div class="col-md-9">
                                     <input class="form-control" placeholder="Nhập tên đệm" type="text"
-                                           ng-maxlength="250" name="middleName" ng-model="user.MiddleName"
-                                           ng-class="{true:'inputInvalid', false:''}[submitted && formAddUser.name.$error.required]">
+                                           ng-maxlength="128" name="middleName" ng-model="user.MiddleName"
+                                           ng-class="{true:'inputInvalid', false:''}[submitted && formAddUser.middleName.$error.maxlength]">
+                                    <span ng-show="submitted && formAddUser.middleName.$error.maxlength" class="invalid"><br />Tên đệm không được quá 128 ký tự</span>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-3"><label>Tên</label></div>
                                 <div class="col-md-9">
                                     <input class="form-control" placeholder="Nhập tên" type="text"
-                                           ng-maxlength="250" required name="name" ng-model="user.FirstName"
+                                           ng-maxlength="128" required name="name" ng-model="user.FirstName"
                                            ng-class="{true:'inputInvalid', false:''}[submitted && formAddUser.name.$error.required]">
-                                    <span ng-show="submitted && formAddUser.name.$error.required" class="invalid">Bạn chưa nhập tên nhóm</span>
-                                    <span ng-show="submitted && formAddUser.name.$error.maxlength" class="invalid"><br />Tên nhóm không được quá 250 ký tự</span>
+                                    <span ng-show="submitted && formAddUser.name.$error.required" class="invalid">Bạn chưa nhập tên</span>
+                                    <span ng-show="submitted && formAddUser.name.$error.maxlength" class="invalid"><br />Tên không được quá 128 ký tự</span>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-3"><label>Địa chỉ</label></div>
                                 <div class="col-md-9">
                                     <input class="form-control" placeholder="Nhập địa chỉ" type="text"
-                                           ng-maxlength="250" required name="name" ng-model="user.Address"
-                                           ng-class="{true:'inputInvalid', false:''}[submitted && formAddUser.name.$error.required]">
-                                    <span ng-show="submitted && formAddUser.name.$error.required" class="invalid">Bạn chưa nhập tên nhóm</span>
-                                    <span ng-show="submitted && formAddUser.name.$error.maxlength" class="invalid"><br />Tên nhóm không được quá 250 ký tự</span>
+                                           ng-maxlength="256" required name="address" ng-model="user.Address"
+                                           ng-class="{true:'inputInvalid', false:''}[submitted && formAddUser.address.$error.maxlength]">
+                                    <span ng-show="submitted && formAddUser.address.$error.maxlength" class="invalid"><br />Địa chỉ không được quá 256 ký tự</span>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-3"><label>Số điện thoại</label></div>
                                 <div class="col-md-9">
                                     <input class="form-control" placeholder="Nhập số điện thoại" type="text"
-                                           ng-maxlength="250" required name="name" ng-model="user.PhoneNumber"
-                                           ng-class="{true:'inputInvalid', false:''}[submitted && formAddUser.name.$error.required]">
-                                    <span ng-show="submitted && formAddUser.name.$error.required" class="invalid">Bạn chưa nhập tên nhóm</span>
-                                    <span ng-show="submitted && formAddUser.name.$error.maxlength" class="invalid"><br />Tên nhóm không được quá 250 ký tự</span>
+                                           ng-maxlength="50" required name="phone" ng-model="user.PhoneNumber"
+                                           ng-class="{true:'inputInvalid', false:''}[submitted && formAddUser.phone.$error.maxlength]">
+                                    <span ng-show="submitted && formAddUser.phone.$error.maxlength" class="invalid"><br />Số điện thoại không được quá 50 ký tự</span>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-3"><label>Email</label></div>
                                 <div class="col-md-9">
                                     <input class="form-control" placeholder="Nhập email" type="email"
-                                           ng-maxlength="250" required name="name" ng-model="user.Email"
-                                           ng-class="{true:'inputInvalid', false:''}[submitted && formAddUser.name.$error.required]">
-                                    <span ng-show="submitted && formAddUser.name.$error.required" class="invalid">Bạn chưa nhập tên nhóm</span>
-                                    <span ng-show="submitted && formAddUser.name.$error.maxlength" class="invalid"><br />Tên nhóm không được quá 250 ký tự</span>
+                                           ng-maxlength="250" required name="email" ng-model="user.Email"
+                                           ng-class="{true:'inputInvalid', false:''}[submitted && (formAddUser.email.$error.required || formAddUser.email.$error.email)]">
+                                    <span ng-show="submitted && formAddUser.email.$error.required" class="invalid">Bạn chưa nhập email</span>
+                                    <span ng-show="submitted && formAddUser.email.$error.email" class="invalid">Địa chỉ email không hợp lệ</span>
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -88,43 +87,39 @@
                                     <input required class="pickerin form-control" id="birthday" 
                                            ng-click="pickerOpen2 = true" type="text" name="injuryDate" 
                                            readonly="readonly" datepicker-append-to-body="true" datepicker-popup="MM/dd/yyyy"
-                                           is-open="pickerOpen2" placeholder="Ngày sinh" ng-model="user.Birthday" 
+                                           is-open="pickerOpen2" placeholder="Ngày sinh" convert-date ng-model="user.Birthday" 
                                            style="font-weight: normal;" />
-                                    <span ng-show="submitted && formAddUser.name.$error.required" class="invalid">Bạn chưa nhập tên nhóm</span>
-                                    <span ng-show="submitted && formAddUser.name.$error.maxlength" class="invalid"><br />Tên nhóm không được quá 250 ký tự</span>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-3"><label>Tên tài khoản</label></div>
                                 <div class="col-md-9">
                                     <input class="form-control" placeholder="Nhập tên tài khoản" type="text"
-                                           ng-maxlength="250" required name="name" ng-model="user.UserName"
-                                           ng-class="{true:'inputInvalid', false:''}[submitted && formAddUser.name.$error.required]">
-                                    <span ng-show="submitted && formAddUser.name.$error.required" class="invalid">Bạn chưa nhập tên nhóm</span>
-                                    <span ng-show="submitted && formAddUser.name.$error.maxlength" class="invalid"><br />Tên nhóm không được quá 250 ký tự</span>
+                                           ng-maxlength="256" required name="userName" ng-model="user.UserName"
+                                           ng-class="{true:'inputInvalid', false:''}[submitted && formAddUser.userName.$error.required]">
+                                    <span ng-show="submitted && formAddUser.userName.$error.required" class="invalid">Bạn chưa nhập tên tài khoản</span>
+                                    <span ng-show="submitted && formAddUser.userName.$error.maxlength" class="invalid"><br />Tên tài khoản không được quá 256 ký tự</span>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-3"><label>Mật khẩu</label></div>
                                 <div class="col-md-9">
                                     <input class="form-control" placeholder="Nhập mật khẩu" type="password"
-                                           ng-maxlength="250" required name="name" ng-model="user.Password"
-                                           ng-class="{true:'inputInvalid', false:''}[submitted && formAddUser.name.$error.required]">
-                                    <span ng-show="submitted && formAddUser.name.$error.required" class="invalid">Bạn chưa nhập tên nhóm</span>
-                                    <span ng-show="submitted && formAddUser.name.$error.maxlength" class="invalid"><br />Tên nhóm không được quá 250 ký tự</span>
+                                           ng-minlength="6" required name="passwword" ng-model="user.Password"
+                                           ng-class="{true:'inputInvalid', false:''}[submitted && formAddUser.passwword.$error.required]">
+                                    <span ng-show="submitted && formAddUser.passwword.$error.required" class="invalid">Bạn chưa nhập mật khẩu</span>
+                                    <span ng-show="submitted && formAddUser.passwword.$error.minlength" class="invalid"><br />Mật khẩu phải chứa ít nhất 6 ký tự</span>
                                 </div>
                             </div>
                            
-                        </div>
+                    </div>
                     <div class="col-md-4 col-md-offset-1">
                         <div class="row form-group">
                             <label>Nhóm người dùng</label>
-                            <div class="form-group">
-                                <div class="checkbox" ng-repeat="group in groups">
-                                    <label>
-                                        <input class="form-check-input" type="checkbox" checklist-model="user.Groups" checklist-value="group"> {{group.Name}}
-                                    </label>
-                                </div>
+                            <div class="checkbox" ng-repeat="group in groups">
+                                <label>
+                                    <input class="form-check-input" type="checkbox" checklist-model="user.Groups" checklist-value="group"> {{group.Name}}
+                                </label>
                             </div>
                         </div>
                     </div>
