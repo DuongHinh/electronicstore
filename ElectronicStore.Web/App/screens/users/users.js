@@ -44,7 +44,7 @@
             $scope.title = 'Danh sách người dùng';
             $scope.loading = true;
             $scope.keyword = '';
-            //$scope.itemsPerPage = 10;
+            $scope.itemsPerPage = 10;
             //$scope.totalPages = 0;
             //$scope.currentPage = 1;
 

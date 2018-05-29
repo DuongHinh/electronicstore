@@ -46,7 +46,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="user in users">
+                                <tr dir-paginate="user in users | itemsPerPage : itemsPerPage">
                                     <td>{{user.FullName}}</td>
                                     <td>{{user.UserName}}</td>
                                     <td>{{user.Email}}</td>
@@ -65,25 +65,14 @@
                         <div ng-if="loading" class="text-center">
                             <img src="/Assets/Admin/images/ajax-loader-big.gif" />
                         </div>
+                        <div class="col-lg-12">
+                            <dir-pagination-controls max-size="5"
+                                                     direction-links="true"
+                                                     boundary-links="true">
+                            </dir-pagination-controls>
+                        </div>
                     </div>
-                    <!--<div class="col-lg-12" ng-if="roles.length > 0">
-                        <span class="pull-right">Trang: {{currentPage}}/{{totalPages}} - Tổng số bản ghi: {{totalItems}}</span>
-                    </div>
-                    <div class="col-lg-12">
-                        <nav class="pull-right" ng-show="totalItems > pageSize || true">
-                            <pagination total-items="totalItems"
-                                        items-per-page="itemsPerPage"
-                                        ng-model="currentPage"
-                                        max-size="5"
-                                        ng-show="totalItems > itemsPerPage"
-                                        direction-links="true"
-                                        boundary-links="true"
-                                        rotate="false"
-                                        ng-change="search()"
-                                        class="pagination-sm pull-right">
-                            </pagination>
-                        </nav>
-                    </div>-->
+                   
                 </div>
             </div><!-- /.box-body -->
         </div><!-- /.box -->

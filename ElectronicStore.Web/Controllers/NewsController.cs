@@ -1,4 +1,5 @@
 ﻿using ElectronicStore.Service;
+using ElectronicStore.Web.Core;
 using ElectronicStore.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,12 @@ namespace ElectronicStore.Web.Controllers
             return View();
         }
 
-        public ActionResult Category(int id)
+        public ActionResult Category(int id, int page = 1, string sort = "")
         {
-            var newsModel = this.newsService.GetListNewstByCategoryId(id).Where(x => x.Status);
+            int pageSize = 10;
+            int totalRow = 0;
+
+            var newsModel = this.newsService.GetListNewstByCategoryId(id, page, pageSize, sort, out totalRow);
             var newsViewModel = newsModel.Select(p => new NewsViewModel()
             {
                 Id = p.Id,
@@ -59,11 +63,21 @@ namespace ElectronicStore.Web.Controllers
                 Status = category.Status
             };
 
-            return View(newsViewModel);
+            var paginationNews = new Pagination<NewsViewModel>()
+            {
+                PageSize = pageSize,
+                Skip = (page - 1) * pageSize,
+                Results = newsViewModel,
+                MaxPage = 5,
+                TotalResults = totalRow
+            };
+
+            return View(paginationNews);
         }
 
         public ActionResult Detail(int id)
         {
+            this.newsService.IncreaseView(id);
             var newsModel = this.newsService.GetById(id);
             var newsViewModel = new NewsViewModel()
             {

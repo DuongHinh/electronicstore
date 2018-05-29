@@ -23,9 +23,12 @@ namespace ElectronicStore.Service
 
         News GetById(int id);
 
-        IEnumerable<News> GetListNewstByCategoryId(int categoryId);
+        IEnumerable<News> GetListNewstByCategoryId(int categoryId, int page, int pageSize, string sort, out int totalRow);
 
         void Save();
+
+        void IncreaseView(int id);
+
     }
     public class NewsService : INewsService
     {
@@ -68,9 +71,32 @@ namespace ElectronicStore.Service
             return this.newsRepositories.GetSingleById(id);
         }
 
-        public IEnumerable<News> GetListNewstByCategoryId(int categoryId)
+        public IEnumerable<News> GetListNewstByCategoryId(int categoryId, int page, int pageSize, string sort, out int totalRow)
         {
-            return this.newsRepositories.GetMulti(x => x.Status && x.CategoryId == categoryId);
+            var query = this.newsRepositories.GetMulti(x => x.Status && x.CategoryId == categoryId);
+            totalRow = query.Count();
+
+            switch (sort)
+            {
+                case "view_count":
+                    query = query.OrderByDescending(x => x.ViewCount);
+                    break;
+                default:
+                    query = query.OrderByDescending(x => x.CreatedDate);
+                    break;
+            }
+
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+
+        public void IncreaseView(int id)
+        {
+            var news = this.newsRepositories.GetSingleById(id);
+            if (news.ViewCount.HasValue)
+                news.ViewCount += 1;
+            else
+                news.ViewCount = 1;
+            this.unitOfWork.Save();
         }
 
         public void Save()
