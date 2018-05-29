@@ -64,7 +64,7 @@
  		'$scope', '$state', '$stateParams', '$rootScope', 'productSvc', '$ngBootbox', '$filter', 'feedbackSvc',
         function ($scope, $state, $stateParams, $rootScope, productSvc, $ngBootbox, $filter, feedbackSvc) {
 
-            $scope.title = 'Phản hồi của khách hàng';
+            $scope.title = 'Chi tiết';
             $scope.loading = true;
           
             var getDetailFeedback = function () {

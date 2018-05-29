@@ -200,8 +200,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\AboutController.cs" />
     <Compile Include="Api\AccountController.cs" />
     <Compile Include="Api\BrandController.cs" />
+    <Compile Include="Api\ContactController.cs" />
     <Compile Include="Api\FeedbackController.cs" />
     <Compile Include="Api\GroupController.cs" />
     <Compile Include="Api\HomeController.cs" />
@@ -235,6 +237,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AboutViewModel.cs" />
     <Compile Include="Models\BrandViewModel.cs" />
     <Compile Include="Models\CartItemViewModel.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
@@ -262,9 +265,11 @@
     <Content Include="App\global\common.js" />
     <Content Include="App\global\directives.js" />
     <Content Include="App\global\filters.js" />
+    <Content Include="App\global\services\aboutSvc.js" />
     <Content Include="App\global\services\authSvc.js" />
     <Content Include="App\global\services\brandSvc.js" />
     <Content Include="App\global\services\commonSvc.js" />
+    <Content Include="App\global\services\contactSvc.js" />
     <Content Include="App\global\services\feedbackSvc.js" />
     <Content Include="App\global\services\groupSvc.js" />
     <Content Include="App\global\services\newsCategoriesSvc.js" />
@@ -315,6 +320,10 @@
     <Content Include="App\screens\roles\roles.js" />
     <Content Include="App\screens\statistics\profitAndRevenue\profitAndRevenue.html" />
     <Content Include="App\screens\statistics\profitAndRevenue\profitAndRevenue.js" />
+    <Content Include="App\screens\systems\about\about.html" />
+    <Content Include="App\screens\systems\about\about.js" />
+    <Content Include="App\screens\systems\contact\contact.html" />
+    <Content Include="App\screens\systems\contact\contact.js" />
     <Content Include="App\screens\systems\feedbacks\detail.html" />
     <Content Include="App\screens\systems\feedbacks\list.html" />
     <Content Include="App\screens\systems\feedbacks\feedbacks.js" />

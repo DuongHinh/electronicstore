@@ -1,4 +1,4 @@
-﻿<div ng-controller="feedbackDetailController">
+﻿<div ng-controller="contactController">
     <section class="content-header">
         <h1>
             &nbsp;
@@ -6,8 +6,7 @@
         <ol class="breadcrumb">
             <li><a href="javascript:void(0);"><i class="fa fa-home fa-lg"></i></a></li>
             <li><a href="javascript:void(0);">Quản lý hệ thống</a></li>
-            <li><a ui-sref="feedbacks">Phản hồi của khách hàng</a></li>
-            <li><a class="link-active" ui-sref="feedbacks.detail">{{title}}</a></li>
+            <li><a class="link-active" ui-sref="contact-us">Thông tin liên hệ</a></li>
         </ol>
     </section>
     <!-- Main content -->
@@ -25,38 +24,40 @@
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
                             <div class="row form-group">
-                                <div class="col-md-3"><label>Họ Tên</label></div>
+                                <div class="col-md-3"><label>Tên</label></div>
                                 <div class="col-md-9">
-                                    <input class="form-control" type="text" readonly
-                                            name="name" ng-model="feedback.Name">
+                                    <input class="form-control" type="text" 
+                                           name="name" ng-model="contact.Name">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-3"><label>Địa chỉ</label></div>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" name="name" ng-model="contact.Address">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-3"><label>Email</label></div>
                                 <div class="col-md-9">
-                                    <input readonly class="form-control" type="text" name="middleName" ng-model="feedback.Email">
+                                    <input  class="form-control" type="text" name="middleName" ng-model="contact.Email">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-md-3"><label>Số điện thoại</label></div>
                                 <div class="col-md-9">
-                                    <input readonly class="form-control" type="text" name="name" ng-model="feedback.PhoneNumber">
+                                    <input  class="form-control" type="text" name="name" ng-model="contact.PhoneNumber">
                                 </div>
                             </div>
                             <div class="row form-group">
-                                <div class="col-md-3"><label>Ngày gửi</label></div>
+                                <div class="col-md-3"><label>Fax</label></div>
                                 <div class="col-md-9">
-                                    <input required class="pickerin form-control" id="datesend"
-                                           ng-click="pickerOpen3 = true" type="text" name="injuryDate"
-                                           readonly="readonly" datepicker-append-to-body="true" datepicker-popup="MM/dd/yyyy"
-                                           is-open="pickerOpen3" convert-date ng-model="feedback.CreatedDate"
-                                           style="font-weight: normal;" disabled/>
+                                    <input class="form-control" type="text" name="name" ng-model="contact.Fax">
                                 </div>
                             </div>
                             <div class="row form-group">
-                                <div class="col-md-3"><label>Tin nhắn</label></div>
+                                <div class="col-md-3"><label>Thông tin khác</label></div>
                                 <div class="col-md-9">
-                                    <textarea rows="10" readonly style="width: 100%" ng-model="feedback.Message"></textarea>
+                                    <textarea class="form-control" rows="6" name="name" ng-model="contact.Other" ></textarea>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +65,8 @@
                 </div><!-- /.box-body -->
                 <div class="box-footer">
                     <div class="col-md-12">
-                        <button class="btn btn-default" ui-sref="feedbacks">Back</button>
+                        <button class="btn btn-default" ui-sref="home">Huỷ</button>
+                        <button class="btn btn-primary" ng-click="update()">Lưu</button>
                     </div>
                 </div>
             </form>

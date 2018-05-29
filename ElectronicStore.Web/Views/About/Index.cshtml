@@ -1,4 +1,4 @@
-﻿
+﻿@model ElectronicStore.Web.Models.AboutViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -18,11 +18,12 @@
     <div class="container">
         <div class="w3l_faq_grids">
             <div class="w3l_faq_grid">
-                <h3>Giới thiệu về website</h3>
-                <br />
-                <p>
-                    Electronic Store chuyên cung cấp các sản phẩm máy tính, thiết bị di động của các tập đoàn công nghệ hàng đầu thế giới như  Apple, Sony, HP, Dell, Samsung, …
-                </p>
+                @if (Model != null)
+                {
+                    <h3>Giới thiệu về website</h3>
+                    <br />
+                    @Html.Raw(@Model.Description)
+                }
             </div>
         </div>
 
