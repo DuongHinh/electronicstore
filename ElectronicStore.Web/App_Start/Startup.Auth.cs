@@ -112,9 +112,7 @@ namespace ElectronicStore.Web.App_Start
                     var listGroup = applicationGroupService.GetListGroupByUserId(user.Id);
                     if (listGroup.Any(x => x.Name == "Administrator" || x.Name == "System User"))
                     {
-                        ClaimsIdentity identity = await userManager.CreateIdentityAsync(
-                                       user,
-                                       DefaultAuthenticationTypes.ExternalBearer);
+                        ClaimsIdentity identity = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ExternalBearer);
                         context.Validated(identity);
                     }
                     else
@@ -123,12 +121,6 @@ namespace ElectronicStore.Web.App_Start
                         context.SetError("invalid_role", "Bạn không có quyền truy cập");
                     }
 
-
-
-                    //ClaimsIdentity identity = await userManager.CreateIdentityAsync(
-                    //                                       user,
-                    //                                       DefaultAuthenticationTypes.ExternalBearer);
-                    //context.Validated(identity);
                 }
                 else
                 {
