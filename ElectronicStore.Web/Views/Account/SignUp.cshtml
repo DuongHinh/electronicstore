@@ -55,6 +55,8 @@
 
                     @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Mật khẩu" });
 
+                    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", placeholder = "Xác thực mật khẩu" });
+
                     <br />
                     MvcCaptcha signupCaptcha = new MvcCaptcha("signupCaptcha");
                     @Html.Captcha(signupCaptcha)

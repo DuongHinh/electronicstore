@@ -24,13 +24,19 @@ namespace ElectronicStore.Web.Models
 
         [Required(ErrorMessage = "Phải nhập mật khẩu.")]
         [MinLength(6, ErrorMessage = "Mật khẩu phải có ít nhất 6 ký tự")]
+        [DataType(DataType.Password)]
         public string Password { set; get; }
+
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Mật khẩu và xác thực không khớp.")]
+        public string ConfirmPassword { get; set; }
 
         [MaxLength(250, ErrorMessage = "Email không được quá 250 ký tự")]
         [Required(ErrorMessage = "Phải nhập email")]
         [EmailAddress(ErrorMessage = "Email không hợp lệ")]
         public string Email { set; get; }
 
+        [MaxLength(250, ErrorMessage = "Địa chỉ không được quá 250 ký tự")]
         public string Address { set; get; }
 
         [Required(ErrorMessage = "Phải nhập số điện thoại.")]
