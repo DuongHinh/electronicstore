@@ -118,6 +118,26 @@ namespace ElectronicStore.Web.Api
             return request.CreateResponse(HttpStatusCode.OK, groupViewModel);
         }
 
+
+        [Route("getlistbyuserid")]
+        [HttpGet]
+        public HttpResponseMessage GetGroupByUserId(HttpRequestMessage request, string userId)
+        {
+            var listGroup = this.groupService.GetListGroupByUserId(userId);
+            var listGroupViewModel = listGroup.Select(g => new GroupViewModel
+            {
+                Id = g.Id,
+                Name = g.Name
+            });
+
+            if (listGroup == null)
+            {
+                return request.CreateErrorResponse(HttpStatusCode.NoContent, "Group not Found");
+            }
+           
+            return request.CreateResponse(HttpStatusCode.OK, listGroupViewModel);
+        }
+
         [HttpPost]
         [Route("create")]
         public HttpResponseMessage Create(HttpRequestMessage request, GroupViewModel groupViewModel)

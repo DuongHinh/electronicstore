@@ -231,6 +231,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Core\BaseApiController.cs" />
     <Compile Include="Core\IPagination.cs" />
+    <Compile Include="Core\ServiceFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -10,7 +10,9 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using ElectronicStore.Data;
 using ElectronicStore.Data.Entities;
-
+using ElectronicStore.Web.Core;
+using ElectronicStore.Service;
+using System.Linq;
 
 [assembly: OwinStartup(typeof(ElectronicStore.Web.App_Start.Startup))]
 
@@ -105,10 +107,28 @@ namespace ElectronicStore.Web.App_Start
 
                 if (user != null)
                 {
-                    ClaimsIdentity identity = await userManager.CreateIdentityAsync(
-                                                           user,
-                                                           DefaultAuthenticationTypes.ExternalBearer);
-                    context.Validated(identity);
+
+                    var applicationGroupService = ServiceFactory.Get<IGroupService>();
+                    var listGroup = applicationGroupService.GetListGroupByUserId(user.Id);
+                    if (listGroup.Any(x => x.Name == "Administrator" || x.Name == "System User"))
+                    {
+                        ClaimsIdentity identity = await userManager.CreateIdentityAsync(
+                                       user,
+                                       DefaultAuthenticationTypes.ExternalBearer);
+                        context.Validated(identity);
+                    }
+                    else
+                    {
+                        context.Rejected();
+                        context.SetError("invalid_role", "Bạn không có quyền truy cập");
+                    }
+
+
+
+                    //ClaimsIdentity identity = await userManager.CreateIdentityAsync(
+                    //                                       user,
+                    //                                       DefaultAuthenticationTypes.ExternalBearer);
+                    //context.Validated(identity);
                 }
                 else
                 {
