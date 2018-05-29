@@ -46,6 +46,13 @@ namespace ElectronicStore.Web
             );
 
             routes.MapRoute(
+                 name: "List Product By Brand",
+                 url: "{alias}.b-{brandId}",
+                 defaults: new { controller = "Product", action = "ListByBrand", brandId = UrlParameter.Optional },
+                 namespaces: new string[] { "ElectronicStore.Web.Controllers" }
+            );
+
+            routes.MapRoute(
                  name: "New Category",
                  url: "{alias}.nc-{id}",
                  defaults: new { controller = "News", action = "Category", id = UrlParameter.Optional },

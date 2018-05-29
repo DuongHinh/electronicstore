@@ -41,9 +41,10 @@
                     <h3>Nhà sản xuất</h3>
                     <div class="w3ls_mobiles_grid_left_grid_sub">
                         <ul class="panel_bottom">
-                            @foreach (var item in listBrand)
+                            @foreach (var br in listBrand)
                             {
-                                <li><a href="products.html">@item.Name</a></li>
+                                var url = "/" + br.Alias + ".b-" + br.Id;
+                                <li><a href="@url">@br.Name</a></li>
                             }
                         </ul>
                     </div>

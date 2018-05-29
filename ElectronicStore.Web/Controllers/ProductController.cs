@@ -226,11 +226,11 @@ namespace ElectronicStore.Web.Controllers
             return View(paginationProduct);
         }
 
-        public ActionResult ListByTag(int tagId, int page = 1, string sort = "")
+        public ActionResult ListByBrand(int brandId, int page = 1, string sort = "")
         {
             int pageSize = 6;
             int totalRow = 0;
-            var productModel = this.productService.GetListProductByTag(tagId, page, pageSize, sort, out totalRow);
+            var productModel = this.productService.GetListProductByBrandId(brandId, page, pageSize, sort, out totalRow);
             var productViewModel = productModel.Select(p => new ProductViewModel()
             {
                 Id = p.Id,
@@ -250,6 +250,47 @@ namespace ElectronicStore.Web.Controllers
                 UpdatedDate = p.UpdatedDate,
                 UpdatedBy = p.UpdatedBy,
                 Status = p.Status
+            });
+
+            var brand = this.brandService.GetById(brandId);
+
+            ViewBag.Brand = new BrandViewModel()
+            {
+                Id = brand.Id,
+                Name = brand.Name,
+                Logo = brand.Logo,
+                Alias = brand.Alias,
+                Description = brand.Description,
+                Status = brand.Status
+            };
+
+            var lstCategory = this.productCategoryService.GetAll();
+            ViewBag.ListCategory = lstCategory.Select(c => new ProductCategoryViewModel()
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Alias = c.Alias,
+                Description = c.Description,
+                ParentId = c.ParentId,
+                DisplayOrder = c.DisplayOrder,
+                Image = c.Image,
+                HomeFlag = c.HomeFlag,
+                CreatedDate = c.CreatedDate,
+                CreatedBy = c.CreatedBy,
+                UpdatedDate = c.UpdatedDate,
+                UpdatedBy = c.UpdatedBy,
+                Status = c.Status
+            });
+
+            var lstBrand = this.brandService.GetAll();
+            ViewBag.ListBrand = lstBrand.Select(b => new BrandViewModel()
+            {
+                Id = b.Id,
+                Name = b.Name,
+                Logo = b.Logo,
+                Description = b.Description,
+                Alias = b.Alias,
+                Status = b.Status,
             });
 
 

@@ -35,13 +35,9 @@ namespace ElectronicStore.Service
 
         IEnumerable<Product> GetReatedProducts(int id, int top);
 
-        IEnumerable<Tag> GetListTagByProductId(int id);
-
         void IncreaseView(int id);
 
-        Tag GetTag(int tagId);
-
-        IEnumerable<Product> GetListProductByTag(int tagId, int page, int pageSize, string sort, out int totalRow);
+        IEnumerable<Product> GetListProductByBrandId(int brandId, int page, int pageSize, string sort, out int totalRow);
 
         bool SellProduct(int productId, int quantity);
 
@@ -176,19 +172,9 @@ namespace ElectronicStore.Service
             return this.productRepositories.GetMulti(x => x.Status && x.Id != id && x.CategoryId == product.CategoryId).OrderByDescending(x => x.CreatedDate).Take(count);
         }
 
-        public IEnumerable<Tag> GetListTagByProductId(int id)
+        public IEnumerable<Product> GetListProductByBrandId(int branId, int page, int pageSize, string sort, out int totalRow)
         {
-            return this.productTagRepositories.GetMulti(x => x.ProductId == id, new string[] { "Tag" }).Select(y => y.Tag);
-        }
-
-        public Tag GetTag(int tagId)
-        {
-            return this.tagRepositories.GetSingleByCondition(x => x.Id == tagId);
-        }
-
-        public IEnumerable<Product> GetListProductByTag(int tagId, int page, int pageSize, string sort, out int totalRow)
-        {
-            var query = this.productRepositories.GetListProductByTag(tagId, page, pageSize, out totalRow);
+            var query = this.productRepositories.GetMulti(x => x.Status && x.BrandId == branId);
 
             switch (sort)
             {

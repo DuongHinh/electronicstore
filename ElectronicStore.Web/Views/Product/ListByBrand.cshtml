@@ -1,12 +1,12 @@
 ﻿@model ElectronicStore.Web.Core.Pagination<ElectronicStore.Web.Models.ProductViewModel>
 @{
-    var category = (ElectronicStore.Web.Models.ProductCategoryViewModel)ViewBag.Category;
+    var brand = (ElectronicStore.Web.Models.BrandViewModel)ViewBag.Brand;
     var listCategory = (IEnumerable<ElectronicStore.Web.Models.ProductCategoryViewModel>)ViewBag.ListCategory;
     var listBrand = (IEnumerable<ElectronicStore.Web.Models.BrandViewModel>)ViewBag.ListBrand;
     var pageIndex = Model.CurrentPage;
     var startPageIndex = Math.Max(1, Model.CurrentPage - Model.MaxPage / 2);
     var endPageIndex = Math.Min(Model.TotalPages, Model.CurrentPage + Model.MaxPage / 2);
-    ViewBag.Title = "Category";
+    ViewBag.Title = "ListByBrand";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -15,7 +15,7 @@
     <div class="container">
         <ul>
             <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Trang chủ</a> <i>/</i></li>
-            <li>@category.Name</li>
+            <li>@brand.Name</li>
         </ul>
     </div>
 </div>
@@ -161,3 +161,4 @@
         </div>
     </div>
 </div>
+
