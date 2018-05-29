@@ -115,6 +115,10 @@
 		            return;
 		        }
 
+		        if ($scope.category.Description != null && $scope.category.Description.length > 500) {
+		            return;
+		        }
+
 		        newsCategoriesSvc.addNewsCategory($scope.category).then(function (record) {
 		            alert('Thêm mới danh mục tin tức thành công!');
 		            $state.go('newsCategories', {}, { reload: true });
@@ -171,6 +175,10 @@
 		        }
 
 		        if ($scope.category.Alias === '' || $scope.category.Alias === null || $scope.category.Alias.length > 256) {
+		            return;
+		        }
+
+		        if ($scope.category.Description != null && $scope.category.Description.length > 500) {
 		            return;
 		        }
 

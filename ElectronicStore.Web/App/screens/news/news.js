@@ -89,6 +89,11 @@
 		function ($scope, $state, $log, $stateParams, $rootScope, productCategoriesSvc, commonSvc, newsCategoriesSvc, newsSvc) {
 		    $scope.title = 'Thêm mới tin tức';
 		    $scope.submitted = false;
+		    $scope.news = {
+		        Status: true,
+		        Title: '',
+		        Alias: ''
+		    }
 
 
 		    $scope.chooseImage = function () {
@@ -124,6 +129,10 @@
 		            return;
 		        }
 
+		        if ($scope.news.Description === '' || $scope.news.Description === null || $scope.news.Description.length > 500) {
+		            return;
+		        }
+
 		        if ($scope.news.CategoryId === null || $scope.news.CategoryId == undefined) {
 		            return;
 		        }
@@ -148,11 +157,7 @@
 		function ($scope, $state, $log, $stateParams, $rootScope, productCategoriesSvc, commonSvc, newsCategoriesSvc, newsSvc) {
 		    $scope.title = 'Cập nhật tin tức';
 		    $scope.submitted = false;
-		    $scope.news = {
-		        Status: true,
-		        Title: '',
-		        Alias: ''
-		    }
+		    $scope.news = {}
 
 		    $scope.chooseImage = function () {
 		        var finder = new CKFinder();
@@ -197,6 +202,10 @@
 		        }
 
 		        if ($scope.news.Alias === '' || $scope.news.Alias === null || $scope.news.Alias.length > 256) {
+		            return;
+		        }
+
+		        if ($scope.news.Description === '' || $scope.news.Description === null || $scope.news.Description.length > 500) {
 		            return;
 		        }
 

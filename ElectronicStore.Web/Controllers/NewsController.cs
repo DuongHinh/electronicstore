@@ -25,7 +25,7 @@ namespace ElectronicStore.Web.Controllers
 
         public ActionResult Category(int id)
         {
-            var newsModel = this.newsService.GetListNewstByCategoryId(id);
+            var newsModel = this.newsService.GetListNewstByCategoryId(id).Where(x => x.Status);
             var newsViewModel = newsModel.Select(p => new NewsViewModel()
             {
                 Id = p.Id,

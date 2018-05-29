@@ -5169,6 +5169,7 @@
     <Content Include="Views\News\Category.cshtml" />
     <Content Include="Views\News\Detail.cshtml" />
     <Content Include="Views\Product\ListByBrand.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\screens\admin\groups\" />
@@ -5182,7 +5183,6 @@
     <Folder Include="Assets\Admin\staticstic\" />
     <Folder Include="Assets\Common\images\" />
     <Folder Include="uploads\" />
-    <Folder Include="Views\About\" />
     <Folder Include="Views\Feedback\" />
     <Folder Include="Views\Post\" />
   </ItemGroup>
