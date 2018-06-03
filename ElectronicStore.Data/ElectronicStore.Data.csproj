@@ -172,6 +172,10 @@
     <Compile Include="Migrations\201805251020221_RemoveColumnNameInTableNews.Designer.cs">
       <DependentUpon>201805251020221_RemoveColumnNameInTableNews.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806032246553_AddFielDetailInTableNews.cs" />
+    <Compile Include="Migrations\201806032246553_AddFielDetailInTableNews.Designer.cs">
+      <DependentUpon>201806032246553_AddFielDetailInTableNews.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AboutRepositories.cs" />
@@ -245,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805251020221_RemoveColumnNameInTableNews.resx">
       <DependentUpon>201805251020221_RemoveColumnNameInTableNews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806032246553_AddFielDetailInTableNews.resx">
+      <DependentUpon>201806032246553_AddFielDetailInTableNews.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

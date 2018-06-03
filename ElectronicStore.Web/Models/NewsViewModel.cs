@@ -19,6 +19,8 @@ namespace ElectronicStore.Web.Models
 
         public string Description { set; get; }
 
+        public string Detail { set; get; }
+
         public int? ViewCount { set; get; }
 
         public DateTime? CreatedDate { set; get; }

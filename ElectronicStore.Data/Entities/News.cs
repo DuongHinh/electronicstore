@@ -28,6 +28,8 @@ namespace ElectronicStore.Data.Entities
         [MaxLength(500)]
         public string Description { set; get; }
 
+        public string Detail { set; get; }
+
         public int? ViewCount { set; get; }
 
         public DateTime? CreatedDate { set; get; }

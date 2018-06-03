@@ -76,9 +76,15 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Mô tả</label>
-                                <textarea rows="8" class="form-control" required ng-maxlength="500" name="description" ng-model="news.Description"></textarea>
+                                <textarea class="form-control" required ng-maxlength="500" name="description" ckeditor ng-model="news.Description"></textarea>
                                 <span ng-show="submitted && formAddNews.description.$error.required" class="invalid">Bạn chưa nhập mô tả</span>
                                 <span ng-show="submitted && formAddNews.description.$error.maxlength" class="invalid"><br />Mô tả không được quá 500 ký tự</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Thông tin chi tiết</label>
+                                <textarea class="form-control" name="description" ckeditor ng-model="news.Detail"></textarea>
                             </div>
                         </div>
                     </div><!-- /.row -->

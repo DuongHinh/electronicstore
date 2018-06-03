@@ -67,6 +67,7 @@ namespace ElectronicStore.Web.Api
                     dbNews.ViewCount = news.ViewCount;
                     dbNews.Title = news.Title;
                     dbNews.Description = news.Description;
+                    dbNews.Detail = news.Detail;
                     dbNews.UpdatedDate = DateTime.Now;
                     dbNews.Status = news.Status;
                     dbNews.UpdatedBy = User.Identity.Name;
