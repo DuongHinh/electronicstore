@@ -39,21 +39,46 @@
 	})
 	.controller('productListController',
 	[
- 		'$scope', '$state', '$stateParams', '$rootScope', 'productSvc', '$ngBootbox', '$filter',
-        function ($scope, $state, $stateParams, $rootScope, productSvc, $ngBootbox, $filter) {
+ 		'$scope', '$state', '$stateParams', '$rootScope', 'productSvc', 'productCategoriesSvc', 'brandSvc', '$ngBootbox', '$filter',
+        function ($scope, $state, $stateParams, $rootScope, productSvc, productCategoriesSvc, brandSvc, $ngBootbox, $filter) {
 
 		    $scope.title = 'Danh sách sản phẩm';
 		    $scope.loading = true;
 		    $scope.keyword = '';
+		    $scope.selectedCategoryId = null;
+		    $scope.selectedBrandId = null;
 		    $scope.itemsPerPage = 10;
 		    $scope.totalPages = 0;
 		    $scope.currentPage = 1
 
 		    $scope.selectedProductIds = [];
 
+		    var loadProductCategories = function () {
+		        productCategoriesSvc.getAllCategories('').then(function (response) {
+		            $scope.productCategories = response.data;
+		        }, function (error) {
+		            console.log(error);
+		        });
+		    }
+
+		    var loadBrands = function () {
+		        brandSvc.getAll().then(function (response) {
+		            $scope.brands = response.data;
+		        }, function (error) {
+		            console.log(error);
+		        });
+		    }
+
+		    var init = function () {
+		        loadProductCategories();
+		        loadBrands();
+		    }
+
+		    init();
+
 		    var getListProduct = function () {
 		        var skip = ($scope.currentPage - 1) * $scope.itemsPerPage;
-		        productSvc.getListProduct($scope.keyword, skip, $scope.itemsPerPage).then(function (response) {
+		        productSvc.getListProduct($scope.keyword, $scope.selectedCategoryId, $scope.selectedBrandId, skip, $scope.itemsPerPage).then(function (response) {
 		            $scope.products = response.data.Results;
 		            $scope.totalPages = response.data.TotalPages;
 		            $scope.currentPage = response.data.CurrentPage;
@@ -148,7 +173,7 @@
 		        });
 		    }
 
-		    loadBrands();
+
 
 		    var init = function () {
 		        loadProductCategories();

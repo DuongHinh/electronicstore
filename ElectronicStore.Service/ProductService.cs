@@ -19,13 +19,15 @@ namespace ElectronicStore.Service
 
         IEnumerable<Product> GetAll();
 
-        IEnumerable<Product> GetAll(string keyword);
+        IEnumerable<Product> GetAll(string keyword, int? categoryId, int? brandId);
 
         Product GetById(int id);
 
         IEnumerable<Product> GetNewArrival(int top);
 
         IEnumerable<Product> GetHotProduct(int top);
+
+        IEnumerable<Product> GetPromotionProduct(int top);
 
         IEnumerable<Product> GetListProductByCategoryId(int categoryId, int page, int pageSize, string sort, out int totalRow);
 
@@ -78,12 +80,19 @@ namespace ElectronicStore.Service
             return this.productRepositories.GetAll();
         }
 
-        public IEnumerable<Product> GetAll(string keyword)
+        public IEnumerable<Product> GetAll(string keyword, int? categoryId, int? brandId)
         {
+            var query = this.productRepositories.GetAll();
             if (!string.IsNullOrEmpty(keyword))
-                return this.productRepositories.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
-            else
-                return this.productRepositories.GetAll();
+                query = query.Where(x => x.Name.ToLower().Contains(keyword.ToLower()));
+
+            if (categoryId != null)
+                query = query.Where(x => x.CategoryId == categoryId);
+
+            if (brandId != null)
+                query = query.Where(x => x.BrandId == brandId);
+
+            return query;
         }
 
         public Product GetById(int id)
@@ -110,6 +119,7 @@ namespace ElectronicStore.Service
         {
             return this.productRepositories.GetMulti(x => x.Status && x.HotFlag == true).OrderByDescending(x => x.CreatedDate).Take(count);
         }
+
 
         public IEnumerable<Product> GetListProductByCategoryId(int categoryId, int page, int pageSize, string sort, out int totalRow)
         {
@@ -226,6 +236,11 @@ namespace ElectronicStore.Service
             else
                 product.ViewCount = 1;
             this.unitOfWork.Save();
+        }
+
+        public IEnumerable<Product> GetPromotionProduct(int top)
+        {
+            return this.productRepositories.GetMulti(x => x.Status && x.PromotionPrice.HasValue).OrderByDescending(x => x.CreatedDate).Take(top);
         }
     }
 }

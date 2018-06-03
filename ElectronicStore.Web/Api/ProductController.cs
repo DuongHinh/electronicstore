@@ -160,11 +160,11 @@ namespace ElectronicStore.Web.Api
         [Route("getall")]
         [HttpGet]
         [AllowAnonymous]
-        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int skip, int pageSize)
+        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int? categoryId, int? brandId, int skip, int pageSize)
         {
             return CreateHttpResponse(request, () =>
             {
-                var models = this.productService.GetAll(keyword).OrderByDescending(x => x.CreatedDate);
+                var models = this.productService.GetAll(keyword, categoryId, brandId).OrderByDescending(x => x.CreatedDate);
                 var results = models.Skip(skip).Take(pageSize);
                 var responseData = new Pagination<Product>()
                 {

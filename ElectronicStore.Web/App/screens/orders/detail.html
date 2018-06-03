@@ -26,10 +26,10 @@
                             <div class="row form-group">
                                 <table class="table">
                                     <tr>
-                                        <td width="25%""><label>Mã đơn hàng</label></td>
+                                        <td width="25%"><label>Mã đơn hàng</label></td>
                                         <td width="25%">{{order.OrderId}}</td>
-                                        <td width="25%"><label>Trạng thái</label></td>
-                                        <td width="25%">
+                                        <td width="25%" class="hidden-print"><label>Trạng thái</label></td>
+                                        <td width="25%" class="hidden-print">
                                             <select class="form-control" ng-disabled="oldStatus == 2"
                                                     ng-options="s.id as s.value for s in statusArr"
                                                     ng-model="order.Status"></select>
@@ -56,8 +56,8 @@
                                                    is-open="pickerOpen5" convert-date ng-model="order.OrderDate"
                                                    style="font-weight: normal;" disabled />
                                         </td>
-                                        <td width="25%"><label>Ngày giao</label></td>
-                                        <td width="25%">
+                                        <td width="25%" class="hidden-print"><label>Ngày giao</label></td>
+                                        <td width="25%" class="hidden-print">
                                             <input required class="pickerin form-control" id="ShipDate"
                                                    ng-click="pickerOpen6 = true" type="text" name="ShipDate" placeholder="Ngày giao"
                                                    datepicker-append-to-body="true" datepicker-popup="MM/dd/yyyy"
@@ -65,7 +65,7 @@
                                                    style="font-weight: normal;" />
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="hidden-print">
                                         <td width="25%"><label>Thanh toán</label></td>
                                         <td width="25%">
                                             <select class="form-control" 

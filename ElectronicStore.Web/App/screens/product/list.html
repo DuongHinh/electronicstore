@@ -21,7 +21,7 @@
             </div>
             <div class="box-body">
                 <div class="row hidden-print">
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                         <div class="input-group">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" style="border-radius:unset;" type="button" ng-click="search()">Tìm kiếm</button>
@@ -29,7 +29,25 @@
                             <input type="text" class="form-control" ng-model="keyword" placeholder="&#xF002; Tìm theo tên sản phẩm" style="border-radius: 0px; font-family:Arial, FontAwesome; direction: ltr; text-align: left;">
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-2">
+                        <div style="line-height: 36px;">
+                            <select style="width: 150px;" class="form-control"
+                                    ng-options="s.Id as s.Name for s in productCategories"
+                                    ng-model="selectedCategoryId" ng-change="search()">
+                                <option value="">Loại sản phẩm</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div style="line-height: 36px;">
+                            <select style="width: 150px;" class="form-control"
+                                    ng-options="s.Id as s.Name for s  in brands"
+                                    ng-model="selectedBrandId" ng-change="search()">
+                                <option value="">Hãng sản xuất</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
                         <button class="btn btn-success" ui-sref="products.new">&nbsp; Thêm &nbsp;</button>
                         <button class="btn btn-print" ng-click="print()"> <i class="fa fa-print"></i> Print</button>
                         <button class="btn btn-danger pull-right" ng-click="deleteMultiProduct()" ng-disabled="selectedProductIds.length === 0">Xóa</button>

@@ -6087,6 +6087,10 @@ td.invert-image a img {
         font-size: .9em;
     }
 
+    .description ul li {
+        list-style: none;
+    }
+
     .color-quality-left h5, .color-quality-right h5, .occasional h5 {
         font-size: .8em;
     }

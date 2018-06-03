@@ -4,8 +4,8 @@
         '$q', '$timeout', '$http', 'apiSvc',
         function ($q, $timeout, $http, apiSvc) {
 
-            this.getListProduct = function (keyword, skip, pageSize) {
-                return apiSvc.get('/api/product/getall?keyword=' + keyword + '&skip=' + skip + '&pageSize=' + pageSize);
+            this.getListProduct = function (keyword, categoryId, brandId, skip, pageSize) {
+                return apiSvc.get('/api/product/getall?keyword=' + keyword + '&categoryId=' + categoryId + '&brandId=' + brandId + '&skip=' + skip + '&pageSize=' + pageSize);
             }
 
             //this.getListProduct = function (keyword) {

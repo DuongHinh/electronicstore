@@ -29,7 +29,7 @@ namespace ElectronicStore.Web.Controllers
         {
             var homeViewModel = new HomeViewModel();
             var newArrivalProductModel = this.productService.GetNewArrival(4);
-            var hotProductModel = this.productService.GetHotProduct(4);
+            var promotionProductModel = this.productService.GetPromotionProduct(4);
             var brandsModel = this.brandService.GetAll();
             var newArrivalProductViewModel = newArrivalProductModel.Select(p => new ProductViewModel() {
                 Id = p.Id,
@@ -51,7 +51,7 @@ namespace ElectronicStore.Web.Controllers
                 Status = p.Status
             });
 
-            var hotProductViewModel = hotProductModel.Select(p => new ProductViewModel()
+            var promotionProductViewModel = promotionProductModel.Select(p => new ProductViewModel()
             {
                 Id = p.Id,
                 Name = p.Name,
@@ -83,7 +83,7 @@ namespace ElectronicStore.Web.Controllers
             });
 
             homeViewModel.NewArrivalProducts = newArrivalProductViewModel;
-            homeViewModel.HotProducts = hotProductViewModel;
+            homeViewModel.HotProducts = promotionProductViewModel;
             homeViewModel.Brands = brandsViewModel;
 
             return View(homeViewModel);
