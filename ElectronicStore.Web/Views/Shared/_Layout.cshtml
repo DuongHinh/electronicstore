@@ -37,23 +37,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- //web fonts -->
     <!-- start-smooth-scrolling -->
     <script type="text/javascript">
-	jQuery(document).ready(function($) {
-		$(".scroll").click(function(event){
-			event.preventDefault();
-			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-		});
-	});
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
     </script>
     <!-- //end-smooth-scrolling -->
 </head>
 <body>
-    <!-- for bootstrap working -->
-    <script type="text/javascript" src="/Assets/Client/js/bootstrap-3.1.1.min.js"></script>
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.0&appId=145143759678533&autoLogAppEvents=1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
     <!-- //for bootstrap working -->
-    
     @*<script>
-		$('#myModal88').modal('show');
-    </script>*@
+            $('#myModal88').modal('show');
+        </script>*@
     <!-- header modal -->
     <!-- header -->
     @{ Html.RenderAction("Header", "Home"); }
@@ -78,7 +84,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         @{ Html.RenderAction("Category", "Home"); }
 
                         @{ Html.RenderAction("NewsCategory", "Home"); }
-                        
+
                         <li><a href="/contact-us">Liên hệ</a></li>
                         <li><a href="/about-us">Giới thiệu</a></li>
                     </ul>
@@ -104,14 +110,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         w3ls.render();
 
         w3ls.cart.on('w3sb_checkout', function (evt) {
-        	var items, len, i;
+            var items, len, i;
 
-        	if (this.subtotal() > 0) {
-        		items = this.items();
+            if (this.subtotal() > 0) {
+                items = this.items();
 
-        		for (i = 0, len = items.length; i < len; i++) {
-        		}
-        	}
+                for (i = 0, len = items.length; i < len; i++) {
+                }
+            }
         });
     </script>
     <!-- //cart-js -->
