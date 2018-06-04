@@ -106,6 +106,7 @@ namespace ElectronicStore.Web.Controllers
         {
             var footerViewModel = new FooterViewModel();
             var productCategoriesModel = this.productCategoryService.GetAll();
+            var newsCategoriesModel = this.newsCategoryService.GetAll();
             var contactModel = this.contactService.GetInforContact();
 
             var productCategoriesViewModel = productCategoriesModel.Select(c => new ProductCategoryViewModel()
@@ -125,6 +126,21 @@ namespace ElectronicStore.Web.Controllers
                Status = c.Status
             });
 
+            var newsCategoriesViewModel = newsCategoriesModel.Select(c => new NewsCategoryViewModel()
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Alias = c.Alias,
+                Description = c.Description,
+                ParentId = c.ParentId,
+                Image = c.Image,
+                CreatedDate = c.CreatedDate,
+                CreatedBy = c.CreatedBy,
+                UpdatedDate = c.UpdatedDate,
+                UpdatedBy = c.UpdatedBy,
+                Status = c.Status
+            });
+
             var contactViewModel = new ContactViewModel();
             contactViewModel.Id = contactModel.Id;
             contactViewModel.Name = contactModel.Name;
@@ -137,6 +153,7 @@ namespace ElectronicStore.Web.Controllers
 
             footerViewModel.ContactInfo = contactViewModel;
             footerViewModel.ProductCategories = productCategoriesViewModel;
+            footerViewModel.NewsCategories = newsCategoriesViewModel;
 
             return PartialView(footerViewModel);
         }
@@ -166,7 +183,6 @@ namespace ElectronicStore.Web.Controllers
                 Alias = c.Alias,
                 Description = c.Description,
                 ParentId = c.ParentId,
-                DisplayOrder = c.ParentId,
                 Image = c.Image,
                 HomeFlag = c.HomeFlag,
                 CreatedDate = c.CreatedDate,

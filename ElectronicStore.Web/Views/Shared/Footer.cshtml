@@ -23,10 +23,13 @@
                 </ul>
             </div>
             <div class="col-md-3 w3_footer_grid">
-                <h3>Thông tin</h3>
+                <h3>Tin tức</h3>
                 <ul class="info">
-                    <li><a href="/contact-us">Liên hệ</a></li>
-                    <li><a href="/about-us">Giới thiệu</a></li>
+                    @foreach (var nc in Model.NewsCategories)
+                    {
+                        var url = "/" + nc.Alias + ".nc-" + nc.Id;
+                        <li><a href="@url">@nc.Name</a></li>
+                    }
                 </ul>
             </div>
             <div class="col-md-3 w3_footer_grid">

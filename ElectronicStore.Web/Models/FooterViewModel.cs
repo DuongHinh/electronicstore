@@ -10,5 +10,7 @@ namespace ElectronicStore.Web.Models
         public ContactViewModel ContactInfo { set; get; }
 
         public IEnumerable<ProductCategoryViewModel> ProductCategories { set; get; }
+
+        public IEnumerable<NewsCategoryViewModel> NewsCategories { set; get; }
     }
 }
