@@ -29,8 +29,8 @@ namespace ElectronicStore.Web.App_Start
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
             app.CreatePerOwinContext<UserManager<ApplicationUser>>(CreateManager);
 
-            //Configure the sing in oatuh Token
-            app.CreatePerOwinContext<UserManager<ApplicationUser>>(CreateManager);
+            //Configure the sing in oauth Token
+            //app.CreatePerOwinContext<UserManager<ApplicationUser>>(CreateManager);
             app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/oauth/token"),

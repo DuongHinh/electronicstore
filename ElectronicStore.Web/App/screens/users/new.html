@@ -111,6 +111,17 @@
                                     <span ng-show="submitted && formAddUser.passwword.$error.minlength" class="invalid"><br />Mật khẩu phải chứa ít nhất 6 ký tự</span>
                                 </div>
                             </div>
+                            <div class="row form-group">
+                                <div class="col-md-3"><label>Xác thực mật khẩu</label></div>
+                                <div class="col-md-9">
+                                    <input class="form-control" placeholder="Xác thực mật khẩu" type="password"
+                                           ng-minlength="6" required name="ConfirmPassword" ng-model="user.ConfirmPassword"
+                                           ng-class="{true:'inputInvalid', false:''}[submitted && formAddUser.ConfirmPassword.$error.required]">
+                                    <span ng-show="submitted && formAddUser.ConfirmPassword.$error.required" class="invalid">Bạn chưa nhập mật khẩu</span>
+                                    <span ng-show="submitted && formAddUser.ConfirmPassword.$error.minlength" class="invalid"><br />Mật khẩu phải chứa ít nhất 6 ký tự</span>
+                                    <span ng-show="submitted && !resultCompare" class="invalid"><br />Mật khẩu và xác thực không khớp </span>
+                                </div>
+                            </div>
                            
                     </div>
                     <div class="col-md-4 col-md-offset-1">

@@ -1,6 +1,7 @@
 ﻿angular.module('electronicStoreApp.screens.users',
 	[
 		'ui.router',
+        'electronicStoreApp.global.services.auth',
         'electronicStoreApp.global.services',
         'electronicStoreApp.services.users',
         'electronicStoreApp.services.groups',
@@ -38,8 +39,8 @@
 	})
 	.controller('usersListController',
 	[
- 		'$scope', '$state', '$stateParams', '$rootScope', '$ngBootbox', '$filter', 'userSvc', 'groupSvc',
-        function ($scope, $state, $stateParams, $rootScope, $ngBootbox, $filter, userSvc, groupSvc) {
+ 		'$scope', '$state', '$stateParams', '$rootScope', '$ngBootbox', '$filter', 'userSvc', 'groupSvc', 'authData',
+        function ($scope, $state, $stateParams, $rootScope, $ngBootbox, $filter, userSvc, groupSvc, authData) {
 
             $scope.title = 'Danh sách người dùng';
             $scope.loading = true;
@@ -47,6 +48,8 @@
             $scope.itemsPerPage = 10;
             //$scope.totalPages = 0;
             //$scope.currentPage = 1;
+
+            $scope.currentUser = authData.authInformation;
 
             var getListUsers = function () {
                 
@@ -67,7 +70,13 @@
 
             $scope.deleteUser = function (item) {
                 $ngBootbox.confirm("Bạn có chắc muốn xóa " + item.UserName + " ?").then(function () {
+                    if ($scope.currentUser.username === item.UserName) {
+                        alert("Bạn không có quyền xóa người này");
+                        return;
+                    }
+
                     var id = item.Id;
+                    return;
                     userSvc.deleteUser(id).then(function (response) {
                         $state.reload();
                     }, function (error) {
@@ -98,13 +107,57 @@
 		    }
 		    loadGroup();
 
+		    var getListUsers = function () {
+
+		        userSvc.getListUsers("").then(function (response) {
+		            $scope.users = response.data;           
+		            //console.log($scope.users);
+		        }, function (error) {
+		            console.log(error);
+		        });
+		    }
+		    getListUsers();
+
 		    var validateEmail = function (email) {
 		        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		        return re.test(email);
 		    }
+		    $scope.resultCompare = true;
+
+		    var comparePassword = function (input1, input2) {
+		        $scope.resultCompare = angular.equals(input1, input2);
+		        return $scope.resultCompare;
+		    };
 
 		    $scope.addNewUser = function () {
 		        $scope.submitted = true;
+                
+		        var checkName = true;
+		        for (var i = 0, len = $scope.users.length; i < len; i++) {
+		            if ($scope.users[i].UserName === $scope.user.UserName) {
+		                checkName = false;
+		                break;
+		            }
+		        }
+
+		        if (checkName === false) {
+		            alert("Tên tài khoản đã tồn tại");
+		            return;
+		        }
+
+		        var checkEmail = true;
+		        for (var i = 0, len = $scope.users.length; i < len; i++) {
+		            if ($scope.users[i].Email === $scope.user.Email) {
+		                checkEmail = false;
+		                break;
+		            }
+		        }
+
+		        if (checkEmail === false) {
+		            alert("Địa chỉ email đã tồn tại");
+		            return;
+		        }
+
 		        if ($scope.user.LastName === undefined || $scope.user.LastName === '' || $scope.user.LastName === null || $scope.user.LastName.length > 256) {
 		            return;
 		        }
@@ -137,6 +190,14 @@
 		            return;
 		        }
 
+		        if ($scope.user.ConfirmPassword === undefined || $scope.user.ConfirmPassword === '' || $scope.user.ConfirmPassword === null || $scope.user.ConfirmPassword.length < 6) {
+		            return;
+		        }
+
+		        if (!comparePassword($scope.user.Password, $scope.user.ConfirmPassword)) {
+		            return;
+		        }
+
 		        userSvc.addNewUser($scope.user).then(function (response) {
 		            alert('Thêm mới người dùng thành công!');
 		            $state.go('users');
@@ -160,6 +221,17 @@
 		    var convertDate = function (inputDate) {
 		        return new Date(inputDate);
 		    }
+
+		    var getListUsers = function () {
+
+		        userSvc.getListUsers("").then(function (response) {
+		            $scope.users = response.data;
+		            //console.log($scope.users);
+		        }, function (error) {
+		            console.log(error);
+		        });
+		    }
+		    getListUsers();
 
 		    var loadDetail = function () {
 		        userSvc.getUserById($stateParams.id).then(function (response) {
@@ -193,6 +265,8 @@
 		    $scope.updateUser = function () {
 
 		        $scope.submitted = true;
+
+
 		        if ($scope.user.LastName === undefined || $scope.user.LastName === '' || $scope.user.LastName === null || $scope.user.LastName.length > 256) {
 		            return;
 		        }
